@@ -203,7 +203,25 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   .dgrid,.about,.hiw{grid-template-columns:1fr}
   .side{position:static}
   .grid{grid-template-columns:1fr}
-  .showcase{grid-template-columns:1fr 1fr}
+  .showcase{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:24px;gap:12px;margin:28px -24px 0;padding:4px 24px 12px;-webkit-overflow-scrolling:touch}
+  .showcase a{flex:0 0 72%;scroll-snap-align:start}
+  .showcase span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .side{order:-1;padding:20px}
+  .side h1{font-size:30px}
+  .browser .viewport{height:300px}
+  .detail-hero{padding-top:24px}
+  .about{margin-top:28px}
+  .hero{padding:44px 0 36px}
+  .hero p.lead{font-size:17px}
+  .hero .ctas .btn{flex:1 1 100%;justify-content:center}
+  .steps-row{margin-top:36px}
+  .steps-row div{padding:16px}
+  .steps-row b{font-size:30px}
+  section.block{padding:44px 0}
+  .live-band h2{font-size:32px}
+  .pcard .row{flex-wrap:wrap}
+  .pcard .row .btn{flex:1 1 auto;justify-content:center}
+  footer .wrap div:last-child{flex-wrap:wrap;gap:12px 18px}
   .hero h1 .scribble{white-space:normal}.hero h1 .scribble svg{display:none}.hero h1 .scribble{color:var(--accent)}
   .ds .dnav{flex-wrap:wrap;padding:14px 18px;gap:14px}.ds .dhero,.ds .dsec{padding-left:18px;padding-right:18px}
 }
@@ -353,7 +371,7 @@ function pageHome(){
   <h1>Don’t just have an idea. <span class="scribble">Buy one that’s built.<svg viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M3 14 Q80 3 150 10 T297 8" fill="none" stroke="#16A34A" stroke-width="6" stroke-linecap="round"/></svg></span></h1>
   <p class="lead">Every website here was designed from scratch — many of them live, on camera. Click through any of them like it’s already running, then make it yours: domain, design, store and all.</p>
   <div class="ctas"><a href="#marketplace" class="btn btn-accent">Browse The Websites</a><a href="#live" class="btn btn-ghost">Watch A Live Build</a></div>
-  <div class="showcase">${P.filter(p=>p.shot).map(p=>`<a href="#${p.slug}"><div class="bar"><i></i><i></i><i></i></div><img src="${p.shot}" alt="${p.name}"><span><b style="color:var(--accent)">●</b> ${p.domain}</span></a>`).join('')}</div>
+  <div class="showcase">${P.filter(p=>p.shot).map(p=>`<a href="#${p.slug}"><div class="bar"><i></i><i></i><i></i></div><img src="${p.shot}" alt="${p.name}"><span><b style="color:var(--accent)">●</b> ${p.name.replace(' — Revamp','')}</span></a>`).join('')}</div>
   <div class="steps-row">
    <div><b>01</b><h4>The Idea</h4><p>We brainstorm one live, or pick an everyday business to rebuild better.</p></div>
    <div><b>02</b><h4>The Domain</h4><p>Name it and grab the domain on stream.</p></div>
