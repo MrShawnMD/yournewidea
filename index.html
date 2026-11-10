@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your New Idea — Websites Built Live, Ready To Buy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F1F3F2; --ink:#10261C; --ink2:#34433c; --mute:#6b7a72; --line:#dfe4e1;
+  --accent:#16A34A; --accent2:#dcf5e5; --live:#E5283A; --card:#fff;
+  --display:'Bricolage Grotesque',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* ---------- top nav ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:68px}
+.logo{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.logo .bulb{width:28px;height:28px;border-radius:8px;background:var(--ink);display:grid;place-items:center}
+.logo span em{font-style:normal;color:var(--accent)}
+.nav nav{display:flex;gap:22px;margin-left:auto;font-weight:500;font-size:15px}
+.nav nav a{opacity:.75}.nav nav a:hover,.nav nav a.on{opacity:1}
+.nav nav a.on{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px;text-decoration-color:var(--accent)}
+.pill-live{display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:#fff;padding:9px 15px;border-radius:99px;font-weight:600;font-size:14px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 rgba(229,40,58,.6);animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(229,40,58,.6)}70%{box-shadow:0 0 0 9px rgba(229,40,58,0)}100%{box-shadow:0 0 0 0 rgba(229,40,58,0)}}
+.burger{display:none;margin-left:auto;font-size:26px}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:12px;font-weight:600;font-size:15px;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-accent{background:var(--accent);color:#fff;box-shadow:0 6px 0 #0f7a36}
+.btn-accent:hover{box-shadow:0 8px 0 #0f7a36}
+.btn-ghost{border:1.5px solid var(--ink);background:#fff}
+.btn-sm{padding:9px 14px;font-size:14px;border-radius:10px}
+
+/* ---------- hero ---------- */
+.hero{padding:80px 0 60px;position:relative;overflow:hidden;background:radial-gradient(900px 420px at 85% 10%,#dcf5e5,transparent 70%),#fff;border-bottom:1px solid var(--line)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(44px,7.2vw,96px);line-height:.95;letter-spacing:-.035em;margin:18px 0 22px;max-width:960px}
+.hero h1 .scribble{position:relative;white-space:nowrap}
+.hero h1 .scribble svg{position:absolute;left:-2%;bottom:-6px;width:104%;height:22px}
+.hero p.lead{font-size:20px;color:var(--ink2);max-width:620px;margin-bottom:32px}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
+.steps-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:64px;border:1.5px solid var(--line);box-shadow:0 10px 30px -18px rgba(16,38,28,.25);border-radius:18px;overflow:hidden;background:#fff}
+.steps-row div{padding:22px 22px 24px;border-right:1.5px solid var(--line)}
+.steps-row div:last-child{border-right:0}
+.steps-row b{font-family:var(--display);font-size:40px;line-height:1;color:var(--accent);display:block;margin-bottom:8px}
+.steps-row h4{font-family:var(--display);font-size:19px;margin-bottom:4px}
+.steps-row p{font-size:14px;color:var(--mute)}
+
+/* ---------- sections ---------- */
+section.block{padding:70px 0}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:30px;flex-wrap:wrap}
+.sec-head h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,4.4vw,54px);letter-spacing:-.03em;line-height:1}
+.sec-head p{color:var(--mute);max-width:440px}
+
+/* filters */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.filters button{padding:8px 15px;border-radius:99px;border:1.5px solid var(--line);font-size:14px;font-weight:500;background:#fff}
+.filters button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* project grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:22px}
+.pcard{background:var(--card);border-radius:20px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 18px 40px -18px rgba(0,0,0,.25)}
+.pcard .thumb{height:210px;position:relative;overflow:hidden}
+.pcard .thumb .mini{position:absolute;inset:16px 16px 0;border-radius:10px 10px 0 0;overflow:hidden;box-shadow:0 10px 30px -10px rgba(0,0,0,.4)}
+.tag{font-size:12px;font-weight:700;padding:5px 10px;border-radius:99px;background:#fff;letter-spacing:.02em}
+.pcard .thumb img.shot{position:absolute;inset:16px 16px 0;width:calc(100% - 32px);height:calc(100% - 16px);object-fit:cover;object-position:top;border-radius:10px 10px 0 0;box-shadow:0 10px 30px -10px rgba(0,0,0,.4);transition:transform .4s}
+.pcard:hover .thumb img.shot{transform:scale(1.03)}
+.browser .viewport.scroll{overflow-y:auto;cursor:auto}
+.hint{font-size:13px;color:var(--mute);margin-top:10px}
+.showcase{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.showcase a{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 14px 30px -18px rgba(16,38,28,.35);transition:transform .25s}
+.showcase a:hover{transform:translateY(-6px) rotate(-.6deg)}
+.showcase .bar{height:18px;background:#eef1ef;display:flex;gap:4px;align-items:center;padding:0 8px}
+.showcase .bar i{width:6px;height:6px;border-radius:50%;background:#c9d1cd}
+.showcase img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;display:block}
+.showcase span{display:block;font-size:13px;font-weight:600;padding:8px 10px}
+.pcard .tag{position:absolute;top:14px;left:14px;z-index:2;font-size:12px;font-weight:700;padding:5px 10px;border-radius:99px;background:#fff;letter-spacing:.02em}
+.tag.sale{background:#1f9d55;color:#fff}.tag.client{background:#2b59c3;color:#fff}.tag.brand{background:var(--ink);color:#fff}
+.pcard .body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.livebadge{color:var(--accent);font-weight:700}
+.pcard .dom{font-size:13px;color:var(--mute);font-weight:500}
+.pcard h3{font-family:var(--display);font-size:25px;letter-spacing:-.02em;line-height:1.05}
+.pcard p{font-size:15px;color:var(--ink2);flex:1}
+.pcard .row{display:flex;gap:8px;margin-top:10px}
+
+/* live */
+.live-band{background:var(--ink);color:#fff;border-radius:28px;padding:54px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.live-band h2{font-family:var(--display);font-size:clamp(34px,4.4vw,56px);line-height:1;letter-spacing:-.03em;margin:14px 0 16px}
+.live-band p{color:#b7c9bf;font-size:17px;margin-bottom:24px}
+.screen{aspect-ratio:16/10;background:#0a1a13;border-radius:18px;position:relative;overflow:hidden;border:1px solid #23443a}
+.screen .bar{position:absolute;top:14px;left:14px;display:flex;gap:8px;z-index:2}
+.screen .bar span{background:var(--live);font-size:12px;font-weight:700;padding:4px 9px;border-radius:6px}
+.screen .bar span.v{background:rgba(255,255,255,.15)}
+.typing{position:absolute;inset:56px 22px 22px;font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#9ef0b6;line-height:1.7;white-space:pre-wrap}
+.chat{position:absolute;right:14px;bottom:14px;width:46%;display:flex;flex-direction:column;gap:6px}
+.chat div{background:rgba(255,255,255,.1);font-size:12px;padding:6px 10px;border-radius:10px;color:#eee;animation:rise .5s both}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* detail page */
+.detail-hero{padding:46px 0 30px}
+.crumb{font-size:14px;color:var(--mute);margin-bottom:20px}
+.crumb a{text-decoration:underline}
+.dgrid{display:grid;grid-template-columns:1.35fr .65fr;gap:34px;align-items:start}
+.browser{border-radius:16px;overflow:hidden;border:1.5px solid var(--line);background:#fff;box-shadow:0 30px 60px -30px rgba(0,0,0,.35)}
+.browser .chrome{height:40px;background:#e8ecea;border-bottom:1.5px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 14px}
+.browser .chrome i{width:11px;height:11px;border-radius:50%;background:#c9d1cd;display:block}
+.browser .chrome .url{margin-left:14px;background:#fff;border-radius:7px;padding:4px 12px;font-size:12.5px;color:var(--ink2);flex:1;max-width:360px;border:1px solid var(--line)}
+.browser .viewport{height:430px;overflow:hidden;position:relative}
+.browser .viewport .mini{position:absolute;inset:0}
+.browser .overlay{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,0) 55%);opacity:0;transition:.2s}
+.browser:hover .overlay{opacity:1}
+.side{background:#fff;border-radius:20px;border:1px solid var(--line);padding:26px;position:sticky;top:90px}
+.side h1{font-family:var(--display);font-size:38px;line-height:1;letter-spacing:-.03em;margin:10px 0 6px}
+.side .dom{color:var(--mute);font-weight:500;margin-bottom:16px}
+.side .price{font-family:var(--display);font-size:22px;margin:6px 0 4px}
+.side .note{font-size:13px;color:var(--mute);margin-bottom:18px}
+.side .btns{display:flex;flex-direction:column;gap:10px}
+.side .btns .btn{justify-content:center}
+.inc{margin-top:22px;border-top:1px solid var(--line);padding-top:18px}
+.inc h5{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);margin-bottom:10px}
+.inc li{list-style:none;padding:6px 0 6px 26px;position:relative;font-size:15px}
+.inc li:before{content:"";position:absolute;left:0;top:10px;width:16px;height:16px;border-radius:50%;background:var(--accent2);box-shadow:inset 0 0 0 5px var(--accent)}
+.about{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.about h3{font-family:var(--display);font-size:26px;letter-spacing:-.02em;margin-bottom:10px}
+.about p,.about li{color:var(--ink2);font-size:16px}
+.about ul{padding-left:18px}.about li{margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips span{font-size:13px;padding:5px 11px;border-radius:99px;background:#fff;border:1px solid var(--line)}
+
+/* how it works */
+.hiw{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.hiw .c{background:#fff;border-radius:20px;padding:28px;border:1px solid var(--line)}
+.hiw .n{font-family:var(--display);font-size:56px;font-weight:800;color:var(--accent);line-height:1}
+.hiw h3{font-family:var(--display);font-size:24px;margin:10px 0 8px}
+.hiw p{color:var(--ink2)}
+.faq{margin-top:40px;max-width:820px}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq summary{font-family:var(--display);font-size:20px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+.faq summary:after{content:"+";color:var(--accent)}
+.faq details[open] summary:after{content:"–"}
+.faq p{margin-top:10px;color:var(--ink2)}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:40px 0 60px;margin-top:40px;background:#fff;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(20,20,20,.55);display:none;place-items:center;z-index:200;padding:20px}
+.modal.on{display:grid}
+.modal .box{background:#fff;border-radius:22px;max-width:520px;width:100%;padding:30px;position:relative;max-height:90vh;overflow:auto}
+.modal h3{font-family:var(--display);font-size:28px;letter-spacing:-.02em;margin-bottom:4px}
+.modal .x{position:absolute;right:18px;top:14px;font-size:26px;color:var(--mute)}
+.modal label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
+.modal input,.modal select,.modal textarea{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font:inherit;font-size:15px;background:#fff}
+.modal input:focus,.modal textarea:focus,.modal select:focus{outline:none;border-color:var(--ink)}
+.modal .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal .ok{text-align:center;padding:20px 0}
+.modal .ok .big{font-size:48px}
+
+/* ---------- demo shell ---------- */
+.demo-bar{position:sticky;top:0;z-index:60;background:var(--ink);color:#fff;display:flex;align-items:center;gap:14px;padding:10px 18px;font-size:14px}
+.demo-bar a.back{opacity:.8}.demo-bar a.back:hover{opacity:1}
+.demo-bar .t{margin:0 auto;opacity:.85}
+.demo-bar .t b{color:#fff}
+.demo-stage{min-height:calc(100vh - 50px);display:flex;flex-direction:column}.demo-stage>.ds{flex:1}
+.demo-flag{position:fixed;left:16px;bottom:16px;z-index:61;background:rgba(0,0,0,.8);color:#fff;font-size:12px;padding:7px 12px;border-radius:99px}
+
+/* generic demo site bits */
+.ds{font-family:var(--body);min-height:100%}
+.ds .dnav{display:flex;align-items:center;gap:22px;padding:18px 34px}
+.ds .dnav .brand{font-weight:800;font-size:22px;margin-right:auto}
+.ds .dnav a{cursor:pointer;font-size:14px;font-weight:600;opacity:.8}
+.ds .dnav a.on,.ds .dnav a:hover{opacity:1}
+.ds .dhero{padding:70px 34px}
+.ds .dsec{padding:44px 34px}
+.ds .dgrid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.ds .dbtn{display:inline-block;padding:13px 22px;border-radius:8px;font-weight:700;cursor:pointer;font-size:15px}
+.ds .item{border-radius:12px;padding:16px;cursor:pointer;transition:transform .15s}
+.ds .item:hover{transform:translateY(-3px)}
+.ds .item h4{margin:10px 0 4px;font-size:16px}
+.ds .small{font-size:13px;opacity:.7}
+.ds input,.ds select{padding:12px 14px;border-radius:8px;border:1px solid #ccc;font:inherit;width:100%}
+.ds .toast{position:fixed;right:20px;bottom:20px;padding:14px 18px;border-radius:10px;font-weight:600;z-index:70;animation:rise .3s}
+
+@media (max-width:900px){
+  .nav nav{display:none}.burger{display:block}
+  .nav nav.open{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;background:var(--paper);padding:20px 24px;border-bottom:1px solid var(--line)}
+  .nav .pill-live{display:none}
+  .steps-row{grid-template-columns:1fr 1fr}.steps-row div:nth-child(2){border-right:0}.steps-row div:nth-child(-n+2){border-bottom:1.5px solid var(--line)}
+  .live-band{grid-template-columns:1fr;padding:30px}
+  .dgrid,.about,.hiw{grid-template-columns:1fr}
+  .side{position:static}
+  .grid{grid-template-columns:1fr}
+  .showcase{grid-template-columns:1fr 1fr}
+  .hero h1 .scribble{white-space:normal}.hero h1 .scribble svg{display:none}.hero h1 .scribble{color:var(--accent)}
+  .ds .dnav{flex-wrap:wrap;padding:14px 18px;gap:14px}.ds .dhero,.ds .dsec{padding-left:18px;padding-right:18px}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<div class="modal" id="modal"><div class="box" id="modalBox"></div></div>
+
+<script>
+/* ============ ART HELPERS (all drawn, no outside images) ============ */
+function wheelSVG(spokes=5,rim='#c9ccd1',face='#2a2d33',cap='#e11d2e',size=120,style='split'){
+  let s='';
+  for(let i=0;i<spokes;i++){
+    const a=i*360/spokes;
+    if(style==='split'){
+      s+=`<g transform="rotate(${a} 60 60)"><path d="M56 60 L53 18 L58 17 L60 60Z" fill="${rim}"/><path d="M64 60 L67 18 L62 17 L60 60Z" fill="${rim}"/></g>`;
+    }else if(style==='mesh'){
+      s+=`<g transform="rotate(${a} 60 60)"><path d="M60 60 L48 17 L54 16Z" fill="${rim}"/><path d="M60 60 L72 17 L66 16Z" fill="${rim}"/></g>`;
+    }else{
+      s+=`<g transform="rotate(${a} 60 60)"><path d="M52 58 Q56 30 54 17 L66 17 Q64 30 68 58Z" fill="${rim}"/></g>`;
+    }
+  }
+  return `<svg viewBox="0 0 120 120" width="${size}" height="${size}"><circle cx="60" cy="60" r="58" fill="#111"/><circle cx="60" cy="60" r="47" fill="${face}"/><circle cx="60" cy="60" r="46" fill="none" stroke="${rim}" stroke-width="3"/>${s}<circle cx="60" cy="60" r="12" fill="${rim}"/><circle cx="60" cy="60" r="6" fill="${cap}"/></svg>`;
+}
+function bottleSVG(glass='#7a3e12',label='#f1e3c4',cap='#1a1a1a',w=60){
+  return `<svg viewBox="0 0 60 150" width="${w}" height="${w*2.5}"><rect x="23" y="2" width="14" height="16" rx="2" fill="${cap}"/><path d="M24 18 h12 v22 q16 10 16 30 v70 q0 8 -8 8 h-28 q-8 0 -8 -8 v-70 q0 -20 16 -30z" fill="${glass}"/><rect x="11" y="78" width="38" height="40" rx="3" fill="${label}"/><rect x="17" y="88" width="26" height="3" fill="${glass}" opacity=".7"/><rect x="20" y="96" width="20" height="2" fill="${glass}" opacity=".5"/><path d="M28 30 v100" stroke="#fff" stroke-opacity=".18" stroke-width="3"/></svg>`;
+}
+function boxSVG(c1='#0b2a5b',c2='#c8102e',txt='HOBBY'){
+  return `<svg viewBox="0 0 120 90" width="100%" height="110"><path d="M20 22 L70 10 L104 24 L54 38Z" fill="${c2}"/><path d="M20 22 L54 38 L54 82 L20 66Z" fill="${c1}"/><path d="M54 38 L104 24 L104 68 L54 82Z" fill="${c1}" opacity=".85"/><text x="62" y="58" fill="#fff" font-size="9" font-weight="700" font-family="Oswald,sans-serif" transform="skewY(-15) translate(0,16)">${txt}</text><path d="M24 34 L50 46" stroke="#fff" stroke-opacity=".35" stroke-width="2"/></svg>`;
+}
+function gadgetSVG(kind,c){
+  const m={
+    projector:`<circle cx="60" cy="62" r="34" fill="${c}"/><circle cx="60" cy="62" r="20" fill="#1b1340"/>${[...Array(9)].map((_,i)=>`<circle cx="${40+Math.sin(i*1.7)*18+18}" cy="${46+Math.cos(i*2.3)*14+14}" r="1.8" fill="#fff"/>`).join('')}<rect x="38" y="94" width="44" height="8" rx="4" fill="#333"/>`,
+    lamp:`<path d="M40 30 h40 l10 34 h-60z" fill="${c}"/><rect x="57" y="64" width="6" height="28" fill="#555"/><ellipse cx="60" cy="96" rx="22" ry="6" fill="#333"/>`,
+    bottle:`<rect x="45" y="22" width="30" height="78" rx="12" fill="${c}"/><rect x="50" y="14" width="20" height="12" rx="4" fill="#333"/><rect x="45" y="52" width="30" height="16" fill="#fff" opacity=".5"/>`,
+    fan:`<circle cx="60" cy="54" r="30" fill="none" stroke="${c}" stroke-width="6"/>${[0,120,240].map(a=>`<ellipse cx="60" cy="38" rx="7" ry="15" fill="${c}" transform="rotate(${a} 60 54)"/>`).join('')}<rect x="56" y="84" width="8" height="14" fill="#555"/><rect x="44" y="98" width="32" height="6" rx="3" fill="#333"/>`,
+    ring:`<circle cx="60" cy="60" r="32" fill="none" stroke="${c}" stroke-width="10"/><circle cx="60" cy="60" r="32" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="4 6" opacity=".7"/>`,
+    pet:`<ellipse cx="60" cy="70" rx="34" ry="24" fill="${c}"/><circle cx="46" cy="64" r="5" fill="#fff"/><circle cx="74" cy="64" r="5" fill="#fff"/><circle cx="46" cy="64" r="2.5" fill="#222"/><circle cx="74" cy="64" r="2.5" fill="#222"/><path d="M34 52 l6 -16 l10 12z M86 52 l-6 -16 l-10 12z" fill="${c}"/>`
+  };
+  return `<svg viewBox="0 0 120 120" width="100%" height="130">${m[kind]}</svg>`;
+}
+function golfSVG(c='#1f7a4c'){return `<svg viewBox="0 0 60 60" width="44" height="44"><circle cx="30" cy="30" r="28" fill="${c}"/><path d="M24 14 v32" stroke="#fff" stroke-width="2.5"/><path d="M24 14 l14 6 l-14 6z" fill="#ffd54a"/><ellipse cx="30" cy="46" rx="12" ry="3" fill="#fff" opacity=".5"/></svg>`}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ============ PROJECTS ============ */
+const P=[
+ {slug:'bottle-breaks',shot:'img/bottle-breaks.jpg',full:'img/bottle-breaks-full.jpg',live:'https://bottlebreaks.com',name:'Bottle Breaks',domain:'bottlebreaks.com',status:'sale',cat:'Marketplace',
+  short:'A fun new way to collect bourbon, wine, tequila and other spirits. Buy a spot, the order gets randomized, and pick #1 chooses first.',
+  thumbBg:'linear-gradient(135deg,#2a1608,#5b3214)',
+  about:'Bottle Breaks takes the "break" idea from the trading card world and applies it to spirits. A box of bottles is put up, customers buy spots, and once every spot sells the pick order is randomized live. It launches with a private collection to prove the concept, then grows into wine and tequila breaks.',
+  features:['Three break formats: Hit Draft, Brand Break and Random Brand','Live pick-order randomizer','Mystery box — bottles revealed during the break','No-show rule built in (5-minute pick window)','Man-cave look: wood, leather, crest logo'],
+  stack:['WordPress','WooCommerce','Live stream embed','Custom break plugin']},
+ {slug:'patrihits',shot:'img/patrihits.jpg?v=2',full:'img/patrihits-full.jpg?v=2',live:'https://patrihits.com',name:'PatriHits',domain:'patrihits.com',status:'brand',cat:'E-commerce',
+  short:'Sealed sports card wax and creative live breaks, with tips going to Greenside Heroes. "The hits are big. The mission is bigger."',
+  thumbBg:'linear-gradient(135deg,#0b1b3a,#16326b)',
+  about:'PatriHits is a premium sports card store focused on sealed boxes and cases, plus live breaks run once every spot sells. Breaks are streamed with three cameras so nothing is hidden, and "Tip Your Hits" sends tips to Greenside Heroes, supporting those who served.',
+  features:['Shop sealed wax and cases','Team breaks with 32 team spots','Live page with YouTube stream embed','"Tip Your Hits" charity tipping','Trust-first, premium design'],
+  stack:['WordPress','WooCommerce','PayPal + Venmo','YouTube Live']},
+ {slug:'todays-trinkets',shot:'img/todays-trinkets.jpg',full:'img/todays-trinkets-full.jpg',live:'https://todaystrinkets.com',name:"Today's Trinkets",domain:'todaystrinkets.com',status:'sale',cat:'E-commerce',
+  short:'Trending impulse-buy gadgets around $40 and under, drop-shipped and sold through Facebook ads. Runs almost on autopilot.',
+  thumbBg:'linear-gradient(135deg,#ff4f8b,#ffb547)',
+  about:"Today's Trinkets is a hands-off drop-ship store. Trending products are sourced from a drop-ship supplier, advertised on Facebook, and orders, tracking and customer emails run automatically. Trinkets HQ, a dashboard inside WordPress, tracks products, ads and what's trending.",
+  features:['Ready-to-sell trending product catalog','Automatic order fulfillment + tracking emails','Trinkets HQ dashboard (products, ads, metrics)','Facebook pixel + ad-ready product pages','Stripe checkout'],
+  stack:['WordPress','WooCommerce','CJ Dropshipping','Stripe','Facebook Pixel']},
+ {slug:'4play-revamp',shot:'img/4play-revamp.jpg',full:'img/4play-revamp-full.jpg',name:'4PLAY Wheels — Revamp',domain:'4playwheels.com',status:'client',cat:'Revamp',
+  short:'A modern redesign of an existing wheel brand’s site: bold product gallery, fitment finder and dealer locator.',
+  thumbBg:'linear-gradient(135deg,#0d0d0d,#3a0b0f)',
+  about:'This is a "website flip": we took an existing brand site and rebuilt it the way we think it should look and work, then pitched it to the owner. It shows the kind of before-and-after we can do for any business that has a site that’s fallen behind.',
+  features:['Full-bleed, dark product-first design','Wheel gallery with sizes and finishes','Fitment finder by year / make / model','Dealer locator and become-a-dealer form','Mobile-first layout'],
+  stack:['Spec build','Pitched to owner']},
+ {slug:'global-wheel-source',shot:'img/global-wheel-source.jpg',full:'img/global-wheel-source-full.jpg',live:'https://globalwheelsource.com',name:'Global Wheel Source',domain:'globalwheelsource.com',status:'brand',cat:'E-commerce',
+  short:'Wheel & tire packages shipped nationwide, with a package finder, financing at checkout and a real person verifying every order.',
+  thumbBg:'linear-gradient(135deg,#111,#3b3f46)',
+  about:'Global Wheel Source is our own wheel business, in wheels since 2001. The site sells wheel & tire packages from multiple suppliers, offers financing at checkout, and has an AI sales assistant answering fitment questions around the clock. A real person calls every customer before an order ships.',
+  features:['Wheel & tire package finder','Multi-vendor catalog from supplier feeds','Financing at checkout (Affirm, Snap, Klarna, Afterpay)','AI sales assistant on site and Messenger','Returns & Warranty request form'],
+  stack:['WordPress','WooCommerce','Custom feed plugin','Stripe + Affirm']},
+ {slug:'spotdrop',design:'https://claude.ai/artifact/2u7tk1Qj3kVFLkstvta6mw',name:'SpotDrop',domain:'Domain TBD',status:'sale',cat:'Marketplace',
+  short:'Name-your-price for anything about to go unfilled nearby — last-minute tee times, empty tables, open service slots.',
+  thumbBg:'linear-gradient(135deg,#0f5132,#1f9d6b)',
+  about:'SpotDrop lists things that are running out of time to fill: a tee time in 2 hours, an empty restaurant table, an open detail slot. People nearby bid what they want to pay, and businesses fill dead space instead of losing it. Free for businesses to list; a small cut only when a spot fills.',
+  features:['"Around me right now" feed','Bid-your-price on any spot','Phone alerts when something drops nearby','Free business sign-up, pay only on fill','Simple booking for courses with no online tee sheet'],
+  stack:['Web app','Phone app (installable)','Map + alerts']}
+,
+ {slug:'pure-green',design:'https://claude.ai/artifact/1kfUxVxgupfp9A18UfNSBt',name:'Pure Green Landscaping',domain:'Sarasota, FL',status:'client',cat:'Revamp',
+  short:'A bright, clean site for a family-owned Sarasota landscaping company, with free estimates booked right on an online calendar.',
+  thumbBg:'linear-gradient(135deg,#e9f7ee,#bfe8cf)',
+  about:'Pure Green Landscaping is a small family-owned landscaping company in Sarasota. The site is built to say "integrity and the job done right" to high-end homeowners: bright, clean and modern, with every service laid out and a calendar where customers pick a day and time for a free estimate.',
+  features:['Bright, clean, high-end look','Services: lawn maintenance, ornamental care, full exterior renovations','Free-estimate booking calendar with open dates and times','Tap-to-call from any page','Mobile-first layout'],
+  stack:['Built for a local business','Booking calendar']}
+];
+const STATUS={sale:['For Sale','sale'],client:['Client Build','client'],brand:['Our Brand · Showcase','brand']};
+
+/* mini thumbnails that look like the real sites */
+function mini(p){
+  switch(p.slug){
+   case 'bottle-breaks':return `<div class="mini" style="background:#1c0f06;color:#f1e3c4;padding:16px;font-family:'Playfair Display',serif"><div style="display:flex;justify-content:space-between;font-size:11px;opacity:.8;font-family:Inter"><b>BOTTLE BREAKS</b><span>Breaks · How It Works · Join</span></div><div style="font-size:24px;font-weight:900;margin:18px 0 6px">Great Bottles.<br>Better Company.</div><div style="display:flex;gap:6px;align-items:end;margin-top:6px">${bottleSVG('#8a4a14','#f1e3c4','#111',22)}${bottleSVG('#3b1d0a','#d7b46a','#5a1010',22)}${bottleSVG('#a8611c','#fff','#222',22)}${bottleSVG('#5e2a0c','#e8d3a8','#111',22)}</div></div>`;
+   case 'patrihits':return `<div class="mini" style="background:#0a1630;color:#fff;padding:16px;font-family:Oswald"><div style="display:flex;justify-content:space-between;font-size:11px;font-family:Inter"><b>★ PATRIHITS</b><span>Shop Wax · Live Breaks</span></div><div style="font-size:23px;font-weight:700;margin:16px 0 4px;line-height:1.05;text-transform:uppercase">The hits are big.<br><span style="color:#e63946">The mission is bigger.</span></div><div style="display:flex;gap:4px;width:70%">${boxSVG('#14306b','#e63946','HOBBY')}${boxSVG('#1d1d1d','#d4af37','CASE')}</div></div>`;
+   case 'todays-trinkets':return `<div class="mini" style="background:#fff7ef;padding:14px;font-family:'Bricolage Grotesque'"><div style="display:flex;justify-content:space-between;font-size:11px;font-family:Inter"><b style="color:#ff2f7a">Today's Trinkets</b><span>🛒 0</span></div><div style="font-size:20px;font-weight:800;margin:10px 0">Cool stuff under $40 ✨</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">${['projector','lamp','fan'].map((k,i)=>`<div style="background:${['#2b1d63','#ffe4ef','#e0f5ff'][i]};border-radius:8px">${gadgetSVG(k,['#7c5cff','#ff5d8f','#26a6e8'][i]).replace('height="130"','height="70"')}</div>`).join('')}</div></div>`;
+   case '4play-revamp':return `<div class="mini" style="background:#0b0b0b;color:#fff;padding:16px;font-family:Oswald"><div style="display:flex;justify-content:space-between;font-size:11px;font-family:Inter"><b style="letter-spacing:.2em">4PLAY</b><span>Wheels · Fitment · Dealers</span></div><div style="display:flex;align-items:center;gap:10px;margin-top:14px"><div style="font-size:26px;font-weight:700;line-height:1;text-transform:uppercase">Built For<br><span style="color:#e11d2e">The Street.</span></div><div style="margin-left:auto">${wheelSVG(6,'#c9ccd1','#1a1a1a','#e11d2e',110,'split')}</div></div></div>`;
+   case 'global-wheel-source':return `<div class="mini" style="background:#f4f5f7;padding:14px;font-family:Inter"><div style="display:flex;justify-content:space-between;font-size:11px"><b>GLOBAL WHEEL SOURCE</b><span>Packages · Financing</span></div><div style="background:#111;color:#fff;border-radius:8px;padding:12px;margin-top:10px;display:flex;align-items:center;gap:10px"><div style="font-size:15px;font-weight:700;line-height:1.15">Wheel & Tire Packages<br><span style="color:#ffb020;font-size:12px">Shipped nationwide</span></div><div style="margin-left:auto">${wheelSVG(5,'#e5e7eb','#2a2d33','#ffb020',70,'spoke')}</div></div><div style="display:flex;gap:6px;margin-top:8px;font-size:10px"><span style="background:#fff;padding:5px 8px;border-radius:6px">Year ▾</span><span style="background:#fff;padding:5px 8px;border-radius:6px">Make ▾</span><span style="background:#fff;padding:5px 8px;border-radius:6px">Model ▾</span></div></div>`;
+   case 'pure-green':return `<div class="mini" style="background:#fff;padding:14px;font-family:Inter"><div style="display:flex;justify-content:space-between;font-size:11px"><b style="color:#15803d">🌿 PURE GREEN</b><span>Services · Free Estimate</span></div><div style="font-size:21px;font-weight:800;margin:12px 0 6px;color:#14532d;font-family:'Bricolage Grotesque';line-height:1.05">Done right.<br>Every time.</div><div style="display:flex;gap:6px;margin-top:10px">${['Lawn care','Ornamentals','Renovations'].map(t=>`<span style="background:#ecfdf3;color:#15803d;font-size:10px;padding:5px 8px;border-radius:99px;font-weight:600">${t}</span>`).join('')}</div><div style="margin-top:10px;background:#15803d;color:#fff;font-size:11px;font-weight:700;padding:8px 10px;border-radius:8px;display:inline-block">Book A Free Estimate</div></div>`;
+   case 'spotdrop':return `<div class="mini" style="background:#eaf6ef;padding:14px;font-family:Inter"><div style="display:flex;justify-content:space-between;font-size:11px"><b style="color:#0f5132">● SpotDrop</b><span>Near you</span></div><div style="font-size:18px;font-weight:800;margin:8px 0;font-family:'Bricolage Grotesque'">Dropping in the next 2 hrs</div>${[['Tee time · 2 open','in 1h 40m'],['Table for 2','in 45m'],['Car detail slot','in 1h 10m']].map(r=>`<div style="background:#fff;border-radius:8px;padding:7px 9px;margin-bottom:5px;display:flex;justify-content:space-between;font-size:11px"><b>${r[0]}</b><span style="color:#1f9d6b">${r[1]}</span></div>`).join('')}</div>`;
+  }
+}
+
+/* ============ SITE PAGES ============ */
+let filter='All';
+function nav(active){
+  const L=[['marketplace','Marketplace'],['live','Live Builds'],['how-it-works','How It Works'],['sell','Get A Website']];
+  return `<header class="nav"><div class="wrap">
+   <a href="#home" class="logo"><span class="bulb"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z" stroke="#16A34A" stroke-width="2" stroke-linecap="round"/></svg></span><span>yournew<em>idea</em></span></a>
+   <nav id="mnav">${L.map(([h,t])=>`<a href="#${h}" class="${active===h?'on':''}">${t}</a>`).join('')}</nav>
+   <a href="#live" class="pill-live"><span class="dot"></span> Next Live Build</a>
+   <button class="burger" onclick="document.getElementById('mnav').classList.toggle('open')">☰</button>
+  </div></header>`;
+}
+function footer(){return `<footer><div class="wrap"><div><b style="color:var(--ink);font-family:var(--display);font-size:18px">yournewidea.com</b><br>Ideas built live. Websites ready to buy.</div><div style="display:flex;gap:20px"><a href="#marketplace">Marketplace</a><a href="#live">Live Builds</a><a href="#how-it-works">How It Works</a><a href="#sell">Get A Website</a></div></div></footer>`}
+
+function card(p){
+  const [lbl,cls]=STATUS[p.status];
+  return `<article class="pcard">
+   <a href="#${p.slug}" class="thumb" style="background:${p.thumbBg}"><span class="tag ${cls}">${lbl}</span>${p.shot?`<img class="shot" src="${p.shot}" alt="${p.name} home page" loading="lazy">`:mini(p)}</a>
+   <div class="body"><div class="dom">${p.live?'<span class="livebadge">● Live now</span> ':''}${p.domain} · ${p.cat}</div><h3>${p.name}</h3><p>${p.short}</p>
+   <div class="row">${p.live?`<a class="btn btn-dark btn-sm" href="#${p.slug}">See The Home Page →</a>`:`<a class="btn btn-dark btn-sm" href="#${p.slug}-demo">Click Through The Site →</a>`}${p.live?`<a class="btn btn-ghost btn-sm" href="${p.live}" target="_blank" rel="noopener">Visit Live Site ↗</a>`:p.design?`<a class="btn btn-ghost btn-sm" href="${p.design}" target="_blank" rel="noopener">See Full Design ↗</a>`:`<a class="btn btn-ghost btn-sm" href="#${p.slug}">Details</a>`}</div></div></article>`;
+}
+function gridHTML(){
+  const cats=['All','For Sale','E-commerce','Marketplace','Revamp'];
+  const list=P.filter(p=>filter==='All'||(filter==='For Sale'?p.status==='sale':p.cat===filter));
+  return `<div class="filters">${cats.map(c=>`<button class="${c===filter?'on':''}" onclick="setFilter('${c}')">${c}</button>`).join('')}</div><div class="grid" id="grid">${list.map(card).join('')}</div>`;
+}
+function setFilter(c){filter=c;document.getElementById('gridWrap').innerHTML=gridHTML()}
+
+function liveBand(){return `<div class="live-band">
+  <div><span class="pill-live" style="background:rgba(255,255,255,.1)"><span class="dot"></span> Live Builds</span>
+  <h2>Watch an idea become a business — live.</h2>
+  <p>We go live and just talk it out: kick around an idea or pick an everyday business, grab the domain, design the site, write the copy, set up checkout. By the end of the stream it's a real website, and it can be yours.</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn btn-accent" onclick="openNotify()">Get Notified For The Next Live</button><a class="btn" style="border:1.5px solid #555" href="#how-it-works">How It Works</a></div></div>
+  <div class="screen"><div class="bar"><span>● LIVE</span><span class="v">👁 watching</span></div><div class="typing" id="typing"></div><div class="chat" id="chat"></div></div>
+ </div>`}
+
+function pageHome(){
+ return nav('home')+`
+ <section class="hero"><div class="wrap">
+  <span class="eyebrow"><span class="dot"></span> Built live · Ready to launch</span>
+  <h1>Don’t just have an idea. <span class="scribble">Buy one that’s built.<svg viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M3 14 Q80 3 150 10 T297 8" fill="none" stroke="#16A34A" stroke-width="6" stroke-linecap="round"/></svg></span></h1>
+  <p class="lead">Every website here was designed from scratch — many of them live, on camera. Click through any of them like it’s already running, then make it yours: domain, design, store and all.</p>
+  <div class="ctas"><a href="#marketplace" class="btn btn-accent">Browse The Websites</a><a href="#live" class="btn btn-ghost">Watch A Live Build</a></div>
+  <div class="showcase">${P.filter(p=>p.shot).map(p=>`<a href="#${p.slug}"><div class="bar"><i></i><i></i><i></i></div><img src="${p.shot}" alt="${p.name}"><span><b style="color:var(--accent)">●</b> ${p.domain}</span></a>`).join('')}</div>
+  <div class="steps-row">
+   <div><b>01</b><h4>The Idea</h4><p>We brainstorm one live, or pick an everyday business to rebuild better.</p></div>
+   <div><b>02</b><h4>The Domain</h4><p>Name it and grab the domain on stream.</p></div>
+   <div><b>03</b><h4>The Build</h4><p>Design, pages, store and checkout — live.</p></div>
+   <div><b>04</b><h4>You Buy It</h4><p>Take it over and launch your business.</p></div>
+  </div>
+ </div></section>
+ <section class="block" style="padding-top:20px"><div class="wrap">
+  <div class="sec-head"><h2>The Websites</h2><p>Some are for sale, some are our own brands, and some are revamps of real businesses. Every one is clickable, and the ones marked Live are real, running websites.</p></div>
+  <div id="gridWrap">${gridHTML()}</div>
+ </div></section>
+ <section class="block"><div class="wrap">${liveBand()}</div></section>
+ <section class="block"><div class="wrap"><div class="sec-head"><h2>Want one like these for your business?</h2><p>We build it just for you. Your idea stays yours — never shown on a live, never sold to anyone else.</p></div><a href="#sell" class="btn btn-dark">Get A Website →</a></div></section>
+ `+footer();
+}
+function pageMarket(){return nav('marketplace')+`<section class="block"><div class="wrap"><div class="sec-head"><h2>Marketplace</h2><p>Click through any site like it's live. When one fits, make an offer.</p></div><div id="gridWrap">${gridHTML()}</div></div></section>`+footer()}
+function pageLive(){return nav('live')+`<section class="block"><div class="wrap">${liveBand()}
+  <div class="hiw" style="margin-top:40px">
+   <div class="c"><div class="n">1</div><h3>Brainstorm live</h3><p>We hang out, talk shop and come up with a business idea together, right there on the stream.</p></div>
+   <div class="c"><div class="n">2</div><h3>Or rebuild a classic</h3><p>Lawn care, detailing, babysitting, a local shop — we take an everyday business site and build it way better.</p></div>
+   <div class="c"><div class="n">3</div><h3>Claim it</h3><p>When the stream ends the site goes up on the marketplace. Viewers get first shot at buying it.</p></div>
+  </div>
+  <div style="margin-top:40px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;display:flex;gap:20px;align-items:center;flex-wrap:wrap"><div style="flex:1;min-width:240px"><div class="eyebrow">Next Live Build</div><h3 style="font-family:var(--display);font-size:28px;margin-top:6px">Date coming soon</h3><p style="color:var(--mute)">Streaming on YouTube and Facebook. Get a heads-up when we go live.</p></div><button class="btn btn-accent" onclick="openNotify()">Notify Me</button></div>
+ </div></section>`+footer()}
+function pageHIW(){return nav('how-it-works')+`<section class="block"><div class="wrap"><div class="sec-head"><h2>How It Works</h2><p>Buying a website here is like buying a business that's ready to open its doors.</p></div>
+ <div class="hiw">
+  <div class="c"><div class="n">1</div><h3>Click through it</h3><p>Every site has a working demo. Tap around the pages, the store, the forms — see exactly what you're getting.</p></div>
+  <div class="c"><div class="n">2</div><h3>Make an offer</h3><p>Send an offer or ask questions. A real person gets back to you, walks you through it and answers everything.</p></div>
+  <div class="c"><div class="n">3</div><h3>We hand it over</h3><p>Domain moves to your name, the site goes on your hosting, and we walk you through running it.</p></div>
+ </div>
+ <div class="faq">
+  <details open><summary>What do I actually get?</summary><p>The domain, the full website, the logo and brand look, and the store set up and ready for your own payment account. Exactly what's included is listed on each site's page.</p></details>
+  <details><summary>Can I change it after I buy it?</summary><p>Yes — it's yours. You can change anything, or we can keep building it with you.</p></details>
+  <details><summary>Do I need to be technical?</summary><p>No. Most sites run on WordPress, and we walk you through the day-to-day before we hand it off.</p></details>
+  <details><summary>Why are some sites not for sale?</summary><p>A few are our own working businesses, and some we built for real local companies. They're here to show what we can build — and we can build one like it for you.</p></details>
+  <details><summary>Will you build my idea on a live?</summary><p>No. We never build other people’s ideas in public. The ideas on our lives come from us and the chat brainstorming together. If you have your own idea, we build it privately, just for you.</p></details>
+ </div></div></section>`+footer()}
+function pageSell(){return nav('sell')+`<section class="block"><div class="wrap" style="max-width:760px"><div class="sec-head"><h2>Get A Website</h2><p>Want a site like the ones here for your business or idea? We build it privately, just for you. What you tell us stays between us.</p></div>
+ <form id="pitchForm" style="background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px" onsubmit="return pitchSubmit(event)">
+    ${field('Your name','text','name')}${field('Email','email','email')}${field('Phone','tel','phone')}
+  <label style="display:block;font-size:13px;font-weight:600;margin:14px 0 6px">Your business or idea, in a sentence or two</label><textarea required rows="4" style="width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font:inherit"></textarea>
+  <label style="display:block;font-size:13px;font-weight:600;margin:14px 0 6px">What do you want?</label>
+  <select style="width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font:inherit"><option>A new website for my business</option><option>Revamp my existing website</option><option>Buy one of the sites listed here</option></select>
+  <button class="btn btn-accent" style="margin-top:22px">Send It Over</button>
+  <div id="pitchOk"></div>
+ </form></div></section>`+footer()}
+function field(l,t,n){return `<label style="display:block;font-size:13px;font-weight:600;margin:14px 0 6px">${l}</label><input type="${t}" name="${n}" required style="width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font:inherit">`}
+function pitchSubmit(e){e.preventDefault();document.getElementById('pitchOk').innerHTML=`<p style="margin-top:16px;padding:14px;border-radius:10px;background:var(--accent2)">Got it — this preview doesn't send yet. Once the site is live on yournewidea.com, this form will go straight to us.</p>`;return false}
+
+function pageDetail(p){
+ const [lbl,cls]=STATUS[p.status];
+ const buy = p.status==='sale'
+  ? `<div class="price">Make An Offer</div><div class="note">Buy-it-now price posted after the live build.</div><div class="btns"><button class="btn btn-accent" onclick="openOffer('${p.slug}')">Make An Offer</button>${p.live?'':`<a class="btn btn-ghost" href="#${p.slug}-demo">Click Through The Site</a>`}</div>`
+  : p.status==='client'
+  ? `<div class="price">Built for a real business</div><div class="note">Not for sale — this one belongs to the business. Want one like it for yours?</div><div class="btns"><button class="btn btn-accent" onclick="openOffer('${p.slug}','revamp')">Revamp My Website</button>${p.live?'':`<a class="btn btn-ghost" href="#${p.slug}-demo">Click Through The Site</a>`}</div>`
+  : `<div class="price">Our brand · Not for sale</div><div class="note">One of our own working businesses. We can build you one just like it.</div><div class="btns"><button class="btn btn-accent" onclick="openOffer('${p.slug}','similar')">Build Me One Like This</button>${p.live?'':`<a class="btn btn-ghost" href="#${p.slug}-demo">Click Through The Site</a>`}</div>`;
+ return nav('marketplace')+`<section class="detail-hero"><div class="wrap">
+  <div class="crumb"><a href="#marketplace">Marketplace</a> / ${p.name}</div>
+  <div class="dgrid">
+   <div><div class="browser" style="cursor:pointer" onclick="${p.live?`window.open('${p.live}','_blank')`:`location.hash='${p.slug}-demo'`}"><div class="chrome"><i></i><i></i><i></i><div class="url">🔒 ${p.domain}</div></div>${p.full?`<div class="viewport scroll" onclick="event.stopPropagation()"><img src="${p.full}" alt="${p.name} home page" style="width:100%;display:block"></div></div><div class="hint">↕ Scroll inside the window to see more. ${p.live?"This is the real, live site.":"Hit Click Through The Site to try it yourself."}</div>`:`<div class="viewport" style="background:${p.thumbBg}"><div style="position:absolute;top:0;left:0;width:166.7%;transform:scale(.6);transform-origin:0 0;pointer-events:none">${DEMOS[p.slug]({})}</div><div class="overlay"><span class="btn btn-accent">Click Through The Demo →</span></div></div></div>`}
+    <div class="about"><div><h3>About This Site</h3><p>${p.about}</p><div class="chips">${p.stack.map(s=>`<span>${s}</span>`).join('')}</div></div><div><h3>Features</h3><ul>${p.features.map(f=>`<li>${f}</li>`).join('')}</ul></div></div>
+   </div>
+   <aside class="side"><span class="tag ${cls}" style="position:static;display:inline-block">${lbl}</span>${p.live?' <span class="tag" style="background:var(--accent2);color:var(--accent)">● Live now</span>':''}<h1>${p.name}</h1><div class="dom">${p.domain}</div>${buy}${p.design?`<a class="btn btn-dark" style="justify-content:center;width:100%;margin-top:10px" href="${p.design}" target="_blank" rel="noopener">Open The Full Design ↗</a><div class="note" style="margin-top:8px">The complete design, with real photos — click around it.</div>`:''}${p.live?`<a class="btn btn-dark" style="justify-content:center;width:100%;margin-top:10px" href="${p.live}" target="_blank" rel="noopener">Visit The Live Site ↗</a><div class="note" style="margin-top:8px">This one's a real, running website — go click around.</div>`:''}
+    ${p.status==='sale'?`<div class="inc"><h5>What's included</h5><ul><li>The domain${p.domain.includes('TBD')?' (picked on the live)':''}</li><li>The full website and design</li><li>Logo and brand look</li><li>Store set up for your payment account</li><li>Hand-off walkthrough</li></ul></div>`:''}
+   </aside>
+  </div></div></section>`+footer();
+}
+
+/* ============ MODALS ============ */
+function modal(html){document.getElementById('modalBox').innerHTML=`<button class="x" onclick="closeModal()">×</button>`+html;document.getElementById('modal').classList.add('on')}
+function closeModal(){document.getElementById('modal').classList.remove('on')}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+function openOffer(slug,mode){
+ const p=P.find(x=>x.slug===slug);
+ const title=mode==='revamp'?'Get A Site Like This':mode==='similar'?'Build Me One Like This':'Make An Offer';
+ modal(`<h3>${title}</h3><p style="color:var(--mute)">${mode?'Tell us about your business.':`For <b>${p.name}</b> (${p.domain}).`} A real person will get back to you.</p>
+ <form onsubmit="return offerDone(event)"><div class="two"><div><label>Name</label><input required></div><div><label>Phone</label><input type="tel"></div></div>
+ <label>Email</label><input type="email" required>
+ ${mode?`<label>Your business / current website</label><input>`:`<label>Your offer</label><input placeholder="$" inputmode="decimal" required>`}
+ <label>Anything else?</label><textarea rows="3"></textarea>
+ <button class="btn btn-accent" style="margin-top:18px;width:100%;justify-content:center">${mode?'Send':'Send My Offer'}</button></form>`);
+}
+function offerDone(e){e.preventDefault();document.getElementById('modalBox').innerHTML=`<button class="x" onclick="closeModal()">×</button><div class="ok"><div class="big">🤝</div><h3>Thanks!</h3><p style="color:var(--mute);margin-top:8px">This preview doesn't send yet. Once the site is live on yournewidea.com, offers will come straight to us and we'll reach out.</p><button class="btn btn-dark" style="margin-top:18px" onclick="closeModal()">Keep Browsing</button></div>`;return false}
+function openNotify(){modal(`<h3>Get Notified</h3><p style="color:var(--mute)">We'll let you know when the next live build starts.</p><form onsubmit="return offerDone(event)"><label>Email or phone</label><input required><button class="btn btn-accent" style="margin-top:18px;width:100%;justify-content:center">Notify Me</button></form>`)}
+
+/* ============ CLICK-THROUGH DEMO SITES ============ */
+const D={}; // per-demo state
+function toast(msg,bg,fg){const t=document.createElement('div');t.className='toast';t.style.background=bg;t.style.color=fg;t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2200)}
+function dnav(slug,brand,links,cur,style){return `<div class="dnav" style="${style}"><div class="brand">${brand}</div>${links.map(l=>`<a class="${l===cur?'on':''}" onclick="go('${slug}','${l}')">${l}</a>`).join('')}</div>`}
+function go(slug,pg,extra){D[slug]=Object.assign(D[slug]||{},{pg},extra||{});renderDemo(slug);window.scrollTo(0,0)}
+
+const DEMOS={
+ 'bottle-breaks'(s){
+  const pg=s.pg||'Home';const bg='#1a0e05',gold='#d7b46a',cream='#f1e3c4';
+  const breaks=[
+   {n:'Blood Oath Hit Draft',f:'Hit Draft',spots:10,sold:7,p:'Spot price set per break'},
+   {n:'Random Brand Break',f:'Random Brand',spots:20,sold:12,p:'$99 a spot'},
+   {n:'Wine Break',f:'Brand Break',spots:20,sold:4,p:'Priced by brand'},
+   {n:'Tequila Break',f:'Hit Draft',spots:10,sold:2,p:'Spot price set per break'}];
+  let body='';
+  if(pg==='Home'){body=`<div class="dhero" style="text-align:center;background:radial-gradient(ellipse at top,#3a200c,${bg})"><svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="32" fill="none" stroke="${gold}" stroke-width="2"/><path d="M35 16 l8 12 h-16z M20 34 q15 -8 30 0 q-15 22 -30 0z" fill="${gold}"/></svg><div style="font-family:'Playfair Display';font-size:clamp(36px,6vw,64px);font-weight:900;line-height:1;margin:16px 0">Great Bottles.<br>Better Company.</div><p style="max-width:540px;margin:0 auto 26px;opacity:.8">A fun new way to collect bourbon, wine, tequila and other spirits. Buy a spot, we randomize the order live, and pick #1 chooses first.</p><span class="dbtn" style="background:${gold};color:${bg}" onclick="go('bottle-breaks','Breaks')">See Open Breaks</span><div style="display:flex;justify-content:center;gap:10px;margin-top:36px;align-items:end">${[['#8a4a14','#f1e3c4'],['#3b1d0a','#d7b46a'],['#a8611c','#fff'],['#5e2a0c','#e8d3a8'],['#2a1608','#c99a4a']].map(c=>bottleSVG(c[0],c[1],'#111',44)).join('')}</div></div>
+  <div class="dsec"><h2 style="font-family:'Playfair Display';font-size:34px;text-align:center;margin-bottom:24px">Featured Breaks</h2><div class="dgrid3">${breaks.slice(0,3).map((b,i)=>brk(b,i)).join('')}</div></div>`}
+  if(pg==='Breaks'){body=`<div class="dsec"><h2 style="font-family:'Playfair Display';font-size:40px;margin-bottom:6px">Open Breaks</h2><p style="opacity:.7;margin-bottom:24px">Breaks run as soon as every spot sells.</p><div class="dgrid3">${breaks.map((b,i)=>brk(b,i)).join('')}</div></div>`}
+  if(pg==='Break'){const b=breaks[s.i||0];const left=b.spots-b.sold;body=`<div class="dsec" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px"><div style="background:#2a1608;border-radius:14px;display:grid;place-items:center;padding:40px"><div style="font-size:90px">📦</div><div style="opacity:.7">Mystery box — revealed on the live</div></div><div><div class="small" style="color:${gold}">${b.f.toUpperCase()}</div><h2 style="font-family:'Playfair Display';font-size:38px;margin:6px 0">${b.n}</h2><p style="opacity:.8">${b.p}</p><div style="background:#2a1608;border-radius:99px;height:12px;margin:20px 0 6px;overflow:hidden"><div style="width:${b.sold/b.spots*100}%;height:100%;background:${gold}"></div></div><div class="small">${b.sold} of ${b.spots} spots sold · ${left} left</div><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:20px 0">${[...Array(b.spots)].map((_,k)=>`<div style="padding:10px 0;text-align:center;border-radius:6px;font-size:13px;${k<b.sold?'background:#3a2412;opacity:.5':'background:'+gold+';color:'+bg+';cursor:pointer;font-weight:700'}" onclick="${k<b.sold?'':"toast('Spot added to cart 🥃','"+gold+"','"+bg+"')"}">${k<b.sold?'Taken':'Open'}</div>`).join('')}</div><span class="dbtn" style="background:${gold};color:${bg}" onclick="toast('Spot added to cart 🥃','${gold}','${bg}')">Buy A Spot</span></div></div>`}
+  if(pg==='How It Works'){body=`<div class="dsec" style="max-width:820px;margin:0 auto"><h2 style="font-family:'Playfair Display';font-size:40px;margin-bottom:20px">How It Works</h2>${[['Buy a spot','Pick an open break and grab one spot or several.'],['Spots sell out','The break runs once every spot is sold.'],['Order is randomized','Live on stream, pick order is randomized for everyone.'],['Pick your bottles','Pick #1 chooses first, then #2, on down the line. Miss your turn? You get 5 minutes, two calls and a text — then we pick for you.']].map((r,i)=>`<div style="display:flex;gap:18px;padding:18px 0;border-bottom:1px solid #3a2412"><div style="font-family:'Playfair Display';font-size:40px;color:${gold};width:40px">${i+1}</div><div><h3>${r[0]}</h3><p style="opacity:.75">${r[1]}</p></div></div>`).join('')}</div>`}
+  return `<div class="ds" style="background:${bg};color:${cream}">${dnav('bottle-breaks',`<span style="font-family:'Playfair Display'">Bottle Breaks</span>`,['Home','Breaks','How It Works'],pg==='Break'?'Breaks':pg,'border-bottom:1px solid #3a2412')}${body}</div>`;
+  function brk(b,i){return `<div class="item" style="background:#2a1608;border:1px solid #3a2412" onclick="go('bottle-breaks','Break',{i:${i}})"><div style="display:flex;gap:4px;justify-content:center;align-items:end;height:100px">${bottleSVG('#8a4a14',cream,'#111',26)}${bottleSVG('#3b1d0a',gold,'#5a1010',30)}${bottleSVG('#a8611c','#fff','#222',26)}</div><h4 style="font-family:'Playfair Display';font-size:20px">${b.n}</h4><div class="small">${b.f} · ${b.spots-b.sold} spots left</div></div>`}
+ },
+ 'patrihits'(s){
+  const pg=s.pg||'Home';const navy='#0a1630',red='#e63946',gold='#d4af37';
+  const wax=[['Select Football Hobby Box','2020 · Hobby'],['Origins Football Hobby Box','2020 · Hobby'],['Chronicles Football Box','2022 · Hobby'],['Bowman Baseball HTA Jumbo','2023 · Jumbo'],['Topps Series 1 HTA Jumbo','2023 · Jumbo'],['National Treasures Football Case','2022 · Case']];
+  let body='';
+  if(pg==='Home')body=`<div class="dhero" style="background:linear-gradient(180deg,${navy},#132650);text-align:center"><div style="color:${gold};font-weight:700;letter-spacing:.2em;font-size:13px">★ ★ ★ SEALED WAX · LIVE BREAKS ★ ★ ★</div><div style="font-family:Oswald;font-size:clamp(38px,6vw,70px);font-weight:700;line-height:1;text-transform:uppercase;margin:16px 0">The hits are big.<br><span style="color:${red}">The mission is bigger.</span></div><p style="opacity:.8;max-width:560px;margin:0 auto 26px">Where collectors come together to support those who served.</p><span class="dbtn" style="background:${red};color:#fff" onclick="go('patrihits','Shop Wax')">Shop Wax</span> <span class="dbtn" style="border:2px solid #fff;color:#fff" onclick="go('patrihits','Live Breaks')">Join A Break</span></div>
+   <div class="dsec" style="background:#0d1c3d"><div class="dgrid3">${[['Sealed & verified','Every box ships factory sealed.'],['Three-camera breaks','Overhead, hands and a second angle — nothing hidden.'],['Tip Your Hits','Tips go to Greenside Heroes.']].map(r=>`<div style="padding:20px;border:1px solid #1e3366;border-radius:12px"><h4 style="font-family:Oswald;font-size:20px;text-transform:uppercase">${r[0]}</h4><p class="small" style="opacity:.8">${r[1]}</p></div>`).join('')}</div></div>`;
+  if(pg==='Shop Wax')body=`<div class="dsec"><h2 style="font-family:Oswald;font-size:40px;text-transform:uppercase;margin-bottom:20px">Shop Wax</h2><div class="dgrid3">${wax.map((w,i)=>`<div class="item" style="background:#fff;color:${navy}" onclick="toast('Added to cart ⚾','${red}','#fff')">${boxSVG(i%2?'#14306b':'#1d1d1d',i%2?red:gold,w[1].includes('Case')?'CASE':'HOBBY')}<h4>${w[0]}</h4><div class="small">${w[1]} · Factory sealed</div><div style="margin-top:10px;font-weight:700;color:${red}">Add To Cart</div></div>`).join('')}</div></div>`;
+  if(pg==='Live Breaks'){const teams=['Bills','Dolphins','Patriots','Jets','Ravens','Bengals','Browns','Steelers','Texans','Colts','Jaguars','Titans','Broncos','Chiefs','Raiders','Chargers','Cowboys','Giants','Eagles','Commanders','Bears','Lions','Packers','Vikings','Falcons','Panthers','Saints','Buccaneers','Cardinals','Rams','49ers','Seahawks'];const taken=new Set([2,5,13,16,18,21,28,30,7,11]);
+   body=`<div class="dsec"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px"><div><div style="aspect-ratio:16/9;background:#000;border-radius:12px;display:grid;place-items:center;position:relative"><span style="position:absolute;top:10px;left:10px;background:${red};padding:3px 8px;border-radius:4px;font-size:12px;font-weight:700">LIVE SOON</span><div style="font-size:50px">▶</div></div><h2 style="font-family:Oswald;font-size:30px;text-transform:uppercase;margin-top:16px">2020 Select Football — Team Break</h2><p style="opacity:.8">Runs as soon as all 32 teams sell. Cards ship the next day.</p><span class="dbtn" style="background:${gold};color:${navy};margin-top:14px" onclick="toast('Thanks for tipping your hits 🇺🇸','${gold}','${navy}')">Tip Your Hits</span></div>
+   <div><div class="small" style="margin-bottom:8px">${32-taken.size} of 32 teams open — tap to grab one</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">${teams.map((t,i)=>`<div style="padding:9px 4px;text-align:center;border-radius:6px;font-size:12px;font-weight:600;${taken.has(i)?'background:#1a2a50;opacity:.45':'background:#fff;color:'+navy+';cursor:pointer'}" onclick="${taken.has(i)?'':"toast('"+t+" added to cart 🏈','"+red+"','#fff')"}">${t}</div>`).join('')}</div></div></div></div>`}
+  if(pg==='Greenside Heroes')body=`<div class="dsec" style="max-width:760px;margin:0 auto;text-align:center"><div style="font-size:60px">🇺🇸</div><h2 style="font-family:Oswald;font-size:42px;text-transform:uppercase">Tip Your Hits</h2><p style="opacity:.85;margin:14px 0 24px">Every tip during a break goes to Greenside Heroes, supporting those who served. Not a cut of sales — every tip, straight through.</p><span class="dbtn" style="background:${red};color:#fff" onclick="toast('Thank you 🇺🇸','${red}','#fff')">Leave A Tip</span></div>`;
+  return `<div class="ds" style="background:${navy};color:#fff">${dnav('patrihits',`<span style="font-family:Oswald;letter-spacing:.06em">★ PATRIHITS</span>`,['Home','Shop Wax','Live Breaks','Greenside Heroes'],pg,'border-bottom:1px solid #1e3366')}${body}</div>`;
+ },
+ 'todays-trinkets'(s){
+  const pg=s.pg||'Shop';s.cart=s.cart||0;const pink='#ff2f7a';
+  const items=[['Starry Sky Disc Projector','projector','#7c5cff','#2b1d63'],['Mushroom Mood Lamp','lamp','#ff5d8f','#ffe4ef'],['Neck Fan, Bladeless','fan','#26a6e8','#e0f5ff'],['Self-Stirring Bottle','bottle','#22c55e','#e6f9ee'],['Glow Ring Light','ring','#f59e0b','#fff4dc'],['Cat-Ear Pet Bed','pet','#f97316','#fff0e6']];
+  let body='';
+  if(pg==='Shop')body=`<div class="dhero" style="padding:44px 34px;background:linear-gradient(120deg,#ffe0ec,#fff1d6)"><div style="font-family:'Bricolage Grotesque';font-size:clamp(34px,5vw,58px);font-weight:800;line-height:1">Cool stuff.<br><span style="color:${pink}">Under $40.</span> ✨</div><p style="margin-top:12px;opacity:.75">Trending finds, shipped to your door. New drops every week.</p></div><div class="dsec"><div class="dgrid3">${items.map((it,i)=>`<div class="item" style="background:#fff;box-shadow:0 6px 20px -10px rgba(0,0,0,.2)" onclick="go('todays-trinkets','Product',{i:${i}})"><div style="background:${it[3]};border-radius:10px">${gadgetSVG(it[1],it[2])}</div><h4>${it[0]}</h4><div class="small">🔥 Trending this week</div></div>`).join('')}</div></div>`;
+  if(pg==='Product'){const it=items[s.i||0];body=`<div class="dsec" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:34px"><div style="background:${it[3]};border-radius:18px;padding:30px">${gadgetSVG(it[1],it[2]).replace('height="130"','height="260"')}</div><div><div class="small" style="color:${pink};font-weight:700">🔥 TRENDING</div><h2 style="font-family:'Bricolage Grotesque';font-size:38px;line-height:1.05;margin:8px 0">${it[0]}</h2><p style="opacity:.75">Free shipping · Tracking sent straight to your inbox · 30-day returns</p><div style="display:flex;gap:10px;margin:22px 0"><span class="dbtn" style="background:${pink};color:#fff" onclick="D['todays-trinkets'].cart++;renderDemo('todays-trinkets');toast('Added to cart 🛍️','${pink}','#fff')">Add To Cart</span><span class="dbtn" style="border:2px solid #222" onclick="go('todays-trinkets','Shop')">Keep Shopping</span></div><div style="background:#f6f6f6;border-radius:10px;padding:14px" class="small">💳 Secure checkout · Pay with card, Apple Pay or Google Pay</div></div></div>`}
+  if(pg==='Track Order')body=`<div class="dsec" style="max-width:520px;margin:0 auto"><h2 style="font-family:'Bricolage Grotesque';font-size:34px;margin-bottom:16px">Track Your Order</h2><input placeholder="Order number or email"><span class="dbtn" style="background:#222;color:#fff;margin-top:12px" onclick="toast('Tracking emails go out automatically 📦','#222','#fff')">Track</span></div>`;
+  return `<div class="ds" style="background:#fffaf4;color:#1b1b1b">${dnav('todays-trinkets',`<span style="font-family:'Bricolage Grotesque';color:${pink}">Today's Trinkets</span> <span style="font-size:14px;color:#1b1b1b;margin-left:12px">🛒 ${s.cart}</span>`,['Shop','Track Order'],pg==='Product'?'Shop':pg,'')}${body}</div>`;
+ },
+ '4play-revamp'(s){
+  const pg=s.pg||'Home';const red='#e11d2e';
+  const wh=[['Series 01','6-split spoke','#c9ccd1','#1a1a1a','split',6],['Series 02','Mesh','#1f1f1f','#3a3a3a','mesh',8],['Series 03','5-spoke','#d6b36a','#1a1a1a','spoke',5],['Series 04','7-split spoke','#e5e7eb','#2a2d33','split',7],['Series 05','Mesh','#9aa0a6','#111','mesh',10],['Series 06','6-spoke','#111','#2a2a2a','spoke',6]];
+  let body='';
+  if(pg==='Home')body=`<div class="dhero" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:center;gap:20px;background:radial-gradient(circle at 75% 50%,#3a0b0f,#0b0b0b 60%)"><div><div style="color:${red};font-weight:700;letter-spacing:.25em;font-size:12px">NEW FOR THE SEASON</div><div style="font-family:Oswald;font-size:clamp(44px,7vw,84px);font-weight:700;line-height:.95;text-transform:uppercase;margin:12px 0">Built for<br><span style="color:${red}">the street.</span></div><p style="opacity:.7;max-width:420px;margin-bottom:24px">Bold, forged-look designs in sizes for trucks, Jeeps and performance cars.</p><span class="dbtn" style="background:${red};color:#fff" onclick="go('4play-revamp','Wheels')">Shop Wheels</span> <span class="dbtn" style="border:2px solid #fff;color:#fff" onclick="go('4play-revamp','Fitment')">Check Fitment</span></div><div style="text-align:center">${wheelSVG(6,'#c9ccd1','#1a1a1a',red,300,'split')}</div></div>`;
+  if(pg==='Wheels')body=`<div class="dsec"><h2 style="font-family:Oswald;font-size:44px;text-transform:uppercase;margin-bottom:6px">The Lineup</h2><div class="small" style="margin-bottom:22px">Demo designs — real catalog loads from the brand’s product data.</div><div class="dgrid3">${wh.map(w=>`<div class="item" style="background:#151515;text-align:center" onclick="toast('Opening ${w[0]} details','${red}','#fff')">${wheelSVG(w[5],w[2],w[3],red,170,w[4])}<h4 style="font-family:Oswald;font-size:22px;text-transform:uppercase">${w[0]}</h4><div class="small">${w[1]} · 20" 22" 24"</div></div>`).join('')}</div></div>`;
+  if(pg==='Fitment')body=`<div class="dsec" style="max-width:640px;margin:0 auto"><h2 style="font-family:Oswald;font-size:44px;text-transform:uppercase;margin-bottom:16px">Find What Fits</h2><div style="display:grid;gap:10px"><select style="background:#151515;color:#fff;border-color:#333"><option>Year</option><option>2024</option><option>2023</option></select><select style="background:#151515;color:#fff;border-color:#333"><option>Make</option><option>Chevrolet</option><option>Ford</option><option>Ram</option><option>Jeep</option></select><select style="background:#151515;color:#fff;border-color:#333"><option>Model</option><option>Silverado 1500</option><option>F-150</option><option>Wrangler</option></select></div><span class="dbtn" style="background:${red};color:#fff;margin-top:16px" onclick="go('4play-revamp','Wheels')">Show Wheels That Fit</span></div>`;
+  if(pg==='Dealers')body=`<div class="dsec" style="max-width:640px;margin:0 auto"><h2 style="font-family:Oswald;font-size:44px;text-transform:uppercase;margin-bottom:16px">Find A Dealer</h2><input placeholder="Enter your ZIP code" style="background:#151515;color:#fff;border-color:#333"><span class="dbtn" style="background:${red};color:#fff;margin-top:12px" onclick="toast('Dealer map loads here','${red}','#fff')">Search</span><div style="margin-top:30px;padding:20px;border:1px solid #333;border-radius:10px"><h4 style="font-family:Oswald;font-size:22px;text-transform:uppercase">Become a Dealer</h4><p class="small" style="margin:6px 0 12px">Shops and installers — apply for a dealer account.</p><span class="dbtn" style="border:2px solid #fff;color:#fff" onclick="toast('Dealer application opens here','${red}','#fff')">Apply</span></div></div>`;
+  return `<div class="ds" style="background:#0b0b0b;color:#fff">${dnav('4play-revamp',`<span style="font-family:Oswald;letter-spacing:.3em">4PLAY</span>`,['Home','Wheels','Fitment','Dealers'],pg,'border-bottom:1px solid #222')}${body}</div>`;
+ },
+ 'global-wheel-source'(s){
+  const pg=s.pg||'Home';const amber='#ffb020';
+  const pk=[['Gloss Black Split-Spoke Package','20" · 4 wheels + 4 tires','#1f1f1f','#3a3a3a','split',6],['Machined Face Package','18" · 4 wheels + 4 tires','#e5e7eb','#2a2d33','spoke',5],['Bronze Off-Road Package','17" · 4 wheels + 4 tires','#b07b3c','#1a1a1a','mesh',8],['Chrome OE Replica Package','22" · 4 wheels + 4 tires','#f1f2f4','#9aa0a6','spoke',6]];
+  let body='';
+  if(pg==='Home')body=`<div class="dhero" style="background:#111;color:#fff;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:center"><div><div style="color:${amber};font-weight:700;font-size:13px;letter-spacing:.12em">IN WHEELS SINCE 2001</div><div style="font-size:clamp(36px,5vw,58px);font-weight:800;line-height:1;margin:12px 0">Wheel & Tire Packages,<br>Shipped To Your Door.</div><p style="opacity:.75;margin-bottom:22px">Mounted, balanced and ready to bolt on. A real person verifies every order before it ships.</p><span class="dbtn" style="background:${amber};color:#111" onclick="go('global-wheel-source','Package Finder')">Find My Package</span></div><div style="text-align:center">${wheelSVG(5,'#e5e7eb','#2a2d33',amber,260,'spoke')}</div></div>
+   <div class="dsec" style="background:#f4f5f7"><div class="dgrid3">${[['Free shipping','On packages in the lower 48.'],['Financing','Pay over time at checkout.'],['Lifetime structural warranty','Plus 2 years on the finish.']].map(r=>`<div style="background:#fff;padding:20px;border-radius:12px"><h4>${r[0]}</h4><p class="small">${r[1]}</p></div>`).join('')}</div></div>`;
+  if(pg==='Package Finder'){body=`<div class="dsec" style="background:#f4f5f7"><h2 style="font-size:34px;margin-bottom:14px">Package Finder</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:24px"><select><option>2023</option></select><select><option>Chevrolet</option></select><select><option>Silverado 1500</option></select><select><option>Any size</option><option>20"</option></select></div><div class="dgrid3">${pk.map(p=>`<div class="item" style="background:#fff" onclick="go('global-wheel-source','Package',{p:'${p[0]}'})"><div style="text-align:center">${wheelSVG(p[5],p[2],p[3],amber,150,p[4])}</div><h4>${p[0]}</h4><div class="small">${p[1]} · Fits your truck ✓</div></div>`).join('')}</div></div>`}
+  if(pg==='Package')body=`<div class="dsec" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px"><div style="background:#f4f5f7;border-radius:16px;text-align:center;padding:30px">${wheelSVG(6,'#1f1f1f','#3a3a3a',amber,260,'split')}</div><div><h2 style="font-size:32px;line-height:1.1">${esc(s.p||'')}</h2><p class="small" style="margin:8px 0 18px">Mounted & balanced · TPMS ready · Lug kit included</p><span class="dbtn" style="background:#111;color:#fff" onclick="toast('Added — we will call to verify before it ships 📞','#111','#fff')">Add To Cart</span><div style="margin-top:18px;padding:14px;border-radius:10px;background:#fff7e6" class="small">💳 Pay over time with Affirm, Snap, Klarna or Afterpay at checkout.</div><div style="margin-top:12px;padding:14px;border-radius:10px;background:#f4f5f7" class="small">💬 Questions about fitment? Chat with us anytime.</div></div></div>`;
+  if(pg==='Returns')body=`<div class="dsec" style="max-width:560px;margin:0 auto"><h2 style="font-size:32px;margin-bottom:6px">Returns & Warranty</h2><p class="small" style="margin-bottom:16px">30 days from delivery. Fill this out and a return specialist will contact you.</p><div style="display:grid;gap:10px"><input placeholder="Name"><input placeholder="Phone"><input placeholder="Order date"><input placeholder="Issue / reason"></div><span class="dbtn" style="background:#111;color:#fff;margin-top:14px" onclick="toast('A return specialist will reach out','#111','#fff')">Submit</span><p class="small" style="margin-top:20px">Call 941-822-9730 · Mon–Fri, 9am–5pm</p></div>`;
+  return `<div class="ds" style="background:#fff;color:#111">${dnav('global-wheel-source','GLOBAL WHEEL SOURCE',['Home','Package Finder','Returns'],pg==='Package'?'Package Finder':pg,'border-bottom:1px solid #eee')}${body}</div>`;
+ },
+ 'pure-green'(s){
+  const pg=s.pg||'Home';const g='#15803d',dk='#14532d',lt='#ecfdf3';
+  const sv=[['🌱','Lawn Maintenance','Weekly mowing, edging and trimming — your yard sharp every week.'],['🌺','Ornamental Care','Shrubs, beds, palms and flowers shaped and kept healthy.'],['🏡','Exterior Renovations','Full makeovers: new sod, beds, rock, mulch and curb appeal.']];
+  let body='';
+  if(pg==='Home')body=`<div class="dhero" style="background:linear-gradient(180deg,${lt},#fff);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;align-items:center"><div><div style="color:${g};font-weight:700;font-size:13px;letter-spacing:.12em">FAMILY-OWNED · SARASOTA, FL</div><div style="font-family:'Bricolage Grotesque';font-size:clamp(40px,6vw,72px);font-weight:800;line-height:.98;color:${dk};margin:12px 0">Done right.<br>Every time.</div><p style="opacity:.75;max-width:440px;margin-bottom:24px">Landscaping for Sarasota homes that deserve the best — built on integrity and getting the job done right.</p><span class="dbtn" style="background:${g};color:#fff" onclick="go('pure-green','Free Estimate')">Book A Free Estimate</span> <span class="dbtn" style="border:2px solid ${g};color:${g}">📞 941-330-4495</span></div>
+   <svg viewBox="0 0 400 260" width="100%"><rect width="400" height="260" rx="20" fill="#d9f2e3"/><rect x="0" y="180" width="400" height="80" fill="#4caf6e"/><path d="M0 180 Q100 160 200 178 T400 172 V260 H0Z" fill="#3a9a5b"/><rect x="140" y="90" width="140" height="95" fill="#fff"/><path d="M128 95 L210 40 L292 95Z" fill="${dk}"/><rect x="198" y="135" width="26" height="50" fill="${g}"/><rect x="155" y="112" width="28" height="24" fill="#bde3ff"/><rect x="238" y="112" width="28" height="24" fill="#bde3ff"/>${[40,80,320,360].map(x=>`<rect x="${x-3}" y="120" width="6" height="62" fill="#8a5a2b"/><circle cx="${x}" cy="112" r="22" fill="#2f8f4e"/>`).join('')}${[150,175,250,275].map(x=>`<circle cx="${x}" cy="186" r="11" fill="#2f8f4e"/><circle cx="${x}" cy="180" r="4" fill="#ff7aa8"/>`).join('')}</svg></div>
+   <div class="dsec"><div class="dgrid3">${sv.map(x=>`<div class="item" style="background:#fff;border:1px solid #dcefe3" onclick="go('pure-green','Services')"><div style="font-size:30px">${x[0]}</div><h4 style="color:${dk}">${x[1]}</h4><p class="small">${x[2]}</p></div>`).join('')}</div></div>`;
+  if(pg==='Services')body=`<div class="dsec" style="max-width:860px;margin:0 auto"><h2 style="font-family:'Bricolage Grotesque';font-size:42px;color:${dk};margin-bottom:20px">Our Services</h2>${sv.map(x=>`<div style="display:flex;gap:18px;padding:20px 0;border-bottom:1px solid #dcefe3"><div style="font-size:36px">${x[0]}</div><div style="flex:1"><h3 style="color:${dk}">${x[1]}</h3><p style="opacity:.75">${x[2]}</p></div><span class="dbtn" style="align-self:center;background:${lt};color:${g};font-size:14px" onclick="go('pure-green','Free Estimate')">Get An Estimate</span></div>`).join('')}</div>`;
+  if(pg==='Free Estimate'){const days=['Mon','Tue','Wed','Thu','Fri'];const times=['8:00 AM','10:00 AM','1:00 PM','3:00 PM'];s.pick=s.pick||'';
+   body=`<div class="dsec" style="max-width:760px;margin:0 auto"><h2 style="font-family:'Bricolage Grotesque';font-size:40px;color:${dk}">Book A Free Estimate</h2><p style="opacity:.7;margin:6px 0 22px">Pick a day and time that works. We'll come out, walk the property and give you a straight price.</p><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">${days.map((d,i)=>`<div style="text-align:center"><div style="font-weight:700;color:${dk};margin-bottom:6px">${d}</div>${times.map((t,j)=>{const k=d+' '+t;const off=(i+j)%3===0;return `<div style="padding:9px 2px;margin-bottom:6px;border-radius:8px;font-size:12.5px;font-weight:600;${off?'background:#f1f3f2;color:#aab3ae;text-decoration:line-through':(s.pick===k?'background:'+g+';color:#fff;cursor:pointer':'background:'+lt+';color:'+g+';cursor:pointer')}" onclick="${off?'':"go('pure-green','Free Estimate',{pick:'"+k+"'})"}">${t}</div>`}).join('')}</div>`).join('')}</div>
+   <div style="display:grid;gap:10px;margin-top:20px"><input placeholder="Name"><input placeholder="Phone"><input placeholder="Property address"></div><span class="dbtn" style="background:${g};color:#fff;margin-top:14px" onclick="pgBook()">${s.pick?'Book '+s.pick:'Book My Estimate'}</span></div>`}
+  return `<div class="ds" style="background:#fff;color:#14231a">${dnav('pure-green',`<span style="color:${g}">🌿 Pure Green</span>`,['Home','Services','Free Estimate'],pg,'border-bottom:1px solid #e3efe7')}${body}</div>`;
+ },
+ 'spotdrop'(s){
+  const pg=s.pg||'Near Me';const g='#0f5132',g2='#1f9d6b';
+  const spots=[['Tee time — 2 players needed','Golf course · 4 mi','1h 40m','⛳'],['Table for 2, 7:30pm','Restaurant · 1 mi','45m','🍽️'],['Full detail slot','Mobile detailer · 3 mi','1h 10m','🚗'],['2 tickets, tonight','Theater · 6 mi','2h','🎭'],['Haircut, 4:15pm','Salon · 2 mi','35m','💇'],['Tonight, 1 night','Vacation rental · 8 mi','3h','🏠']];
+  let body='';
+  if(pg==='Near Me')body=`<div class="dsec"><div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">${golfSVG(g2)}<h2 style="font-family:'Bricolage Grotesque';font-size:34px">Dropping near you</h2></div><p class="small" style="margin-bottom:20px">Spots that need to fill soon. Name your price.</p><div style="display:grid;gap:10px">${spots.map((r,i)=>`<div class="item" style="background:#fff;display:flex;align-items:center;gap:14px" onclick="go('spotdrop','Spot',{i:${i}})"><div style="font-size:30px">${r[3]}</div><div style="flex:1"><h4 style="margin:0">${r[0]}</h4><div class="small">${r[1]}</div></div><div style="color:${g2};font-weight:700;font-size:14px">⏱ ${r[2]}</div></div>`).join('')}</div></div>`;
+  if(pg==='Spot'){const r=spots[s.i||0];body=`<div class="dsec" style="max-width:560px;margin:0 auto"><div style="font-size:60px">${r[3]}</div><h2 style="font-family:'Bricolage Grotesque';font-size:34px;line-height:1.1">${r[0]}</h2><p class="small">${r[1]} · fills or expires in ${r[2]}</p><label class="small" style="display:block;margin:22px 0 6px;font-weight:700">Your bid</label><input placeholder="$ What do you want to pay?" inputmode="decimal"><span class="dbtn" style="background:${g};color:#fff;margin-top:12px" onclick="toast('Bid sent — you will get a text if it is accepted','${g}','#fff')">Place Bid</span></div>`}
+  if(pg==='For Businesses')body=`<div class="dsec" style="max-width:640px;margin:0 auto"><h2 style="font-family:'Bricolage Grotesque';font-size:38px">Fill your empty spots.</h2><p style="margin:10px 0 20px;opacity:.8">Free to list. You only pay a small cut when a spot actually fills. No online booking? We'll give you a simple one.</p><div style="display:grid;gap:10px"><input placeholder="Business name"><select><option>Golf course</option><option>Restaurant</option><option>Salon</option><option>Detailer</option><option>Other</option></select></div><span class="dbtn" style="background:${g};color:#fff;margin-top:12px" onclick="toast('Welcome aboard','${g}','#fff')">List My Business Free</span></div>`;
+  return `<div class="ds" style="background:#eaf6ef;color:#10231a">${dnav('spotdrop',`<span style="color:${g}">● SpotDrop</span>`,['Near Me','For Businesses'],pg==='Spot'?'Near Me':pg,'')}${body}</div>`;
+ }
+};
+function pgBook(){const k=(D['pure-green']||{}).pick;toast(k?'Estimate booked for '+k+' — we\'ll text to confirm':'Pick a day and time first','#15803d','#fff')}
+function renderDemo(slug){
+ const p=P.find(x=>x.slug===slug);const s=D[slug]=D[slug]||{};
+ const cta=p.status==='sale'?`<button class="btn btn-accent btn-sm" onclick="openOffer('${slug}')">Make An Offer</button>`:p.status==='client'?`<button class="btn btn-accent btn-sm" onclick="openOffer('${slug}','revamp')">Get One Like This</button>`:`<button class="btn btn-accent btn-sm" onclick="openOffer('${slug}','similar')">Build Me One</button>`;
+ document.getElementById('app').innerHTML=`<div class="demo-bar"><a class="back" href="#${slug}">← Back</a><div class="t">Clicking through <b>${p.domain}</b></div>${(p.live||p.design)?`<a class="btn btn-sm" style="border:1.5px solid #3b5a4c;color:#fff" href="${p.live||p.design}" target="_blank" rel="noopener">${p.live?'Live Site':'Full Design'} ↗</a>`:''}${cta}</div><div class="demo-stage" style="position:relative">${DEMOS[slug](s)}</div><div class="demo-flag">Demo preview · yournewidea.com</div>`;
+}
+
+/* ============ ROUTER ============ */
+let timers=[];
+function route(){
+ timers.forEach(clearInterval);timers=[];closeModal();
+ const h=(location.hash||'#home').slice(1);
+ const app=document.getElementById('app');
+ if(h.endsWith('-demo')){const slug=h.slice(0,-5);if(DEMOS[slug]){D[slug]={};renderDemo(slug);window.scrollTo(0,0);return}}
+ const p=P.find(x=>x.slug===h);
+ app.innerHTML = p?pageDetail(p): h==='marketplace'?pageMarket(): h==='live'?pageLive(): h==='how-it-works'?pageHIW(): h==='sell'?pageSell(): pageHome();
+ window.scrollTo(0,0);
+ startLive();
+}
+function startLive(){
+ const el=document.getElementById('typing');if(!el)return;
+ const lines=['> idea: "bid-your-price tee times"','> checking domains...  ✓ available','> buying domain...  ✓ done','> building homepage...','  ✓ hero  ✓ how it works  ✓ listings','> setting up checkout...  ✓','> site is live 🚀'];
+ const chat=['make it green!','add phone alerts 🔥','I want to buy this','what about restaurants?','🔥🔥🔥'];
+ let i=0,c=0,txt='';
+ timers.push(setInterval(()=>{const L=lines[i%lines.length];if(c<L.length){txt+=L[c++];}else{txt+='\n';i++;c=0;if(i%lines.length===0)txt='';}el.textContent=txt+'▌'},45));
+ const ch=document.getElementById('chat');let k=0;
+ timers.push(setInterval(()=>{const d=document.createElement('div');d.textContent=chat[k++%chat.length];ch.appendChild(d);if(ch.children.length>3)ch.firstChild.remove()},1800));
+}
+window.addEventListener('hashchange',route);route();
+</script>
+</body>
+</html>
