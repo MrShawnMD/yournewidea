@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your New Idea — Websites Built Live, Ready To Buy</title>
+<title>Your New Idea — Bright Ideas, Waiting For You</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -48,6 +48,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(44px,7.2vw,96px);line-height:.95;letter-spacing:-.035em;margin:18px 0 22px;max-width:960px}
 .hero h1 .scribble{position:relative;white-space:nowrap}
 .hero h1 .scribble svg{position:absolute;left:-2%;bottom:-6px;width:104%;height:22px}
+.hero .tag2{font-family:var(--display);font-weight:700;font-size:clamp(22px,2.6vw,30px);color:var(--ink2);margin:-6px 0 14px;letter-spacing:-.01em}
 .hero p.lead{font-size:20px;color:var(--ink2);max-width:620px;margin-bottom:32px}
 .hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
 .steps-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:64px;border:1.5px solid var(--line);box-shadow:0 10px 30px -18px rgba(16,38,28,.25);border-radius:18px;overflow:hidden;background:#fff}
@@ -282,7 +283,7 @@ const P=[
   about:'PatriHits is a premium sports card store focused on sealed boxes and cases, plus live breaks run once every spot sells. Breaks are streamed with three cameras so nothing is hidden, and "Tip Your Hits" sends tips to Greenside Heroes, supporting those who served.',
   features:['Shop sealed wax and cases','Team breaks with 32 team spots','Live page with YouTube stream embed','"Tip Your Hits" charity tipping','Trust-first, premium design'],
   stack:['WordPress','WooCommerce','PayPal + Venmo','YouTube Live']},
- {slug:'todays-trinkets',shot:'img/todays-trinkets.jpg',full:'img/todays-trinkets-full.jpg',live:'https://todaystrinkets.com',name:"Today's Trinkets",domain:'todaystrinkets.com',status:'sale',cat:'E-commerce',
+ {slug:'todays-trinkets',pay:true,shot:'img/todays-trinkets.jpg',full:'img/todays-trinkets-full.jpg',live:'https://todaystrinkets.com',name:"Today's Trinkets",domain:'todaystrinkets.com',status:'sale',cat:'E-commerce',
   short:'Trending impulse-buy gadgets around $40 and under, drop-shipped and sold through Facebook ads. Runs almost on autopilot.',
   thumbBg:'linear-gradient(135deg,#ff4f8b,#ffb547)',
   about:"Today's Trinkets is a hands-off drop-ship store. Trending products are sourced from a drop-ship supplier, advertised on Facebook, and orders, tracking and customer emails run automatically. Trinkets HQ, a dashboard inside WordPress, tracks products, ads and what's trending.",
@@ -340,7 +341,7 @@ function nav(active){
    <button class="burger" onclick="document.getElementById('mnav').classList.toggle('open')">☰</button>
   </div></header>`;
 }
-function footer(){return `<footer><div class="wrap"><div><b style="color:var(--ink);font-family:var(--display);font-size:18px">yournewidea.com</b><br>Ideas built live. Websites ready to buy.</div><div style="display:flex;gap:20px"><a href="#marketplace">Marketplace</a><a href="#live">Live Builds</a><a href="#how-it-works">How It Works</a><a href="#sell">Get A Website</a></div></div></footer>`}
+function footer(){return `<footer><div class="wrap"><div><b style="color:var(--ink);font-family:var(--display);font-size:18px">yournewidea.com</b><br>Bright ideas, waiting for you.</div><div style="display:flex;gap:20px"><a href="#marketplace">Marketplace</a><a href="#live">Live Builds</a><a href="#how-it-works">How It Works</a><a href="#sell">Get A Website</a></div></div></footer>`}
 
 function card(p){
   const [lbl,cls]=STATUS[p.status];
@@ -367,20 +368,21 @@ function liveBand(){return `<div class="live-band">
 function pageHome(){
  return nav('home')+`
  <section class="hero"><div class="wrap">
-  <span class="eyebrow"><span class="dot"></span> Built live · Ready to launch</span>
-  <h1>Don’t just have an idea. <span class="scribble">Buy one that’s built.<svg viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M3 14 Q80 3 150 10 T297 8" fill="none" stroke="#16A34A" stroke-width="6" stroke-linecap="round"/></svg></span></h1>
-  <p class="lead">Every website here was designed from scratch — many of them live, on camera. Click through any of them like it’s already running, then make it yours: domain, design, store and all.</p>
+  <span class="eyebrow"><span class="dot"></span> Built · Ready · Needs an owner</span>
+  <h1>Bright ideas, <span class="scribble">waiting for you.<svg viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M3 14 Q80 3 150 10 T297 8" fill="none" stroke="#16A34A" stroke-width="6" stroke-linecap="round"/></svg></span></h1>
+  <p class="tag2">It’s time to make a change.</p>
+  <p class="lead">Every site here is a business that’s already built. The website, the design, the domain, and on some, the payments too. All it needs is an owner. Click through any of them, then make it yours.</p>
   <div class="ctas"><a href="#marketplace" class="btn btn-accent">Browse The Websites</a><a href="#live" class="btn btn-ghost">Watch A Live Build</a></div>
   <div class="showcase">${P.filter(p=>p.shot).map(p=>`<a href="#${p.slug}"><div class="bar"><i></i><i></i><i></i></div><img src="${p.shot}" alt="${p.name}"><span><b style="color:var(--accent)">●</b> ${p.name.replace(' — Revamp','')}</span></a>`).join('')}</div>
   <div class="steps-row">
-   <div><b>01</b><h4>The Idea</h4><p>We brainstorm one live, or pick an everyday business to rebuild better.</p></div>
-   <div><b>02</b><h4>The Domain</h4><p>Name it and grab the domain on stream.</p></div>
-   <div><b>03</b><h4>The Build</h4><p>Design, pages, store and checkout — live.</p></div>
-   <div><b>04</b><h4>You Buy It</h4><p>Take it over and launch your business.</p></div>
+   <div><b>01</b><h4>Already Built</h4><p>Website, design, logo and domain are done. Click through it like it’s running.</p></div>
+   <div><b>02</b><h4>Ready To Sell</h4><p>Some come with the store and payments already set up. Others just need your payment account.</p></div>
+   <div><b>03</b><h4>You Take It Over</h4><p>The domain moves to your name and we walk you through running it.</p></div>
+   <div><b>04</b><h4>We Stay With You</h4><p>Optional monthly support: updates, fixes and changes, handled for you.</p></div>
   </div>
  </div></section>
  <section class="block" style="padding-top:20px"><div class="wrap">
-  <div class="sec-head"><h2>The Websites</h2><p>Some are for sale, some are our own brands, and some are revamps of real businesses. Every one is clickable, and the ones marked Live are real, running websites.</p></div>
+  <div class="sec-head"><h2>The Websites</h2><p>Every one is clickable. The ones marked For Sale are looking for an owner, and the ones marked Live are real, running websites.</p></div>
   <div id="gridWrap">${gridHTML()}</div>
  </div></section>
  <section class="block"><div class="wrap">${liveBand()}</div></section>
@@ -404,6 +406,8 @@ function pageHIW(){return nav('how-it-works')+`<section class="block"><div class
  </div>
  <div class="faq">
   <details open><summary>What do I actually get?</summary><p>The domain, the full website, the logo and brand look, and the store set up and ready for your own payment account. Exactly what's included is listed on each site's page.</p></details>
+  <details><summary>Do you help after I take it over?</summary><p>Yes. We offer optional monthly support: we keep the site updated, fix anything that breaks, and make changes when you need them. Ask us for pricing.</p></details>
+  <details><summary>Do the sites come with payments set up?</summary><p>Some do. Each site’s page says whether the store and payments are already set up, or just need your own payment account connected.</p></details>
   <details><summary>Can I change it after I buy it?</summary><p>Yes — it's yours. You can change anything, or we can keep building it with you.</p></details>
   <details><summary>Do I need to be technical?</summary><p>No. Most sites run on WordPress, and we walk you through the day-to-day before we hand it off.</p></details>
   <details><summary>Why are some sites not for sale?</summary><p>A few are our own working businesses, and some we built for real local companies. They're here to show what we can build — and we can build one like it for you.</p></details>
@@ -424,7 +428,7 @@ function pitchSubmit(e){e.preventDefault();document.getElementById('pitchOk').in
 function pageDetail(p){
  const [lbl,cls]=STATUS[p.status];
  const buy = p.status==='sale'
-  ? `<div class="price">Make An Offer</div><div class="note">Buy-it-now price posted after the live build.</div><div class="btns"><button class="btn btn-accent" onclick="openOffer('${p.slug}')">Make An Offer</button>${(p.live||p.design)?'':`<a class="btn btn-ghost" href="#${p.slug}-demo">Click Through The Site</a>`}</div>`
+  ? `<div class="price">Make An Offer</div><div class="note">${p.pay?'Payments already set up. Ready to sell on day one.':'Ready to launch. Just add your payment account.'}</div><div class="btns"><button class="btn btn-accent" onclick="openOffer('${p.slug}')">Make An Offer</button>${(p.live||p.design)?'':`<a class="btn btn-ghost" href="#${p.slug}-demo">Click Through The Site</a>`}</div>`
   : p.status==='client'
   ? `<div class="price">Built for a real business</div><div class="note">Not for sale — this one belongs to the business. Want one like it for yours?</div><div class="btns"><button class="btn btn-accent" onclick="openOffer('${p.slug}','revamp')">Revamp My Website</button>${(p.live||p.design)?'':`<a class="btn btn-ghost" href="#${p.slug}-demo">Click Through The Site</a>`}</div>`
   : `<div class="price">Our brand · Not for sale</div><div class="note">One of our own working businesses. We can build you one just like it.</div><div class="btns"><button class="btn btn-accent" onclick="openOffer('${p.slug}','similar')">Build Me One Like This</button>${(p.live||p.design)?'':`<a class="btn btn-ghost" href="#${p.slug}-demo">Click Through The Site</a>`}</div>`;
@@ -435,7 +439,7 @@ function pageDetail(p){
     <div class="about"><div><h3>About This Site</h3><p>${p.about}</p><div class="chips">${p.stack.map(s=>`<span>${s}</span>`).join('')}</div></div><div><h3>Features</h3><ul>${p.features.map(f=>`<li>${f}</li>`).join('')}</ul></div></div>
    </div>
    <aside class="side"><span class="tag ${cls}" style="position:static;display:inline-block">${lbl}</span>${p.live?' <span class="tag" style="background:var(--accent2);color:var(--accent)">● Live now</span>':''}<h1>${p.name}</h1><div class="dom">${p.domain}</div>${buy}${p.design?`<a class="btn btn-dark" style="justify-content:center;width:100%;margin-top:10px" href="${p.design}" target="_blank" rel="noopener">Click Through The Site ↗</a><div class="note" style="margin-top:8px">The complete, clickable design with real photos. Opens in a new tab${p.design.startsWith('http')?' and takes about 10 seconds to load':''}.</div>`:''}${p.live?`<a class="btn btn-dark" style="justify-content:center;width:100%;margin-top:10px" href="${p.live}" target="_blank" rel="noopener">Visit The Live Site ↗</a><div class="note" style="margin-top:8px">This one's a real, running website — go click around.</div>`:''}
-    ${p.status==='sale'?`<div class="inc"><h5>What's included</h5><ul><li>The domain${p.domain.includes('TBD')?' (picked on the live)':''}</li><li>The full website and design</li><li>Logo and brand look</li><li>Store set up for your payment account</li><li>Hand-off walkthrough</li></ul></div>`:''}
+    ${p.status==='sale'?`<div class="inc"><h5>What's included</h5><ul><li>The domain${p.domain.includes('TBD')?' (picked on the live)':''}</li><li>The full website and design</li><li>Logo and brand look</li><li>${p.pay?'Store and payments already set up':'Store ready for your own payment account'}</li><li>Hand-off walkthrough</li><li>Optional monthly support (ask us)</li></ul></div>`:''}
    </aside>
   </div></div></section>`+footer();
 }
