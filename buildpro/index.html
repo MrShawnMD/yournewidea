@@ -1,0 +1,564 @@
+<title>BuildPro HD Working Demo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: fixed role bar, then one working surface per role. */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --ink:#141a22; --soft:#56616f; --line:#dde2e9;
+  --accent:#17458f; --good:#1d6b45; --warn:#8a5a00; --bad:#9c2a2a;
+  --goodbg:#e7f3ec; --warnbg:#fdf3df; --badbg:#fbeaea; --nbg:#eceff3;
+  --fs:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --fm:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1319; --surface:#161d26; --ink:#e8edf3; --soft:#9aa7b6; --line:#2a3542;
+  --accent:#7aa6ef; --good:#6fd39e; --warn:#e8bf6a; --bad:#f0908e;
+  --goodbg:#172c22; --warnbg:#2e2616; --badbg:#301c1c; --nbg:#1e2733; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1319; --surface:#161d26; --ink:#e8edf3; --soft:#9aa7b6; --line:#2a3542;
+  --accent:#7aa6ef; --good:#6fd39e; --warn:#e8bf6a; --bad:#f0908e;
+  --goodbg:#172c22; --warnbg:#2e2616; --badbg:#301c1c; --nbg:#1e2733; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--fs);margin:0;line-height:1.5;font-size:15px}
+.wrap{max-width:1180px;margin:0 auto;padding-block:18px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-size:20px;margin:0;letter-spacing:-.02em}
+h2{font-size:19px;margin:0 0 4px;letter-spacing:-.015em}
+h3{font-size:14px;margin:0 0 9px;letter-spacing:.02em;text-transform:uppercase;font-family:var(--fm);color:var(--soft)}
+p{margin:0 0 12px}
+.topbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.brand{font-weight:700;letter-spacing:-.02em;font-size:17px}
+.brand span{color:var(--accent)}
+.roles{display:flex;flex-wrap:wrap;gap:5px;margin-left:auto}
+.rb{font-family:var(--fm);font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+  border:1px solid var(--line);background:var(--surface);color:var(--soft);border-radius:999px;padding:6px 12px;cursor:pointer}
+.rb[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rb[aria-pressed="true"]{color:#0e1319}}
+:root[data-theme="dark"] .rb[aria-pressed="true"]{color:#0e1319}
+.banner{background:var(--warnbg);color:var(--warn);border-radius:8px;padding:9px 13px;font-size:13px;margin-bottom:16px}
+.cols{display:grid;grid-template-columns:1fr 370px;gap:16px;align-items:start}
+@media(max-width:860px){.cols{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:16px;margin-bottom:14px}
+.card.tight{padding:13px}
+label{display:block;font-size:11px;font-family:var(--fm);letter-spacing:.05em;text-transform:uppercase;color:var(--soft);margin-bottom:4px}
+select,input[type=text],input[type=number]{width:100%;min-height:42px;border:1px solid var(--line);border-radius:8px;
+  background:var(--bg);color:var(--ink);font-family:inherit;font-size:15px;padding:0 11px}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px}
+button.b{font-family:inherit;font-size:14.5px;font-weight:600;border-radius:9px;cursor:pointer;min-height:44px;
+  padding:0 15px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+button.b:hover{border-color:var(--soft)}
+button.b.p{background:var(--accent);border-color:var(--accent);color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button.b.p{color:#0e1319}}
+:root[data-theme="dark"] button.b.p{color:#0e1319}
+button.b.g{background:var(--good);border-color:var(--good);color:#fff}
+button.b.d{color:var(--bad);border-color:var(--line)}
+button.b:disabled{opacity:.45;cursor:default}
+button.sm{min-height:34px;font-size:13px;padding:0 10px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.prod{display:flex;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line);min-width:0}
+.prod:first-child{border-top:0}
+.prod .nm{flex:1 1 auto;min-width:0}
+.prod .nm b{display:block;font-weight:600;font-size:14.5px}
+.prod .nm s{display:block;text-decoration:none;color:var(--soft);font-size:12.5px}
+.money{font-family:var(--fm);font-variant-numeric:tabular-nums}
+.tag{font-family:var(--fm);font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:3px 6px;border-radius:4px;white-space:nowrap}
+.t-g{background:var(--goodbg);color:var(--good)} .t-w{background:var(--warnbg);color:var(--warn)}
+.t-b{background:var(--badbg);color:var(--bad)} .t-n{background:var(--nbg);color:var(--accent)}
+.sum{display:flex;justify-content:space-between;gap:10px;padding:5px 0;font-size:14px}
+.sum b{font-family:var(--fm);font-variant-numeric:tabular-nums}
+.hero{border-radius:10px;padding:13px;margin-bottom:11px}
+.hero.ok{background:var(--goodbg)} .hero.no{background:var(--warnbg)}
+.hero .big{font-size:26px;font-weight:700;letter-spacing:-.5px;font-family:var(--fm);font-variant-numeric:tabular-nums}
+.hero .lab{font-family:var(--fm);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+.hero .msg{font-size:13px;margin-top:5px;font-weight:600}
+.hero.ok .msg{color:var(--good)} .hero.no .msg{color:var(--warn)}
+.bitem{border:1px solid var(--line);border-radius:10px;padding:13px;margin-bottom:10px;background:var(--surface)}
+.bitem .hd{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px}
+.bitem .hd .id{font-family:var(--fm);font-size:12.5px;color:var(--soft)}
+.why{background:var(--warnbg);color:var(--warn);border-radius:7px;padding:8px 11px;font-size:13px;font-weight:600;margin:8px 0}
+.empty{border:1px dashed var(--line);border-radius:10px;padding:28px 18px;text-align:center;color:var(--soft);font-size:14.5px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-family:var(--fm);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--soft);padding:6px 8px 6px 0;border-bottom:1px solid var(--line)}
+td{padding:9px 8px 9px 0;border-bottom:1px solid var(--line);vertical-align:middle}
+td.r,th.r{text-align:right;font-family:var(--fm);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+.hist{font-size:12.5px;color:var(--soft);padding:4px 0;border-top:1px solid var(--line)}
+.hist:first-child{border-top:0}
+.statusline{font-size:13px;color:var(--soft);margin-left:auto}
+</style>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">BUILD<span>PRO</span> HD</div>
+    <span class="tag t-n" id="whoami">Working demo</span>
+    <div class="roles" id="roles"></div>
+  </div>
+  <div class="banner" id="banner">A working demonstration. Products are real; every price and cost shown is illustrative, not live trade pricing. Everything you do here is saved in your own browser only — nobody else sees it.</div>
+  <div id="view"><div class="empty">Loading…</div></div>
+  <div class="statusline" id="status"></div>
+</div>
+
+<script>var PRODUCTS=[{"cat":"Wheels","name":"Black Rhino ARSENAL","finish":"Sand On Black","size":"20X9.5","off":"12 mm","cost":325,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"W1000","qty":4},{"cat":"Wheels","name":"Fuel BRAWL","finish":"Chrome W/ Gloss Black Lip","size":"20X10","off":"-18 mm","cost":525,"fits":["f150","raptor","f250","bronco"],"status":"Illustrative","est":true,"sku":"W1001","qty":4},{"cat":"Wheels","name":"Fuel BURN","finish":"Chrome W/ Gloss Black Lip","size":"20X10","off":"-18 mm","cost":425,"fits":["f150","raptor","bronco"],"status":"Illustrative","est":true,"sku":"W1002","qty":4},{"cat":"Wheels","name":"Fuel CATALYST","finish":"Chrome W/ Gloss Black Lip","size":"20X10","off":"-18 mm","cost":525,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"W1003","qty":4},{"cat":"Wheels","name":"Fuel DYNAMO","finish":"Matte Black W/ Gloss Black Lip","size":"20X10","off":"-18 mm","cost":425,"fits":["f150","raptor","bronco"],"status":"Illustrative","est":true,"sku":"W1004","qty":4},{"cat":"Wheels","name":"Fuel FLIGHT","finish":"Matte Black W/ Gloss Black Lip","size":"20X10","off":"-18 mm","cost":425,"fits":["f150","raptor","bronco"],"status":"Illustrative","est":true,"sku":"W1005","qty":4},{"cat":"Wheels","name":"Fuel FLUX","finish":"Blackout","size":"20X10","off":"-18 mm","cost":325,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"W1006","qty":4},{"cat":"Wheels","name":"Fuel HIVE","finish":"Gloss Black Milled","size":"20X10","off":"-18 mm","cost":425,"fits":["f150","raptor","bronco"],"status":"Illustrative","est":true,"sku":"W1007","qty":4},{"cat":"Wheels","name":"Fuel INJECTOR","finish":"Gloss Black","size":"20X10","off":"-18 mm","cost":325,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"W1008","qty":4},{"cat":"Wheels","name":"Fuel MUTINY","finish":"Gloss Black W/ Brushed Dark Tint","size":"20X10","off":"-18 mm","cost":425,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"W1009","qty":4},{"cat":"Wheels","name":"Fuel REBEL","finish":"Matte Black","size":"20X10","off":"-18 mm","cost":325,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"W1010","qty":4},{"cat":"Wheels","name":"Fuel REVOLT","finish":"Gloss Gunmetal","size":"20X10","off":"-18 mm","cost":325,"fits":["f150","raptor","bronco"],"status":"Verified product","est":true,"sku":"W1011","qty":4},{"cat":"Wheels","name":"Fuel SIGMA","finish":"Blackout W/ Gloss Black Lip","size":"20X10","off":"-18 mm","cost":325,"fits":["f150","raptor","bronco"],"status":"Verified product","est":true,"sku":"W1012","qty":4},{"cat":"Wheels","name":"Fuel STRIKE","finish":"Blackout","size":"20X10","off":"-18 mm","cost":325,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"W1013","qty":4},{"cat":"Wheels","name":"Fuel SURGE","finish":"Gloss Black","size":"20X10","off":"-18 mm","cost":325,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"W1014","qty":4},{"cat":"Wheels","name":"Fuel VAPOR","finish":"Matte Black","size":"20X10","off":"-18 mm","cost":325,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"W1015","qty":4},{"cat":"Wheels","name":"KMC GRS","finish":"Gloss Silver W/ Machined Face","size":"20X9","off":"0 mm","cost":425,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"W1016","qty":4},{"cat":"Wheels","name":"KMC IMS","finish":"Gloss Silver W/ Machined Face","size":"20X9","off":"0 mm","cost":425,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"W1017","qty":4},{"cat":"Wheels","name":"Moto Metal LEGACY","finish":"Gloss Black","size":"20X10","off":"-18 mm","cost":325,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"W1018","qty":4},{"cat":"Wheels","name":"Moto Metal MO970","finish":"Gloss Black Machined","size":"20X10","off":"-24 mm","cost":325,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"W1019","qty":4},{"cat":"Tires","name":"Falken Wildpeak A/T4W","finish":"","size":"275/65R20","off":"","cost":215,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"T1020","qty":4},{"cat":"Tires","name":"Mickey Thompson Baja Boss A/T","finish":"","size":"275/65R20","off":"","cost":295,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"T1021","qty":4},{"cat":"Tires","name":"Mickey Thompson Baja Boss M/T","finish":"","size":"275/65R20","off":"","cost":355,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"T1022","qty":4},{"cat":"Tires","name":"Nitto Ridge Grappler","finish":"","size":"275/65R20","off":"","cost":295,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"T1023","qty":4},{"cat":"Tires","name":"Nitto Terra Grappler G3","finish":"","size":"275/65R20","off":"","cost":295,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"T1024","qty":4},{"cat":"Tires","name":"Toyo Open Country A/T III","finish":"","size":"275/65R20","off":"","cost":295,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"T1025","qty":4},{"cat":"Tires","name":"Toyo Open Country M/T","finish":"","size":"275/65R20","off":"","cost":355,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"T1026","qty":4},{"cat":"Tires","name":"Toyo Open Country R/T Pro","finish":"","size":"275/65R20","off":"","cost":355,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"T1027","qty":4},{"cat":"Tires","name":"Radar Renegade A/T-Pro","finish":"","size":"275/65R20","off":"","cost":215,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"T1028","qty":4},{"cat":"Tires","name":"Radar Rivera H/T","finish":"","size":"275/65R20","off":"","cost":215,"fits":["f150","raptor","f250","bronco"],"status":"Verified product","est":true,"sku":"T1029","qty":4},{"cat":"Fender flares","name":"Husky Liners Pocket Style","finish":"","size":"","off":"","cost":340,"fits":["f150"],"status":"Verified product","est":true,"sku":"F1030","qty":1},{"cat":"Fender flares","name":"Husky Liners Extend-A-Fender","finish":"","size":"","off":"","cost":340,"fits":["f150"],"status":"Verified product","est":true,"sku":"F1031","qty":1},{"cat":"Fender flares","name":"Husky Liners RVL","finish":"","size":"","off":"","cost":340,"fits":["f150"],"status":"Verified product","est":true,"sku":"F1032","qty":1},{"cat":"Fender flares","name":"Husky Liners DRT","finish":"","size":"","off":"","cost":340,"fits":["f150"],"status":"Verified product","est":true,"sku":"F1033","qty":1},{"cat":"Fender flares","name":"Husky Liners OE Style","finish":"","size":"","off":"","cost":340,"fits":["f150"],"status":"Verified product","est":true,"sku":"F1034","qty":1},{"cat":"Fender flares","name":"Husky Liners Pocket Style","finish":"","size":"","off":"","cost":340,"fits":["f250"],"status":"Verified product","est":true,"sku":"F1035","qty":1},{"cat":"Fender flares","name":"Husky Liners Extend-A-Fender","finish":"","size":"","off":"","cost":340,"fits":["f250"],"status":"Verified product","est":true,"sku":"F1036","qty":1},{"cat":"Fender flares","name":"Husky Liners RVL","finish":"","size":"","off":"","cost":340,"fits":["f250"],"status":"Verified product","est":true,"sku":"F1037","qty":1},{"cat":"Fender flares","name":"Husky Liners OE Style","finish":"","size":"","off":"","cost":340,"fits":["f250"],"status":"Verified product","est":true,"sku":"F1038","qty":1}];</script>
+<script>
+(function(){
+  var VEH=[{k:"f150",n:"2026 Ford F-150 XLT",msrp:58990},
+           {k:"raptor",n:"2026 Ford F-150 Raptor",msrp:81500},
+           {k:"f250",n:"2026 Ford F-250 Super Duty",msrp:67400},
+           {k:"bronco",n:"2026 Ford Bronco Badlands",msrp:48900}];
+  var VN={}; VEH.forEach(function(v){VN[v.k]=v;});
+  var ROLES=[{k:"sales",n:"Salesperson"},{k:"mgr",n:"Sales Manager"},
+             {k:"parts",n:"Parts"},{k:"admin",n:"Super Admin"},{k:"cfg",n:"Settings"}];
+  var LINE_STATES=["Awaiting sourcing","Ready to order","Ordered","In transit","Received"];
+  var MARKUP=1.42, LABOR_RATE=140, LABOR_COST=42;
+
+  var role="sales", db=null, builds=[], cfg=null, busy=false, refreshSubmit=null;
+  var draft={veh:"f150",cust:"",rep:"",lines:{},hours:6,disc:0};
+
+  var viewEl=document.getElementById("view"), statusEl=document.getElementById("status"),
+      rolesEl=document.getElementById("roles"), whoEl=document.getElementById("whoami");
+
+  function money(n){ return "$"+(Math.round(n)).toLocaleString(); }
+  function pct(n){ return (n*100).toFixed(1)+"%"; }
+  function esc(s){ return String(s==null?"":s); }
+  function say(t){ statusEl.textContent=t||""; }
+  function el(tag,cls,txt){ var e=document.createElement(tag); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e; }
+
+  ROLES.forEach(function(r){
+    var b=el("button","rb",r.n); b.type="button";
+    b.setAttribute("aria-pressed",String(r.k===role));
+    b.addEventListener("click",function(){
+      role=r.k;
+      Array.prototype.forEach.call(rolesEl.children,function(c,i){ if(ROLES[i]) c.setAttribute("aria-pressed",String(ROLES[i].k===role)); });
+      try{localStorage.setItem("bp_role",role);}catch(e){}
+      draw();
+    });
+    rolesEl.appendChild(b);
+  });
+  try{ var sr=localStorage.getItem("bp_role");
+    if(sr&&ROLES.some(function(r){return r.k===sr;})){ role=sr;
+      Array.prototype.forEach.call(rolesEl.children,function(c,i){ if(ROLES[i]) c.setAttribute("aria-pressed",String(ROLES[i].k===role)); }); }
+  }catch(e){}
+
+  // ---------- money maths ----------
+  function sellOf(p){ return Math.round(p.cost*MARKUP); }
+  function totals(b){
+    var partsSell=0, partsCost=0;
+    (b.lines||[]).forEach(function(l){ partsSell+=l.sell*l.qty; partsCost+=l.cost*l.qty; });
+    var hrs=b.hours||0;
+    var laborSell=hrs*LABOR_RATE, laborCost=hrs*LABOR_COST;
+    var disc=Math.min(Math.max(0,b.disc||0), partsSell+laborSell);
+    var rev=partsSell+laborSell-disc;
+    var cost=partsCost+laborCost;
+    var gross=rev-cost;
+    return {partsSell:partsSell,partsCost:partsCost,laborSell:laborSell,laborCost:laborCost,
+            disc:disc,rev:rev,cost:cost,gross:gross,marginPct:rev>0?gross/rev:0};
+  }
+  function repRule(name){
+    var reps=(cfg&&cfg.reps)||[];
+    for(var i=0;i<reps.length;i++) if(reps[i].name===name) return reps[i];
+    return reps[0]||{name:name,mode:"pct",value:28};
+  }
+  function check(b){
+    var t=totals(b), r=repRule(b.rep);
+    if(!r) return {ok:true,t:t,why:""};
+    if(r.mode==="pct"){
+      var floor=r.value/100;
+      if(t.marginPct>=floor) return {ok:true,t:t,rule:r,why:""};
+      return {ok:false,t:t,rule:r,
+        why:b.rep+" may go to "+r.value+"% margin. This build is at "+pct(t.marginPct)+
+            " — "+((floor-t.marginPct)*100).toFixed(1)+" points under."};
+    }
+    if(t.gross>=r.value) return {ok:true,t:t,rule:r,why:""};
+    return {ok:false,t:t,rule:r,
+      why:b.rep+" may go down to "+money(r.value)+" gross. This build holds "+money(t.gross)+
+          " — "+money(r.value-t.gross)+" short."};
+  }
+
+  // ---------- storage (this browser only) ----------
+  var KEY="bphd_demo_v1";
+  function persist(){ try{ localStorage.setItem(KEY, JSON.stringify({builds:builds,cfg:cfg})); }catch(e){} }
+  function load(){
+    try{ var raw=localStorage.getItem(KEY);
+      if(raw){ var d=JSON.parse(raw);
+        if(d&&d.builds) builds=d.builds;
+        if(d&&d.cfg&&d.cfg.reps&&d.cfg.reps.length) cfg=d.cfg; }
+    }catch(e){}
+  }
+  function nid(){ return "B-2026-"+String(Math.floor(Math.random()*9000)+1000); }
+  async function save(b,msg){
+    var i=-1;
+    for(var k=0;k<builds.length;k++) if(builds[k].id===b.id){ i=k; break; }
+    if(i>=0) builds[i]=b; else builds.unshift(b);
+    builds.sort(function(x,y){ return (y.created||0)-(x.created||0); });
+    persist(); say(msg||"Saved."); draw(); return true;
+  }
+  async function saveCfg(){ persist(); say("Settings saved."); }
+  function stamp(b,who,what){ b.history=(b.history||[]).concat([{who:who,what:what,ts:Date.now()}]); }
+
+  // ---------- salesperson ----------
+  function drawSales(){
+    var v=viewEl; v.innerHTML="";
+    var reps=(cfg&&cfg.reps)||[];
+    if(!draft.rep && reps.length) draft.rep=reps[0].name;
+
+    var cols=el("div","cols");
+    var left=el("div"), right=el("div");
+
+    // vehicle + customer
+    var c1=el("div","card");
+    c1.appendChild(el("h3",null,"The deal"));
+    var g=el("div","grid3");
+    g.appendChild(field("Vehicle", selectEl(VEH.map(function(x){return {v:x.k,t:x.n};}), draft.veh, function(val){
+      draft.veh=val; draft.lines={}; drawSales();
+    })));
+    g.appendChild(field("Customer", inputEl("text", draft.cust, "Name", function(val){
+      draft.cust=val; if(refreshSubmit) refreshSubmit();
+    })));
+    g.appendChild(field("Salesperson", selectEl(reps.map(function(r){return {v:r.name,t:r.name};}), draft.rep, function(val){
+      draft.rep=val; drawSales();
+    })));
+    c1.appendChild(g);
+    left.appendChild(c1);
+
+    // catalogue
+    ["Wheels","Tires","Fender flares"].forEach(function(cat){
+      var items=PRODUCTS.filter(function(p){ return p.cat===cat && p.fits.indexOf(draft.veh)>=0; });
+      if(!items.length) return;
+      var c=el("div","card");
+      c.appendChild(el("h3",null,cat+" · "+items.length+" fit this truck"));
+      items.forEach(function(p){
+        var r=el("div","prod");
+        var on=!!draft.lines[p.sku];
+        var nm=el("div","nm");
+        var b=el("b",null,p.name); nm.appendChild(b);
+        var bits=[p.size,p.off,p.finish].filter(Boolean).join(" · ");
+        nm.appendChild(el("s",null,bits||"Vehicle specific"));
+        r.appendChild(nm);
+        if(p.est){ var t=el("span","tag t-w","Est"); r.appendChild(t); }
+        var price=el("span","money"); price.style.minWidth="76px"; price.style.textAlign="right";
+        price.textContent=money(sellOf(p)*p.qty);
+        r.appendChild(price);
+        var btn=el("button","b sm"+(on?" g":""),on?"Added":"Add"); btn.type="button";
+        btn.addEventListener("click",function(){
+          if(draft.lines[p.sku]) delete draft.lines[p.sku];
+          else draft.lines[p.sku]={sku:p.sku,cat:p.cat,name:p.name,size:p.size,finish:p.finish,
+                                   qty:p.qty,cost:p.cost,sell:sellOf(p),est:p.est};
+          drawSales();
+        });
+        r.appendChild(btn);
+        c.appendChild(r);
+      });
+      left.appendChild(c);
+    });
+
+    // right: live money
+    var lines=Object.keys(draft.lines).map(function(k){return draft.lines[k];});
+    var b={veh:draft.veh,lines:lines,hours:draft.hours,disc:draft.disc,rep:draft.rep};
+    var res=check(b), t=res.t;
+
+    var h=el("div","card tight");
+    var hero=el("div","hero "+(res.ok?"ok":"no"));
+    hero.appendChild(el("div","lab","Customer pays"));
+    hero.appendChild(el("div","big",money(t.rev)));
+    hero.appendChild(el("div","msg",res.ok?"Within "+esc(draft.rep)+"'s authority — can be closed at the desk":"Needs the sales manager"));
+    h.appendChild(hero);
+    if(!res.ok){ var w=el("div","why",res.why); h.appendChild(w); }
+    h.appendChild(sumRow("Parts",t.partsSell));
+    h.appendChild(sumRow("Labor · "+draft.hours+" hrs at "+money(LABOR_RATE),t.laborSell));
+    if(t.disc) h.appendChild(sumRow("Discount","-"+money(t.disc)));
+    h.appendChild(sumRow("Cost",t.cost));
+    h.appendChild(sumRow("Gross",money(t.gross)+"  ·  "+pct(t.marginPct)));
+    right.appendChild(h);
+
+    var c3=el("div","card tight");
+    c3.appendChild(el("h3",null,"Negotiate"));
+    var gg=el("div","grid2");
+    gg.appendChild(field("Fitting hours", inputEl("number", draft.hours, "", function(val){
+      draft.hours=Math.max(0,parseFloat(val)||0); drawSales(); })));
+    gg.appendChild(field("Discount given", inputEl("number", draft.disc, "", function(val){
+      draft.disc=Math.max(0,parseFloat(val)||0); drawSales(); })));
+    c3.appendChild(gg);
+    var r2=repRule(draft.rep);
+    c3.appendChild(el("p",null, r2 ? ("Authority: "+(r2.mode==="pct"? r2.value+"% margin floor" : money(r2.value)+" gross floor")) : ""));
+    c3.style.paddingBottom="6px";
+    right.appendChild(c3);
+
+    var c4=el("div","card tight");
+    var sub=el("button","b p","Submit build"); sub.type="button";
+    sub.style.width="100%";
+    refreshSubmit=function(){
+      var named=!!draft.cust.trim();
+      sub.disabled = !lines.length || !named;
+      sub.textContent = !lines.length ? "Add something first"
+        : (!named ? "Name the customer" : (res.ok?"Close this deal":"Send for approval"));
+    };
+    refreshSubmit();
+    sub.addEventListener("click",async function(){
+      var nb={id:nid(),veh:draft.veh,cust:draft.cust.trim(),rep:draft.rep,
+              lines:lines,hours:draft.hours,disc:draft.disc,
+              status:res.ok?"approved":"pending", why:res.ok?"":res.why,
+              created:Date.now(),history:[],lineStates:{},orderStatus:"",routed:""};
+      stamp(nb,draft.rep,res.ok?"Closed at the desk — inside authority":"Submitted for approval");
+      if(res.ok){ nb.approvedBy="Auto — within authority"; }
+      var ok=await save(nb, res.ok?"Closed. It is on the parts desk.":"Sent to the sales manager.");
+      if(ok){ draft={veh:draft.veh,cust:"",rep:draft.rep,lines:{},hours:6,disc:0}; drawSales(); }
+    });
+    c4.appendChild(sub);
+    right.appendChild(c4);
+
+    cols.appendChild(left); cols.appendChild(right);
+    v.appendChild(cols);
+  }
+  function sumRow(k,val){
+    var d=el("div","sum"); d.appendChild(el("span",null,k));
+    d.appendChild(el("b",null, typeof val==="number"? money(val): val)); return d;
+  }
+  function field(lab,node){ var w=el("div"); w.appendChild(el("label",null,lab)); w.appendChild(node); return w; }
+  function selectEl(opts,val,on){
+    var s=document.createElement("select");
+    opts.forEach(function(o){ var op=document.createElement("option"); op.value=o.v; op.textContent=o.t;
+      if(o.v===val) op.selected=true; s.appendChild(op); });
+    s.addEventListener("change",function(){ on(s.value); });
+    return s;
+  }
+  function inputEl(type,val,ph,on){
+    var i=document.createElement("input"); i.type=type; i.value=val==null?"":val; if(ph)i.placeholder=ph;
+    i.addEventListener("change",function(){ on(i.value); });
+    if(type==="text") i.addEventListener("input",function(){ on(i.value); });
+    return i;
+  }
+
+  // ---------- sales manager ----------
+  function drawMgr(){
+    var v=viewEl; v.innerHTML="";
+    var pend=builds.filter(function(b){return b.status==="pending";});
+    var rest=builds.filter(function(b){return b.status!=="pending";});
+    var head=el("div","card");
+    head.appendChild(el("h2",null,"Approvals"));
+    head.appendChild(el("p",null, pend.length? (pend.length+" build"+(pend.length===1?"":"s")+" waiting on you. Each one says why it is here."):"Nothing waiting on you."));
+    v.appendChild(head);
+    if(!pend.length) v.appendChild(el("div","empty","No builds need approving."));
+    pend.forEach(function(b){ v.appendChild(buildCard(b,true)); });
+    if(rest.length){
+      var h=el("h3",null,"Everything else"); h.style.marginTop="22px"; v.appendChild(h);
+      rest.forEach(function(b){ v.appendChild(buildCard(b,false)); });
+    }
+  }
+  function buildCard(b,actions){
+    var t=totals(b);
+    var c=el("div","bitem");
+    var hd=el("div","hd");
+    hd.appendChild(el("b",null,b.cust||"No customer"));
+    hd.appendChild(el("span","id",b.id+" · "+(VN[b.veh]?VN[b.veh].n:b.veh)+" · "+b.rep));
+    var st=el("span","tag "+(b.status==="approved"?"t-g":b.status==="pending"?"t-w":b.status==="rejected"?"t-b":"t-n"),b.status);
+    hd.appendChild(st);
+    c.appendChild(hd);
+    if(b.why) c.appendChild(el("div","why",b.why));
+    var tbl=lineTable(b,false);
+    c.appendChild(tbl);
+    var s=el("div","row"); s.style.marginTop="8px";
+    s.appendChild(el("span","tag t-n","Customer "+money(t.rev)));
+    s.appendChild(el("span","tag t-n","Cost "+money(t.cost)));
+    s.appendChild(el("span","tag "+(t.marginPct>=0.28?"t-g":"t-w"),"Gross "+money(t.gross)+" · "+pct(t.marginPct)));
+    c.appendChild(s);
+    if(actions){
+      var a=el("div","row"); a.style.marginTop="11px";
+      var ap=el("button","b g sm","Approve"); ap.type="button";
+      ap.addEventListener("click",async function(){
+        b.status="approved"; b.approvedBy="Sales manager"; b.why="";
+        stamp(b,"Sales manager","Approved");
+        await save(b,"Approved. It is on the parts desk.");
+      });
+      var ct=el("button","b sm","Counter — take $250 off the discount"); ct.type="button";
+      ct.addEventListener("click",async function(){
+        b.disc=Math.max(0,(b.disc||0)-250);
+        var r=check(b);
+        b.status=r.ok?"approved":"pending"; b.why=r.ok?"":r.why;
+        if(r.ok){ b.approvedBy="Sales manager, countered"; }
+        stamp(b,"Sales manager","Countered: discount cut by $250"+(r.ok?" and approved":""));
+        await save(b,r.ok?"Countered and approved.":"Countered, still under the floor.");
+      });
+      var rj=el("button","b d sm","Reject"); rj.type="button";
+      rj.addEventListener("click",async function(){
+        b.status="rejected"; stamp(b,"Sales manager","Rejected — back to draft");
+        await save(b,"Rejected.");
+      });
+      a.appendChild(ap); a.appendChild(ct); a.appendChild(rj);
+      c.appendChild(a);
+    }
+    if((b.history||[]).length){
+      var hw=el("div"); hw.style.marginTop="10px";
+      b.history.slice(-4).forEach(function(h){
+        hw.appendChild(el("div","hist",h.who+" · "+h.what+" · "+new Date(h.ts).toLocaleString(undefined,{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})));
+      });
+      c.appendChild(hw);
+    }
+    return c;
+  }
+  function lineTable(b,withState){
+    var w=el("div","scroll");
+    var tb=document.createElement("table");
+    var hr=document.createElement("tr");
+    ["Item","Qty","Each","Total"].concat(withState?["Sourcing"]:[]).forEach(function(h,i){
+      var th=document.createElement("th"); th.textContent=h; if(i>0&&i<4) th.className="r"; hr.appendChild(th); });
+    tb.appendChild(hr);
+    (b.lines||[]).forEach(function(l){
+      var tr=document.createElement("tr");
+      var td1=document.createElement("td");
+      td1.appendChild(el("b",null,l.name));
+      var sm=el("s",null,[l.size,l.finish].filter(Boolean).join(" · "));
+      sm.style.display="block"; sm.style.color="var(--soft)"; sm.style.fontSize="12.5px"; sm.style.textDecoration="none";
+      td1.appendChild(sm);
+      tr.appendChild(td1);
+      [l.qty,money(l.sell),money(l.sell*l.qty)].forEach(function(x){
+        var td=document.createElement("td"); td.className="r"; td.textContent=x; tr.appendChild(td); });
+      if(withState){
+        var td=document.createElement("td");
+        var cur=(b.lineStates||{})[l.sku]||LINE_STATES[0];
+        var sel=selectEl(LINE_STATES.map(function(s){return {v:s,t:s};}),cur,async function(val){
+          b.lineStates=b.lineStates||{}; b.lineStates[l.sku]=val;
+          stamp(b,"Parts",l.name+" → "+val);
+          await save(b,"Updated.");
+        });
+        sel.style.minHeight="34px"; sel.style.fontSize="13px";
+        td.appendChild(sel); tr.appendChild(td);
+      }
+      tb.appendChild(tr);
+    });
+    var hrs=document.createElement("tr");
+    var tdl=document.createElement("td"); tdl.textContent="Fitting labor"; hrs.appendChild(tdl);
+    [ (b.hours||0)+" hrs", money(LABOR_RATE), money((b.hours||0)*LABOR_RATE) ].forEach(function(x){
+      var td=document.createElement("td"); td.className="r"; td.textContent=x; hrs.appendChild(td); });
+    if(withState) hrs.appendChild(document.createElement("td"));
+    tb.appendChild(hrs);
+    w.appendChild(tb);
+    return w;
+  }
+
+  // ---------- parts ----------
+  function drawParts(){
+    var v=viewEl; v.innerHTML="";
+    var mine=builds.filter(function(b){return b.status==="approved";});
+    var head=el("div","card");
+    head.appendChild(el("h2",null,"Parts queue"));
+    head.appendChild(el("p",null,"Approved builds. Each line moves on its own — the build is only as far along as its slowest line."));
+    v.appendChild(head);
+    if(!mine.length){ v.appendChild(el("div","empty","Nothing approved yet. Build something as the salesperson first.")); return; }
+    mine.forEach(function(b){
+      var c=el("div","bitem");
+      var hd=el("div","hd");
+      hd.appendChild(el("b",null,b.cust||"No customer"));
+      hd.appendChild(el("span","id",b.id+" · "+(VN[b.veh]?VN[b.veh].n:b.veh)));
+      var states=(b.lines||[]).map(function(l){return (b.lineStates||{})[l.sku]||LINE_STATES[0];});
+      var slowest=LINE_STATES[Math.min.apply(null,states.map(function(s){return LINE_STATES.indexOf(s);}).concat([LINE_STATES.length-1]))];
+      hd.appendChild(el("span","tag "+(slowest==="Received"?"t-g":"t-w"),slowest));
+      c.appendChild(hd);
+      c.appendChild(lineTable(b,true));
+      c.appendChild(el("p",null,"Build status follows the slowest line: "+slowest));
+      v.appendChild(c);
+    });
+  }
+
+  // ---------- super admin ----------
+  function drawAdmin(){
+    var v=viewEl; v.innerHTML="";
+    var head=el("div","card");
+    head.appendChild(el("h2",null,"Order desk"));
+    head.appendChild(el("p",null,"Approved builds become orders ready for manual supplier routing. The order status is its own thing — it is not the build's approval status."));
+    v.appendChild(head);
+    var mine=builds.filter(function(b){return b.status==="approved";});
+    if(!mine.length){ v.appendChild(el("div","empty","No orders to route.")); return; }
+    mine.forEach(function(b){
+      var c=el("div","bitem");
+      var hd=el("div","hd");
+      hd.appendChild(el("b",null,b.id));
+      hd.appendChild(el("span","id",(b.cust||"")+" · "+(VN[b.veh]?VN[b.veh].n:b.veh)+" · Gator Ford"));
+      var os=b.orderStatus||"Not routed";
+      hd.appendChild(el("span","tag "+(os==="Not routed"?"t-w":"t-g"),"Order: "+os));
+      c.appendChild(hd);
+      var w=el("div","scroll"); var tb=document.createElement("table");
+      var hr=document.createElement("tr");
+      ["Line","Supplier"].forEach(function(h){ var th=document.createElement("th"); th.textContent=h; hr.appendChild(th); });
+      tb.appendChild(hr);
+      (b.lines||[]).forEach(function(l){
+        var tr=document.createElement("tr");
+        var td1=document.createElement("td"); td1.textContent=l.name; tr.appendChild(td1);
+        var td2=document.createElement("td");
+        var sup = l.cat==="Tires" ? "US AutoForce" : l.cat==="Wheels" ? "Wheel Pros" : "Turn 14";
+        td2.textContent=sup; tr.appendChild(td2);
+        tb.appendChild(tr);
+      });
+      w.appendChild(tb); c.appendChild(w);
+      var a=el("div","row"); a.style.marginTop="10px";
+      var rt=el("button","b p sm", os==="Not routed"?"Route to suppliers":"Routed"); rt.type="button";
+      rt.disabled = os!=="Not routed";
+      rt.addEventListener("click",async function(){
+        b.orderStatus="Sent to suppliers "+new Date().toLocaleDateString();
+        stamp(b,"BuildPro order desk","Routed to suppliers");
+        await save(b,"Routed. The routing event is on the record.");
+      });
+      a.appendChild(rt);
+      c.appendChild(a);
+      v.appendChild(c);
+    });
+  }
+
+  // ---------- settings ----------
+  function drawCfg(){
+    var v=viewEl; v.innerHTML="";
+    var c=el("div","card");
+    c.appendChild(el("h2",null,"Salespeople and their authority"));
+    c.appendChild(el("p",null,"Each dealership sets how far each of its salespeople can go before a build needs the manager. A dollar figure or a percentage — stores run it both ways."));
+    ((cfg&&cfg.reps)||[]).forEach(function(r,i){
+      var row=el("div","grid3"); row.style.marginBottom="11px";
+      row.appendChild(field("Name", inputEl("text", r.name, "", function(val){ r.name=val; })));
+      row.appendChild(field("Measured as", selectEl([{v:"pct",t:"Margin %"},{v:"usd",t:"Gross $"}], r.mode, function(val){
+        r.mode=val; drawCfg(); })));
+      row.appendChild(field(r.mode==="pct"?"Floor (%)":"Floor ($)", inputEl("number", r.value, "", function(val){
+        r.value=Math.max(0,parseFloat(val)||0); })));
+      c.appendChild(row);
+    });
+    var a=el("div","row");
+    var add=el("button","b sm","Add a salesperson"); add.type="button";
+    add.addEventListener("click",function(){ cfg.reps.push({name:"New rep",mode:"pct",value:28}); drawCfg(); });
+    var sv=el("button","b p sm","Save settings"); sv.type="button";
+    sv.addEventListener("click",async function(){ await saveCfg(); drawCfg(); });
+    a.appendChild(sv); a.appendChild(add);
+    c.appendChild(a);
+    v.appendChild(c);
+
+    var n=el("div","card");
+    n.appendChild(el("h3",null,"How this works"));
+    n.appendChild(el("p",null,"Inside the floor, the salesperson closes the deal themselves — no approval step, nothing waiting. Below it, the build goes to the sales manager and the queue says exactly which floor it broke and by how much. Change a floor here and build something as the salesperson to watch it switch."));
+    v.appendChild(n);
+  }
+
+  // ---------- router ----------
+  function draw(){
+    whoEl.textContent = (ROLES.filter(function(r){return r.k===role;})[0]||{}).n || "";
+    if(role==="sales") drawSales();
+    else if(role==="mgr") drawMgr();
+    else if(role==="parts") drawParts();
+    else if(role==="admin") drawAdmin();
+    else drawCfg();
+  }
+
+  // ---------- boot ----------
+  cfg={reps:[{name:"Jason Alvarez",mode:"pct",value:28},{name:"Marcus Reed",mode:"usd",value:1800},{name:"Dana Whitfield",mode:"pct",value:22}]};
+  load();
+  if(!draft.rep && cfg.reps.length) draft.rep=cfg.reps[0].name;
+  var reset=document.createElement("button");
+  reset.className="rb"; reset.type="button"; reset.textContent="Reset demo";
+  reset.style.marginLeft="8px";
+  reset.addEventListener("click",function(){
+    builds=[]; cfg={reps:[{name:"Jason Alvarez",mode:"pct",value:28},{name:"Marcus Reed",mode:"usd",value:1800},{name:"Dana Whitfield",mode:"pct",value:22}]};
+    draft={veh:"f150",cust:"",rep:cfg.reps[0].name,lines:{},hours:6,disc:0};
+    persist(); say("Reset."); draw();
+  });
+  document.querySelector(".topbar").appendChild(reset);
+  draw(); say("");
+
+})();
+</script>
