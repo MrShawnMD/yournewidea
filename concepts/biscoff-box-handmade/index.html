@@ -47,6 +47,14 @@ a{color:#EFE4D0}a:hover{color:#D69A3C}
 @media (prefers-reduced-motion:reduce){.snow{display:none}}
 h1.serif,h2.serif,h3.serif{text-shadow:0 2px 18px rgba(0,0,0,.5)}
 .shine{box-shadow:0 14px 30px -10px rgba(181,18,27,.65),inset 0 1px 0 rgba(255,255,255,.12)}
+.plaque{position:relative;z-index:2;margin-top:-44px;padding:14px 24px 13px;background:rgba(20,15,11,.9);border:1px solid rgba(239,228,208,.8);outline:1px solid rgba(239,228,208,.32);outline-offset:4px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(19px,1.85vw,30px);line-height:1;letter-spacing:.14em;text-transform:uppercase;color:#EFE4D0;text-shadow:0 -1px 0 rgba(0,0,0,.95),0 1px 0 rgba(255,255,255,.2),0 0 22px rgba(214,154,60,.18);box-shadow:0 18px 40px rgba(0,0,0,.6);white-space:nowrap;transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .6s}
+.step4{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.step4 .fade-b img,.step4 .fround img{transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.step4:hover{transform:translateY(-8px)}
+.step4:hover .fade-b img,.step4:hover .fround img{transform:scale(1.05)}
+.step4:hover .plaque{transform:translateY(-3px);box-shadow:0 24px 50px rgba(0,0,0,.7)}
+@media (max-width:900px){.plaque{font-size:12.5px;padding:9px 10px 8px;margin-top:-24px;letter-spacing:.08em;white-space:normal;text-align:center;outline-offset:3px}}
+@media (prefers-reduced-motion:reduce){.step4,.step4 img,.plaque{transition:none !important;transform:none !important}}
 </style>
 </head>
 <body>
@@ -75,21 +83,21 @@ h1.serif,h2.serif,h3.serif{text-shadow:0 2px 18px rgba(0,0,0,.5)}
 <section aria-label="How a Biscoff Box is made" style="padding:48px 0 88px">
 <div class="wrap" style="max-width:1680px;padding:0 24px">
 <ol class="hero4" style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px">
-<li style="display:flex;flex-direction:column;gap:18px">
-<div class="fade-b" style="height:700px;border-radius:32px;overflow:hidden"><img src="img/step-cut.webp" alt="Slate cut on a wet saw" style="width:100%;height:100%;object-fit:cover;object-position:40% 62%;display:block"></div>
-<div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center"><span class="serif" style="font-size:46px;color:#D69A3C;line-height:1;text-shadow:0 2px 16px rgba(214,154,60,.35)">I.</span><span aria-hidden="true" style="display:block;width:36px;height:1px;background:rgba(214,154,60,.6)"></span><span class="eyebrow" style="font-size:15px;letter-spacing:.2em;color:#EFE4D0">Hand-cut slate</span></div>
+<li class="step4" style="display:flex;flex-direction:column;align-items:center;gap:0">
+<div class="fade-b" style="width:100%;height:700px;border-radius:32px;overflow:hidden"><img src="img/step-cut.webp" alt="Slate cut on a wet saw" style="width:100%;height:100%;object-fit:cover;object-position:40% 62%;display:block"></div>
+<div class="plaque">Hand-cut slate</div><span class="serif" style="font-size:40px;color:#D69A3C;line-height:1;margin-top:22px;text-shadow:0 2px 16px rgba(214,154,60,.35)">I.</span>
 </li>
-<li style="display:flex;flex-direction:column;gap:18px">
-<div class="fade-b" style="height:700px;border-radius:32px;overflow:hidden"><img src="img/step-etch.webp" alt="Laser etching the Biscoff Box mark" style="width:100%;height:100%;object-fit:cover;object-position:50% 64%;display:block"></div>
-<div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center"><span class="serif" style="font-size:46px;color:#D69A3C;line-height:1;text-shadow:0 2px 16px rgba(214,154,60,.35)">II.</span><span aria-hidden="true" style="display:block;width:36px;height:1px;background:rgba(214,154,60,.6)"></span><span class="eyebrow" style="font-size:15px;letter-spacing:.2em;color:#EFE4D0">Laser-etched</span></div>
+<li class="step4" style="display:flex;flex-direction:column;align-items:center;gap:0">
+<div class="fade-b" style="width:100%;height:700px;border-radius:32px;overflow:hidden"><img src="img/step-etch.webp" alt="Laser etching the Biscoff Box mark" style="width:100%;height:100%;object-fit:cover;object-position:50% 64%;display:block"></div>
+<div class="plaque">Laser-etched</div><span class="serif" style="font-size:40px;color:#D69A3C;line-height:1;margin-top:22px;text-shadow:0 2px 16px rgba(214,154,60,.35)">II.</span>
 </li>
-<li style="display:flex;flex-direction:column;gap:18px">
-<div class="fade-b" style="height:700px;border-radius:32px;overflow:hidden"><img src="img/step-oil.webp" alt="Board oiled by hand in the workshop" style="width:100%;height:100%;object-fit:cover;object-position:30% 50%;display:block"></div>
-<div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center"><span class="serif" style="font-size:46px;color:#D69A3C;line-height:1;text-shadow:0 2px 16px rgba(214,154,60,.35)">III.</span><span aria-hidden="true" style="display:block;width:36px;height:1px;background:rgba(214,154,60,.6)"></span><span class="eyebrow" style="font-size:15px;letter-spacing:.2em;color:#EFE4D0">Hand-oiled</span></div>
+<li class="step4" style="display:flex;flex-direction:column;align-items:center;gap:0">
+<div class="fade-b" style="width:100%;height:700px;border-radius:32px;overflow:hidden"><img src="img/step-oil.webp" alt="Board oiled by hand in the workshop" style="width:100%;height:100%;object-fit:cover;object-position:30% 50%;display:block"></div>
+<div class="plaque">Hand-oiled</div><span class="serif" style="font-size:40px;color:#D69A3C;line-height:1;margin-top:22px;text-shadow:0 2px 16px rgba(214,154,60,.35)">III.</span>
 </li>
-<li style="display:flex;flex-direction:column;gap:18px">
-<div class="fade-b" style="height:700px;border-radius:32px;overflow:hidden"><img src="img/home-spread.webp" alt="Biscoff Box served on a holiday table at home" style="width:100%;height:100%;object-fit:cover;object-position:72% 70%;display:block"></div>
-<div style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center"><span class="serif" style="font-size:46px;color:#D69A3C;line-height:1;text-shadow:0 2px 16px rgba(214,154,60,.35)">IV.</span><span aria-hidden="true" style="display:block;width:36px;height:1px;background:rgba(214,154,60,.6)"></span><span class="eyebrow" style="font-size:15px;letter-spacing:.2em;color:#EFE4D0">Into your home</span></div>
+<li class="step4" style="display:flex;flex-direction:column;align-items:center;gap:0">
+<div class="fade-b" style="width:100%;height:700px;border-radius:32px;overflow:hidden"><img src="img/home-spread.webp" alt="Biscoff Box served on a holiday table at home" style="width:100%;height:100%;object-fit:cover;object-position:72% 70%;display:block"></div>
+<div class="plaque">Into your home</div><span class="serif" style="font-size:40px;color:#D69A3C;line-height:1;margin-top:22px;text-shadow:0 2px 16px rgba(214,154,60,.35)">IV.</span>
 </li>
 </ol>
 <div style="display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center;margin-top:64px">
