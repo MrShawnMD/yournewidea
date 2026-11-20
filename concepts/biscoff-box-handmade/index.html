@@ -55,6 +55,7 @@ h1.serif,h2.serif,h3.serif{text-shadow:0 2px 18px rgba(0,0,0,.5)}
 .step4:hover .plaque{transform:translateY(-3px);box-shadow:0 24px 50px rgba(0,0,0,.7)}
 @media (max-width:900px){.plaque{font-size:12.5px;padding:9px 10px 8px;margin-top:-24px;letter-spacing:.08em;white-space:normal;text-align:center;outline-offset:3px}}
 @media (prefers-reduced-motion:reduce){.step4,.step4 img,.plaque{transition:none !important;transform:none !important}}
+@media (max-width:900px){.gsplit,.bizgrid{grid-template-columns:1fr !important;gap:28px !important}#bizform{grid-template-columns:1fr !important}#business{padding:26px 20px !important}}
 </style>
 </head>
 <body>
@@ -68,6 +69,7 @@ h1.serif,h2.serif,h3.serif{text-shadow:0 2px 18px rgba(0,0,0,.5)}
 <nav class="nav" style="display:flex;gap:32px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase">
 <a href="#process" style="text-decoration:none">The Process</a>
 <a href="#order" style="text-decoration:none">What's Included</a>
+<a href="#gifts" style="text-decoration:none">Gift Ideas</a>
 </nav>
 <a href="#" style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:4px;border:1px solid #EFE4D0;padding:8px 20px 7px">
 <span class="serif" style="font-size:24px;letter-spacing:.2em;font-weight:600;line-height:1">BISCOFF BOX</span>
@@ -179,6 +181,42 @@ h1.serif,h2.serif,h3.serif{text-shadow:0 2px 18px rgba(0,0,0,.5)}
 
 
 
+<section id="gifts" style="padding:120px 0;border-top:1px solid rgba(239,228,208,.1)">
+<div class="wrap" style="display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center">
+<span class="eyebrow" style="color:#D69A3C">Who's it for?</span>
+<h2 class="serif" style="margin:0;font-size:60px">Who are you gifting?</h2>
+<p style="margin:0;font-size:18px;color:#CBBFA9">Pick one — we'll write the gift note for you.</p>
+</div>
+<div role="group" aria-label="Who are you gifting" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center"><button type="button" class="gpill" data-i="0" aria-pressed="true" style="min-height:48px;padding:0 20px;border-radius:999px;border:1px solid #D69A3C;background:#D69A3C;color:#1C1510;font-family:inherit;font-weight:700;font-size:15px;letter-spacing:.04em;cursor:pointer">A client</button><button type="button" class="gpill" data-i="1" aria-pressed="false" style="min-height:48px;padding:0 20px;border-radius:999px;border:1px solid rgba(239,228,208,.3);background:transparent;color:#EFE4D0;font-family:inherit;font-weight:700;font-size:15px;letter-spacing:.04em;cursor:pointer">A host</button><button type="button" class="gpill" data-i="2" aria-pressed="false" style="min-height:48px;padding:0 20px;border-radius:999px;border:1px solid rgba(239,228,208,.3);background:transparent;color:#EFE4D0;font-family:inherit;font-weight:700;font-size:15px;letter-spacing:.04em;cursor:pointer">Family</button><button type="button" class="gpill" data-i="3" aria-pressed="false" style="min-height:48px;padding:0 20px;border-radius:999px;border:1px solid rgba(239,228,208,.3);background:transparent;color:#EFE4D0;font-family:inherit;font-weight:700;font-size:15px;letter-spacing:.04em;cursor:pointer">Your team</button><button type="button" class="gpill" data-i="4" aria-pressed="false" style="min-height:48px;padding:0 20px;border-radius:999px;border:1px solid rgba(239,228,208,.3);background:transparent;color:#EFE4D0;font-family:inherit;font-weight:700;font-size:15px;letter-spacing:.04em;cursor:pointer">The one who has everything</button></div>
+<div style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:64px;align-items:center" class="gsplit"><div class="fade-b" style="height:520px;border-radius:32px;overflow:hidden;background:#241A13;display:flex;align-items:center;justify-content:center"><img id="gimg" src="img/product-hero.webp" alt="For a client" style="width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block;transition:opacity .35s"></div><div style="display:flex;flex-direction:column;gap:22px">
+<h3 class="serif" style="margin:0;font-size:50px"><span id="gtitle">For a client</span></h3>
+<p style="margin:0;font-size:19px;line-height:1.65;color:#D9CDB6"><span id="gline">A thank-you they’ll keep on the counter for years — not another gift card.</span></p>
+<div style="background:#EFE4D0;color:#1C1510;padding:26px 30px;box-shadow:0 22px 44px rgba(0,0,0,.45);transform:rotate(-1deg);display:flex;flex-direction:column;gap:10px;border-radius:2px">
+<span class="eyebrow" style="color:#8A2A1E;font-size:11px">Your gift note — we'll print it</span>
+<p class="serif" style="margin:0;font-size:27px;line-height:1.3;font-style:italic">“<span id="gnote">Thank you for trusting us this year. Here’s to many more.</span>”</p>
+<span style="font-size:12px;color:#5E5242">You can change it before checkout.</span>
+</div>
+<a href="product.html?for=client&note=Thank%20you%20for%20trusting%20us%20this%20year.%20Here%E2%80%99s%20to%20many%20more." id="gbtn" class="btn shine" style="background:#B5121B;color:#fff;align-self:flex-start;margin-top:6px">Send this gift — $125</a>
+</div></div>
+<div id="business" style="margin-top:96px;border:1px solid rgba(239,228,208,.22);outline:1px solid rgba(239,228,208,.1);outline-offset:6px;padding:48px 52px;background:rgba(0,0,0,.22);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:56px;align-items:start" class="bizgrid">
+<div style="display:flex;flex-direction:column;gap:16px">
+<span class="eyebrow" style="color:#D69A3C">Business gifting</span>
+<h3 class="serif" style="margin:0;font-size:46px">Gifting 10 or more?</h3>
+<p style="margin:0;font-size:18px;line-height:1.65;color:#D9CDB6">Realtors, dealerships, builders and businesses of every size — tell us how many and when you need them, and we'll take care of the rest.</p>
+<p style="margin:0;font-size:14px;line-height:1.6;color:#A99C86">Closing gifts · Client appreciation · Employee thank-yous · [Custom logo etching — if offered]</p>
+</div>
+<form id="bizform" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px" onsubmit="return false">
+<label style="display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#CBBFA9">Your name<input type="text" name="name" autocomplete="name" style="width:100%;box-sizing:border-box;min-height:52px;border:1px solid rgba(239,228,208,.35);background:rgba(0,0,0,.25);color:#EFE4D0;padding:0 14px;font-size:16px;font-family:inherit;border-radius:2px"></label>
+<label style="display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#CBBFA9">Company<input type="text" name="company" autocomplete="organization" style="width:100%;box-sizing:border-box;min-height:52px;border:1px solid rgba(239,228,208,.35);background:rgba(0,0,0,.25);color:#EFE4D0;padding:0 14px;font-size:16px;font-family:inherit;border-radius:2px"></label>
+<label style="display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#CBBFA9">Email or phone<input type="text" name="contact" autocomplete="email" style="width:100%;box-sizing:border-box;min-height:52px;border:1px solid rgba(239,228,208,.35);background:rgba(0,0,0,.25);color:#EFE4D0;padding:0 14px;font-size:16px;font-family:inherit;border-radius:2px"></label>
+<label style="display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#CBBFA9">How many boxes<select name="qty" style="width:100%;box-sizing:border-box;min-height:52px;border:1px solid rgba(239,228,208,.35);background:rgba(0,0,0,.25);color:#EFE4D0;padding:0 14px;font-size:16px;font-family:inherit;border-radius:2px"><option>10–24</option><option>25–49</option><option>50–99</option><option>100+</option></select></label>
+<label style="display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#CBBFA9;grid-column:1/-1">Need them by (optional)<input type="text" name="date" placeholder="e.g. December 12" style="width:100%;box-sizing:border-box;min-height:52px;border:1px solid rgba(239,228,208,.35);background:rgba(0,0,0,.25);color:#EFE4D0;padding:0 14px;font-size:16px;font-family:inherit;border-radius:2px"></label>
+<button type="submit" id="bizbtn" class="btn shine" style="grid-column:1/-1;background:#B5121B;color:#fff;border:none;cursor:pointer;font-family:inherit">Request a business quote</button>
+</form>
+</div>
+</div>
+</section>
 <section style="position:relative;overflow:hidden;padding:150px 0;text-align:center">
 <img src="img/step-oil.webp" alt="" aria-hidden="true" class="feather-all" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32">
 <div class="wrap" style="position:relative;display:flex;flex-direction:column;gap:30px;align-items:center">
@@ -206,5 +244,15 @@ h1.serif,h2.serif,h3.serif{text-shadow:0 2px 18px rgba(0,0,0,.5)}
 </div>
 
 <div class="snow" aria-hidden="true"><i class="s1"></i><i class="s2"></i><i class="s3"></i></div>
+<script>
+(function(){var G=[{"id": "client", "pill": "A client", "title": "For a client", "line": "A thank-you they\u2019ll keep on the counter for years \u2014 not another gift card.", "note": "Thank you for trusting us this year. Here\u2019s to many more.", "src": "img/product-hero.webp", "fit": "cover", "pos": "50% 50%", "href": "product.html?for=client&note=Thank%20you%20for%20trusting%20us%20this%20year.%20Here%E2%80%99s%20to%20many%20more."}, {"id": "host", "pill": "A host", "title": "For the host", "line": "Show up with something they\u2019ll bring out at every party after this one.", "note": "Thanks for having us! Save us a spot at the next one.", "src": "img/home-spread.webp", "fit": "cover", "pos": "62% 60%", "href": "product.html?for=host&note=Thanks%20for%20having%20us%21%20Save%20us%20a%20spot%20at%20the%20next%20one."}, {"id": "family", "pill": "Family", "title": "For family", "line": "Something to share when you can\u2019t be there in person.", "note": "Wish we could be there. Save a cookie for us. Love you all.", "src": "img/spread-real.webp", "fit": "cover", "pos": "50% 55%", "href": "product.html?for=family&note=Wish%20we%20could%20be%20there.%20Save%20a%20cookie%20for%20us.%20Love%20you%20all."}, {"id": "team", "pill": "Your team", "title": "For your team", "line": "A real thank-you for the people who made the year happen.", "note": "Thank you for everything you do this year. This one\u2019s on us.", "src": "img/box-slate.webp", "fit": "contain", "pos": "50% 50%", "href": "product.html?for=team&note=Thank%20you%20for%20everything%20you%20do%20this%20year.%20This%20one%E2%80%99s%20on%20us."}, {"id": "everything", "pill": "The one who has everything", "title": "For the one who has everything", "line": "A hand-cut slate board is the one thing they don\u2019t already own.", "note": "Finally \u2014 something you don\u2019t already have.", "src": "img/step-oil.webp", "fit": "cover", "pos": "40% 50%", "href": "product.html?for=everything&note=Finally%20%E2%80%94%20something%20you%20don%E2%80%99t%20already%20have."}];
+var im=document.getElementById('gimg'),t=document.getElementById('gtitle'),l=document.getElementById('gline'),n=document.getElementById('gnote'),b=document.getElementById('gbtn');
+document.querySelectorAll('.gpill').forEach(function(p){p.addEventListener('click',function(){var g=G[+p.dataset.i];
+document.querySelectorAll('.gpill').forEach(function(o){var on=o===p;o.setAttribute('aria-pressed',on);o.style.background=on?'#D69A3C':'transparent';o.style.color=on?'#1C1510':'#EFE4D0';o.style.borderColor=on?'#D69A3C':'rgba(239,228,208,.3)'});
+im.style.opacity=0;setTimeout(function(){im.src=g.src;im.alt=g.title;im.style.objectFit=g.fit;im.style.objectPosition=g.pos;im.style.opacity=1},200);
+t.textContent=g.title;l.textContent=g.line;n.textContent=g.note;b.href=g.href})});
+var f=document.getElementById('bizform'),bb=document.getElementById('bizbtn');f.addEventListener('submit',function(e){e.preventDefault();bb.textContent='Concept demo — on the live store this goes to their inbox';setTimeout(function(){bb.textContent='Request a business quote'},3000)});
+})();
+</script>
 </body>
 </html>
