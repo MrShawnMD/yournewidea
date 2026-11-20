@@ -36,6 +36,15 @@ a{color:#EFE4D0}a:hover{color:#D69A3C}
 @media (prefers-reduced-motion:reduce){.shine::after{animation:none;display:none}}
 .concept{background:#D69A3C;color:#1C1510;font-family:Manrope,system-ui,sans-serif;font-size:13px;text-align:center;padding:8px 16px;line-height:1.4}.concept a{color:#1C1510}
 @media (max-width:900px){.pic{height:380px !important}}
+.snow{position:fixed;inset:0;pointer-events:none;z-index:40;overflow:hidden}
+.snow i{position:absolute;inset:0;display:block;background-repeat:repeat}
+.snow .s1{background-image:radial-gradient(circle at 20px 40px,rgba(255,255,255,.9) 0 1.6px,transparent 2.2px),radial-gradient(circle at 140px 120px,rgba(255,255,255,.8) 0 1.4px,transparent 2px),radial-gradient(circle at 250px 210px,rgba(255,255,255,.85) 0 1.8px,transparent 2.4px),radial-gradient(circle at 80px 260px,rgba(255,255,255,.7) 0 1.2px,transparent 1.8px);background-size:300px 300px;opacity:.55;animation:snowfall 22s linear infinite}
+.snow .s2{background-image:radial-gradient(circle at 60px 90px,rgba(255,255,255,.95) 0 2.4px,transparent 3.2px),radial-gradient(circle at 300px 260px,rgba(255,255,255,.9) 0 2.2px,transparent 3px),radial-gradient(circle at 190px 380px,rgba(255,255,255,.85) 0 2.6px,transparent 3.4px);background-size:420px 420px;opacity:.45;animation:snowfall2 16s linear infinite;filter:blur(.4px)}
+.snow .s3{background-image:radial-gradient(circle at 120px 160px,rgba(255,255,255,.9) 0 3.4px,transparent 4.6px),radial-gradient(circle at 460px 420px,rgba(255,255,255,.8) 0 3px,transparent 4.2px);background-size:600px 600px;opacity:.32;animation:snowfall3 12s linear infinite;filter:blur(1.2px)}
+@keyframes snowfall{from{background-position:0 0}to{background-position:60px 300px}}
+@keyframes snowfall2{from{background-position:0 0}to{background-position:-70px 420px}}
+@keyframes snowfall3{from{background-position:0 0}to{background-position:90px 600px}}
+@media (prefers-reduced-motion:reduce){.snow{display:none}}
 </style>
 </head>
 <body>
@@ -186,5 +195,6 @@ a{color:#EFE4D0}a:hover{color:#D69A3C}
 </footer>
 </div>
 
+<div class="snow" aria-hidden="true"><i class="s1"></i><i class="s2"></i><i class="s3"></i></div>
 </body>
 </html>
