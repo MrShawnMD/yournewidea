@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biscoff Box — Redesign Concept</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--red:#D2232A;--red2:#B31B21;--blk:#0E0E0E;--ink:#161616;--cream:#F7F1E8;--caramel:#B8742F;--line:#E7DFD3;--mut:#6B6359}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button,input,textarea{font:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 22px}
+.disp{font-family:Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.005em;line-height:.92;margin:0;font-weight:400}
+.serif{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:0}
+.concept{background:#FFF4D6;color:#5A4500;font-size:12.5px;text-align:center;padding:7px 14px}
+.bar{background:var(--red);color:#fff;font:700 12px Inter;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:10px 12px}
+.bar b{background:#fff;color:var(--red);border-radius:4px;padding:2px 7px;margin-left:6px}
+header{position:sticky;top:0;z-index:20;background:var(--blk);color:#fff}
+.hdr{display:flex;align-items:center;justify-content:space-between;height:62px}
+.brand{font-family:Anton,sans-serif;font-size:24px;letter-spacing:.06em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand i{width:26px;height:26px;border:2px solid #fff;display:grid;place-items:center;font-style:normal;font-size:12px}
+.hdr nav{display:flex;gap:26px;font-size:14px;font-weight:600}
+.hdr nav a{text-decoration:none;opacity:.85}.hdr nav a:hover{opacity:1}
+.cartb{background:none;border:1.5px solid #fff;color:#fff;border-radius:99px;padding:8px 16px;font-weight:700;font-size:13px;cursor:pointer;text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--red);color:#fff;border:0;border-radius:999px;padding:17px 30px;font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;min-height:56px;transition:transform .15s,background .15s;letter-spacing:.01em}
+.btn:hover{background:var(--red2);transform:translateY(-1px)}
+.btn.ghost{background:transparent;border:2px solid currentColor}
+.btn.wht{background:#fff;color:var(--blk)}
+/* hero */
+.hero{background:var(--blk);color:#fff;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:stretch;min-height:640px;padding:0 22px}
+.hero .copy{padding:64px 40px 64px 0;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+.hero h1{font-size:clamp(64px,8.2vw,124px)}
+.hero h1 span{color:var(--red)}
+.hero h1 .serif{display:block;font-size:.5em;color:#EADBC6;margin-top:14px;line-height:1}
+.hero p{color:#CFC7BB;font-size:18px;line-height:1.6;max-width:470px;margin:22px 0 28px}
+.hero .meta{display:flex;gap:22px;margin-top:22px;font-size:13px;color:#BDB4A7;flex-wrap:wrap}
+.hero .meta b{color:#fff}
+.hero .pic{position:relative;margin-right:calc(-1*max(22px,(100vw - 1240px)/2 + 22px))}
+.hero .pic img{width:100%;height:100%;object-fit:cover}
+.hero .pic:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--blk) 0%,rgba(14,14,14,0) 28%);z-index:1}
+.stamp{position:absolute;left:-30px;bottom:48px;z-index:3;width:150px;height:150px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;text-align:center;font:400 22px/1 Anton;transform:rotate(-12deg);box-shadow:0 18px 40px -10px rgba(0,0,0,.6)}
+.stamp small{display:block;font:700 10px Inter;letter-spacing:.16em;margin-top:6px}
+/* ticker */
+.tape{background:var(--red);color:#fff;overflow:hidden;white-space:nowrap;border-top:2px solid var(--blk);border-bottom:2px solid var(--blk)}
+.tape .t{display:inline-flex;gap:38px;padding:13px 0;animation:tk 60s linear infinite;font:400 22px Anton;letter-spacing:.04em;text-transform:uppercase}
+.tape .t span:nth-child(even){color:var(--blk)}
+@keyframes tk{to{transform:translateX(-50%)}}
+section{padding:96px 0}
+.eyebrow{font:800 12px Inter;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+/* inside */
+.inside .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.inside h2{font-size:clamp(46px,5.4vw,78px);margin:12px 0 22px}
+.list{border-top:2px solid var(--blk)}
+.li{display:grid;grid-template-columns:76px 1fr auto;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);cursor:default;transition:background .2s,padding .2s}
+.li:hover{background:var(--cream);padding-left:10px}
+.li .n{font:400 44px/1 Anton;color:var(--red)}
+.li b{font-size:17px;display:block}
+.li span{color:var(--mut);font-size:14px}
+.li em{font-style:normal;font:700 11px Inter;letter-spacing:.12em;text-transform:uppercase;color:var(--caramel);border:1.5px solid var(--caramel);border-radius:99px;padding:4px 9px;white-space:nowrap}
+.inside .photo{position:relative}
+.inside .photo img{border-radius:6px;box-shadow:24px 24px 0 var(--red)}
+.count{position:absolute;right:-14px;top:-14px;background:var(--blk);color:#fff;border-radius:6px;padding:14px 18px;text-align:center}
+.count b{font:400 48px/1 Anton;display:block}
+.count span{font:700 10px Inter;letter-spacing:.16em}
+/* slate */
+.slate{background:var(--blk);color:#fff;position:relative}
+.slate .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.slate img{border-radius:6px}
+.slate h2{font-size:clamp(46px,5.4vw,80px);margin:12px 0 20px}
+.slate h2 .serif{color:#EADBC6}
+.slate p{color:#CFC7BB;font-size:17px;line-height:1.7}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.steps div{border:1px solid #2E2E2E;border-radius:6px;padding:16px}
+.steps b{font:400 34px Anton;color:var(--red);display:block}
+.steps span{font-size:14px;color:#DDD5C9;font-weight:600}
+/* gift */
+.gift{background:var(--cream)}
+.gift .wrap{text-align:center}
+.gift h2{font-size:clamp(46px,6vw,90px);margin:12px auto 16px;max-width:900px}
+.gift h2 span{color:var(--red)}
+.gift>.wrap>p{color:var(--mut);font-size:18px;max-width:600px;margin:0 auto 40px;line-height:1.6}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left}
+.card{background:#fff;border:2px solid var(--blk);border-radius:8px;padding:26px;box-shadow:6px 6px 0 var(--blk);transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--red)}
+.card .ic{width:46px;height:46px;border-radius:50%;background:var(--red);display:grid;place-items:center;margin-bottom:16px}
+.card h4{font:400 26px Anton;text-transform:uppercase;margin:0 0 8px}
+.card p{margin:0;color:var(--mut);line-height:1.55}
+.note{margin:46px auto 0;max-width:560px;background:#fff;border-radius:6px;padding:28px 30px;box-shadow:0 30px 60px -30px rgba(0,0,0,.35);transform:rotate(-1.5deg);text-align:left;position:relative}
+.note:before{content:"";position:absolute;top:-12px;left:50%;width:90px;height:24px;background:rgba(210,35,42,.85);transform:translateX(-50%) rotate(2deg)}
+.note small{font:700 11px Inter;letter-spacing:.16em;color:var(--mut);text-transform:uppercase}
+.note p{font-family:"Instrument Serif",serif;font-style:italic;font-size:28px;line-height:1.3;margin:10px 0 0;min-height:74px}
+.note input{width:100%;border:0;border-bottom:1.5px dashed var(--line);padding:8px 0;margin-top:14px;font-size:15px;outline:none}
+/* reviews */
+.rev .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:center}
+.rev h2{font-size:clamp(44px,5vw,72px);margin:12px 0}
+.stars{color:var(--red);font-size:26px;letter-spacing:4px}
+.jm{border:2px dashed #CFC5B6;border-radius:10px;padding:34px;text-align:center;color:var(--mut);background:repeating-linear-gradient(45deg,#fff,#fff 12px,#FBF8F3 12px,#FBF8F3 24px)}
+.jm b{display:block;color:var(--ink);font-size:17px;margin-bottom:6px}
+/* deadline */
+.dl{background:var(--red);color:#fff;padding:70px 0}
+.dl .wrap{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+.dl h2{font-size:clamp(40px,5vw,70px)}
+.clock{display:flex;gap:10px}
+.clock div{background:var(--blk);border-radius:6px;padding:14px 16px;text-align:center;min-width:86px}
+.clock b{font:400 46px/1 Anton;display:block}
+.clock span{font:700 10px Inter;letter-spacing:.16em}
+/* faq */
+.faq .wrap{max-width:860px}
+.faq h2{font-size:clamp(44px,5vw,70px);margin:12px 0 26px}
+.faq details{border-top:2px solid var(--blk);padding:20px 0}
+.faq details:last-child{border-bottom:2px solid var(--blk)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;font:400 24px Anton;text-transform:uppercase}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";color:var(--red)}
+.faq details[open] summary:after{content:"–"}
+.faq p{color:var(--mut);line-height:1.65;margin:12px 0 0;font-size:16px}
+/* product page */
+.pdp{padding:40px 0 80px}
+.pdp .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:start}
+.gal{display:grid;grid-template-columns:84px 1fr;gap:12px;position:sticky;top:84px}
+.thumbs{display:flex;flex-direction:column;gap:10px}
+.thumbs button{border:2px solid transparent;border-radius:6px;padding:0;overflow:hidden;cursor:pointer;background:none;aspect-ratio:1}
+.thumbs button.on{border-color:var(--red)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs .vid{background:var(--blk);color:#fff;display:grid;place-items:center;font:700 10px Inter;letter-spacing:.12em}
+.main{border-radius:8px;overflow:hidden;aspect-ratio:4/3;background:var(--cream);position:relative}
+.main img{width:100%;height:100%;object-fit:cover}
+.main .vidph{position:absolute;inset:0;background:var(--blk);color:#fff;display:none;place-items:center;text-align:center;padding:20px}
+.main .vidph.on{display:grid}
+.buy h1{font-size:clamp(46px,4.6vw,68px)}
+.buy .row{display:flex;align-items:center;gap:14px;margin:14px 0}
+.price{font:400 44px Anton}
+.save{font:700 12px Inter;letter-spacing:.12em;text-transform:uppercase;background:var(--cream);border-radius:99px;padding:6px 12px}
+.buy p.lead{color:var(--mut);font-size:17px;line-height:1.6}
+.qtyrow{display:flex;gap:10px;margin:20px 0 12px}
+.qty{display:flex;align-items:center;border:2px solid var(--blk);border-radius:999px;height:56px}
+.qty button{width:46px;height:100%;background:none;border:0;font-size:20px;cursor:pointer}
+.qty span{min-width:30px;text-align:center;font-weight:800}
+.qtyrow .btn{flex:1}
+.giftf{border:2px solid var(--blk);border-radius:8px;padding:16px;margin:16px 0}
+.giftf label{display:flex;justify-content:space-between;font:800 12px Inter;letter-spacing:.14em;text-transform:uppercase}
+.giftf textarea{width:100%;border:0;resize:none;font-family:"Instrument Serif",serif;font-style:italic;font-size:22px;outline:none;margin-top:8px}
+.giftf small{color:var(--mut)}
+.trustrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.trustrow div{background:var(--cream);border-radius:6px;padding:12px;text-align:center;font-size:12.5px;color:var(--mut)}
+.trustrow b{display:block;color:var(--ink);font-size:13px}
+.acc details{border-top:1px solid var(--line);padding:16px 0}
+.acc summary{list-style:none;cursor:pointer;font-weight:800;display:flex;justify-content:space-between}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary:after{content:"+";color:var(--red);font-size:20px}
+.acc details[open] summary:after{content:"–"}
+.acc p,.acc li{color:var(--mut);line-height:1.6;font-size:15px}
+.legal{font-size:11.5px;color:#9A9187;margin-top:14px;line-height:1.5}
+.sticky{position:fixed;left:0;right:0;bottom:0;background:var(--blk);color:#fff;padding:12px 16px;display:none;align-items:center;gap:12px;z-index:30;transform:translateY(100%);transition:transform .25s}
+.sticky.on{transform:none}
+.sticky b{font:400 24px Anton}
+.sticky .btn{flex:1;min-height:50px;padding:12px}
+.toast{position:fixed;left:50%;top:84px;transform:translate(-50%,-20px);opacity:0;visibility:hidden;background:var(--blk);color:#fff;padding:14px 20px;border-radius:999px;font-weight:700;z-index:40;transition:.25s;border:2px solid var(--red)}
+.toast.on{opacity:1;visibility:visible;transform:translate(-50%,0)}
+footer{background:var(--blk);color:#BDB4A7;padding:60px 0 30px;font-size:14px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+footer .big{font:400 54px/0.95 Anton;color:#fff;text-transform:uppercase}
+footer a{display:block;text-decoration:none;padding:4px 0}
+footer a:hover{color:#fff}
+.fine{border-top:1px solid #262626;margin-top:40px;padding-top:20px;font-size:12px;grid-column:1/-1;color:#80786E}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}.rv.shown{opacity:1;transform:none}
+@media (max-width:900px){
+ .hdr nav{display:none}
+ .hero .wrap{grid-template-columns:1fr;min-height:0;padding:0}
+ .hero .copy{padding:40px 22px 34px;order:2}
+ .hero .pic{margin:0;order:1;height:360px}
+ .hero .pic:before{background:linear-gradient(0deg,var(--blk) 0%,rgba(14,14,14,0) 45%)}
+ .stamp{left:auto;right:18px;bottom:-30px;width:112px;height:112px;font-size:17px}
+ .inside .wrap,.slate .wrap,.rev .wrap,.pdp .wrap{grid-template-columns:1fr;gap:36px}
+ .cards{grid-template-columns:1fr}
+ section{padding:64px 0}
+ .inside .photo img{box-shadow:12px 12px 0 var(--red)}
+ .count{right:6px}
+ .gal{position:static;grid-template-columns:1fr}
+ .thumbs{flex-direction:row;order:2}
+ .thumbs button{width:72px}
+ .sticky{display:flex}
+ footer .wrap{grid-template-columns:1fr}
+ .clock div{min-width:70px;padding:10px}
+ .clock b{font-size:36px}
+ .steps{grid-template-columns:1fr 1fr 1fr}
+ .steps b{font-size:26px}
+}
+@media (prefers-reduced-motion:reduce){.tape .t{animation:none}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="concept"><b>Redesign concept</b> by Shawn D. for Biscoff Box · not the live store · built to drop into a duplicate of your Horizon theme</div>
+<div class="bar">Free standard shipping · Order by Dec 14 for Christmas <b id="dleft">—</b></div>
+<header><div class="wrap hdr">
+ <a class="brand" href="#/"><i>BB</i>BISCOFF BOX</a>
+ <nav><a href="#/product">The Box</a><a href="#/" data-s="inside">What's Inside</a><a href="#/" data-s="gift">Gifting</a><a href="#/" data-s="faq">FAQ</a></nav>
+ <a class="cartb" href="#/product" id="cartb">Cart · <span id="cc">0</span></a>
+</div></header>
+<main id="app"></main>
+<footer><div class="wrap">
+ <div><div class="big">36 cookies.<br><span style="color:var(--red)">Real slate.</span><br>Ready to gift.</div></div>
+ <div><b style="color:#fff">Shop</b><a href="#/product">The Box — $125</a><a href="#/" data-s="gift">Gift messages</a><a href="#/" data-s="faq">Shipping & FAQ</a></div>
+ <div><b style="color:#fff">Help</b><a href="mailto:hello@biscoffbox.com">hello@biscoffbox.com</a><a href="#/" data-s="faq">Refund policy</a><a href="#/" data-s="faq">Privacy</a></div>
+ <div class="fine">Biscoff® and Lotus® are registered trademarks of Lotus Bakeries. This gift box is independently curated by Biscoff Box and is not affiliated with, sponsored, or endorsed by Lotus Bakeries. · Concept design by Shawn D.</div>
+</div></footer>
+<div class="sticky" id="sticky"><div><small style="color:#BDB4A7;font-size:11px">THE BOX</small><br><b>$125</b></div><button class="btn" onclick="add()">Add to Cart</button></div>
+<div class="toast" id="toast">Added to cart ✓</div>
+
+<script>
+const IMG={hero:'img/hero-slate-box.jpg',open:'img/box-open.jpg',slate:'img/slate-spread.jpg'};
+const ITEMS=[['2','Packs of classic Biscoff® cookies','The original, caramelized crunch','Classic'],['6','Rolls of sandwich cookies','Vanilla and Biscoff® cream','Filled'],['36','Individually wrapped cookies','For desks, lunchboxes, everyone','Share'],['1','Jar of creamy cookie butter','Spread it, dip it, spoon it','Spread'],['2','Wooden spreaders','Because you will need them','Tools'],['1','Hand-finished slate board','Cut, laser-etched & oiled by us','Keepsake']];
+const $=s=>document.querySelector(s);
+let cart=0,qty=1;
+const ic=p=>`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const tape=()=>`<div class="tape" aria-hidden="true"><div class="t">${[0,1].map(()=>['36 cookies','real slate','ready to gift','no prices inside','free shipping','hand-finished','gift notes included','$125 all in'].map(w=>`<span>${w} ✦</span>`).join('')).join('')}</div></div>`;
+
+function home(){return `
+<section class="hero" style="padding:0"><div class="wrap">
+ <div class="copy">
+  <span class="eyebrow" style="color:#EADBC6">The premium Biscoff® gift</span>
+  <h1 class="disp" style="margin-top:14px">36 cookies.<br><span>Real slate.</span><br>Ready to gift.<span class="serif">the box they'll actually keep.</span></h1>
+  <p>Everything Biscoff®, packed around a slate serving board we cut, laser-etch and oil by hand. They eat the cookies. They keep the board.</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="#/product">Shop the Box — $125</a><a class="btn ghost" href="#/" data-s="inside" style="color:#fff">See what's inside</a></div>
+  <div class="meta"><span>✦ <b>Free</b> standard shipping</span><span>✦ <b>No prices</b> inside the box</span><span>✦ <b>Gift note</b> at checkout</span></div>
+ </div>
+ <div class="pic"><img src="${IMG.hero}" alt="Biscoff Box closed, sitting on a table with cookies peeking out" fetchpriority="high"><div class="stamp"><div>Christmas<br>ready<small>ORDER BY DEC 14</small></div></div></div>
+</div></section>
+${tape()}
+<section class="inside" id="inside"><div class="wrap">
+ <div class="rv"><span class="eyebrow">What's inside</span><h2 class="disp">Not a sampler.<br>A <span style="color:var(--red)">haul.</span></h2>
+  <div class="list">${ITEMS.map(i=>`<div class="li"><div class="n">${i[0]}</div><div><b>${i[1]}</b><span>${i[2]}</span></div><em>${i[3]}</em></div>`).join('')}</div>
+ </div>
+ <div class="photo rv"><img src="${IMG.open}" alt="Open box packed with Biscoff cookie packs and a jar of cookie butter" loading="lazy"><div class="count"><b>36+</b><span>COOKIES</span></div></div>
+</div></section>
+<section class="slate"><div class="wrap">
+ <div class="rv"><img src="${IMG.slate}" alt="Etched slate board with cookies and cookie butter" loading="lazy"></div>
+ <div class="rv"><span class="eyebrow">The keepsake</span><h2 class="disp">The board<br><span class="serif">outlasts the cookies.</span></h2>
+  <p>Every box is packed around a real slate serving board, finished in our shop, not a factory. Cheese night, dessert board, coffee table. It sticks around long after the last cookie.</p>
+  <div class="steps"><div><b>01</b><span>Cut</span></div><div><b>02</b><span>Laser-etched</span></div><div><b>03</b><span>Hand-oiled</span></div></div>
+ </div>
+</div></section>
+<section class="gift" id="gift"><div class="wrap">
+ <span class="eyebrow">Made for gifting</span>
+ <h2 class="disp">Send it. <span>Skip the wrapping.</span></h2>
+ <p>It arrives looking like a present, with no prices anywhere in the box. Add your note at checkout, and we'll handle the rest.</p>
+ <div class="cards">
+  <div class="card rv"><div class="ic">${ic('<path d="M3 7h18v4H3zM5 11v10h14V11M12 7v14M12 7c-2-4-6-3-6-1s3 1 6 1c3 0 6 1 6-1s-4-3-6 1"/>')}</div><h4>Gift-ready box</h4><p>A black presentation box that's ready to hand over as soon as it arrives.</p></div>
+  <div class="card rv"><div class="ic">${ic('<path d="M4 4h16v12H8l-4 4z"/>')}</div><h4>Your message</h4><p>Write a personal note at checkout. We tuck it right inside.</p></div>
+  <div class="card rv"><div class="ic">${ic('<path d="M3 7h12v10H3zM15 10h4l2 3v4h-6M7 19a2 2 0 1 0 0-.1M17 19a2 2 0 1 0 0-.1"/>')}</div><h4>Free shipping</h4><p>Standard shipping is on us. Order by Dec 14 for Christmas delivery.</p></div>
+ </div>
+ <div class="note rv"><small>Try your gift note</small><p id="np">Merry Christmas — this one's for keeps. ♥</p><input id="ni" maxlength="140" placeholder="Type your message to preview it…" aria-label="Preview your gift note"></div>
+</div></section>
+<section class="rev"><div class="wrap">
+ <div><span class="eyebrow">Reviews</span><h2 class="disp">Loved by<br>Biscoff people.</h2><div class="stars">★★★★★</div></div>
+ <div class="jm"><b>Your Judge.me reviews go here</b>Live star ratings and review cards from the existing Judge.me app, styled to match. (Not shown in the concept so no reviews are invented.)</div>
+</div></section>
+<section class="dl"><div class="wrap"><h2 class="disp">Christmas<br>cutoff: Dec 14</h2><div class="clock" id="clock"></div><a class="btn wht" href="#/product">Get it in time</a></div></section>
+<section class="faq" id="faq"><div class="wrap"><span class="eyebrow">Questions</span><h2 class="disp">Good questions.</h2>
+ <details open><summary>Is the price shown anywhere in the box?</summary><p>No. There are no prices anywhere inside, so it's safe to ship straight to the person you're gifting.</p></details>
+ <details><summary>Can I add a gift message?</summary><p>Yes, there's a gift-note field on the product page and at checkout.</p></details>
+ <details><summary>When will it arrive for Christmas?</summary><p>Order by December 14 with free standard shipping for Christmas delivery.</p></details>
+ <details><summary>Is this made by Lotus?</summary><p>No. Biscoff Box is independently curated and is not affiliated with Lotus Bakeries. We use genuine Lotus Biscoff® products.</p></details>
+</div></section>`}
+
+function product(){return `
+<section class="pdp"><div class="wrap">
+ <div class="gal"><div class="thumbs" id="thumbs">${[IMG.hero,IMG.open,IMG.slate].map((s,i)=>`<button class="${i?'':'on'}" data-i="${i}" aria-label="Photo ${i+1}"><img src="${s.replace('.jpg','-sm.jpg')}" alt=""></button>`).join('')}<button class="vid" data-v="1" aria-label="Product video">▶ VIDEO</button></div>
+  <div class="main"><img id="mainimg" src="${IMG.hero}" alt="Biscoff Box gift box"><div class="vidph" id="vidph"><div><b style="font:400 30px Anton">▶ Your product video</b><br><span style="color:#BDB4A7">The existing product video plays here, unchanged</span></div></div></div></div>
+ <div class="buy">
+  <span class="eyebrow">The premium cookie gift box</span>
+  <h1 class="disp" style="margin-top:10px">Biscoff Box</h1>
+  <div class="row"><span class="price">$125</span><span class="save">Free shipping</span><a href="#/" data-s="gift" style="color:var(--red);font-weight:700;font-size:14px">★★★★★ Judge.me stars</a></div>
+  <p class="lead">36+ cookies, a jar of cookie butter and a hand-finished slate board they'll keep. Gift-ready, with no prices inside.</p>
+  <div class="giftf"><label for="gn">Gift note <small id="gc">0/200</small></label><textarea id="gn" rows="2" maxlength="200" placeholder="Happy holidays! Save me a cookie…"></textarea><small>Printed on a card and tucked inside. (Uses your existing gift-note field.)</small></div>
+  <div class="qtyrow"><div class="qty"><button id="qm" aria-label="Decrease">−</button><span id="qv">1</span><button id="qp" aria-label="Increase">+</button></div><button class="btn" onclick="add()">Add to Cart — <span id="tot">$125</span></button></div>
+  <div class="trustrow"><div><b>Free shipping</b>Standard, US</div><div><b>Order by Dec 14</b>For Christmas</div><div><b>No prices inside</b>Gift-safe</div></div>
+  <div class="acc" style="margin-top:20px">
+   <details open><summary>What's inside</summary><ul>${ITEMS.map(i=>`<li><b>${i[0]}</b> ${i[1]}</li>`).join('')}</ul></details>
+   <details><summary>The slate board</summary><p>Real slate, cut, laser-etched and oiled by hand in our shop. A serving board for years after the cookies are gone.</p></details>
+   <details><summary>Shipping & returns</summary><p>Free standard shipping. Order by December 14 for Christmas delivery. See the refund policy for details.</p></details>
+  </div>
+  <p class="legal">Biscoff® and Lotus® are registered trademarks of Lotus Bakeries. This gift box is independently curated by Biscoff Box and is not affiliated with, sponsored, or endorsed by Lotus Bakeries.</p>
+ </div>
+</div></section>
+${tape()}`}
+
+function add(){cart+=qty;$('#cc').textContent=cart;const t=$('#toast');t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2000)}
+function deadline(){const end=new Date('2026-12-14T23:59:59-05:00'),now=new Date(),ms=Math.max(0,end-now);const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60;$('#dleft').textContent=d+' days left';const c=$('#clock');if(c)c.innerHTML=[[d,'DAYS'],[h,'HRS'],[m,'MIN']].map(([v,l])=>`<div><b>${String(v).padStart(2,'0')}</b><span>${l}</span></div>`).join('')}
+function wire(){
+ document.querySelectorAll('[data-s]').forEach(a=>a.onclick=e=>{e.preventDefault();const id=a.dataset.s;const go=()=>document.getElementById(id)?.scrollIntoView({behavior:'smooth'});if(location.hash.startsWith('#/product')){location.hash='#/';setTimeout(go,60)}else go()});
+ const ni=$('#ni');if(ni)ni.oninput=()=>$('#np').textContent=ni.value||'Merry Christmas — this one\'s for keeps. ♥';
+ const gn=$('#gn');if(gn)gn.oninput=()=>$('#gc').textContent=gn.value.length+'/200';
+ const th=$('#thumbs');if(th)th.onclick=e=>{const b=e.target.closest('button');if(!b)return;th.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));const v=!!b.dataset.v;$('#vidph').classList.toggle('on',v);if(!v)$('#mainimg').src=[IMG.hero,IMG.open,IMG.slate][+b.dataset.i]};
+ if($('#qp')){const u=()=>{$('#qv').textContent=qty;$('#tot').textContent='$'+(125*qty)};$('#qp').onclick=()=>{qty=Math.min(10,qty+1);u()};$('#qm').onclick=()=>{qty=Math.max(1,qty-1);u()}}
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('shown');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+}
+function route(){const p=location.hash.startsWith('#/product');qty=1;$('#app').innerHTML=p?product():home();window.scrollTo(0,0);document.title='Biscoff Box — '+(p?'The Box':'Premium Cookie Gift Box')+' (Concept)';deadline();wire()}
+const st=$('#sticky');addEventListener('scroll',()=>st.classList.toggle('on',scrollY>560));
+addEventListener('hashchange',route);route();setInterval(deadline,30000);
+</script>
+</body>
+</html>
