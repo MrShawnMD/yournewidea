@@ -9,154 +9,150 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:'Manrope',system-ui,sans-serif;color:#151617;background:#F7F0E2}
-a{color:#151617}a:hover{color:#B5121B}
-.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.02;letter-spacing:-0.01em}
-.eyebrow{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+body{margin:0;font-family:'Manrope',system-ui,sans-serif;color:#EFE4D0;background:#17110C}
+a{color:#EFE4D0}a:hover{color:#D69A3C}
+.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.02;letter-spacing:-0.005em}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase}
 .wrap{max-width:1280px;margin:0 auto;padding:0 40px;box-sizing:border-box}
-.slate{background-color:#25282B;background-image:repeating-linear-gradient(172deg,rgba(255,255,255,.025) 0 2px,transparent 2px 9px),repeating-linear-gradient(8deg,rgba(0,0,0,.18) 0 1px,transparent 1px 14px)}
-.pdp{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:72px;align-items:start}
-.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
-.ph{display:flex;align-items:flex-end;padding:18px;box-sizing:border-box;color:#C9C6C0;font-size:13px;font-weight:600;letter-spacing:.06em}
-details{border-top:1px solid #CDBFA5}
-details:last-of-type{border-bottom:1px solid #CDBFA5}
-summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:60px;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase}
+.wood{background-color:#17110C;background-image:repeating-linear-gradient(178deg,rgba(214,154,60,.035) 0 1px,transparent 1px 7px),repeating-linear-gradient(182deg,rgba(0,0,0,.25) 0 2px,transparent 2px 23px)}
+.fround{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 5%,#000 84%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 5%,#000 84%,transparent 100%);mask-composite:intersect}
+.pdp>*{min-width:0}
+.pdp{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:64px;align-items:start}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.shine{position:relative;overflow:hidden;isolation:isolate}
+.shine::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;background:linear-gradient(105deg,transparent 0,rgba(255,255,255,.08) 30%,rgba(255,236,200,.55) 50%,rgba(255,255,255,.08) 70%,transparent 100%);transform:skewX(-18deg);animation:shine 3.2s ease-in-out infinite;pointer-events:none;z-index:1}
+.shine:hover::after{animation-duration:1.4s}
+@keyframes shine{0%{left:-60%}55%{left:130%}100%{left:130%}}
+details{border-top:1px solid rgba(239,228,208,.15)}
+details:last-of-type{border-bottom:1px solid rgba(239,228,208,.15)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:60px;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
 summary::-webkit-details-marker{display:none}
 details[open] summary span:last-child{transform:rotate(45deg)}
-@media (max-width:900px){.pdp,.g3{grid-template-columns:1fr}.nav{display:none !important}}
-.concept{background:#D69A3C;color:#1C1510;font-family:Manrope,system-ui,sans-serif;font-size:13px;text-align:center;padding:8px 16px;line-height:1.4}.concept a{color:#1C1510}
-@media (max-width:900px){.pic{height:380px !important}}
+.mbar{display:none}
+@media (max-width:900px){.pdp,.g3{grid-template-columns:1fr}.galcol{position:static !important}.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.nav{display:none !important}.wrap{padding:0 18px}.h1{font-size:52px !important}
+header .wrap{display:flex !important;justify-content:space-between;height:76px !important}header .serif{font-size:17px !important;letter-spacing:.16em !important;white-space:nowrap}header a span:last-child{font-size:6.5px !important}
+.mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(23,17,12,.96);border-top:1px solid rgba(239,228,208,.15);padding:10px 14px 14px;gap:10px;align-items:center;backdrop-filter:blur(6px)}
+.thumbs{grid-template-columns:repeat(6,68px) !important;overflow-x:auto;padding-bottom:4px}}
+@media (prefers-reduced-motion:reduce){.shine::after{animation:none;display:none}}
+.concept{background:#D69A3C;color:#1C1510;font-size:13px;text-align:center;padding:8px 16px;line-height:1.4;font-family:Manrope,system-ui,sans-serif}.concept a{color:#1C1510}
 </style>
 </head>
 <body>
 <div class="concept"><b>Website concept</b> prepared by Shawn D. for Biscoff Box. Not the live store — ordering is turned off. <a href="https://biscoffbox.com" rel="noopener">Visit the real Biscoff Box</a></div>
-<div style="width:100%;min-width:0">
-
+<div class="wood" style="width:100%;min-width:0">
 <div style="background:#B5121B;color:#fff;text-align:center;font-size:13px;font-weight:600;letter-spacing:.06em;padding:10px 16px">Free shipping on every box · Order by December 14 for Christmas delivery</div>
-<header style="background:#17110C;color:#fff">
-<div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:80px;gap:24px">
-<a href="./" class="serif" style="font-size:26px;letter-spacing:.2em;color:#EFE4D0;text-decoration:none;font-weight:600">BISCOFF BOX</a>
-<nav class="nav" style="display:flex;gap:36px;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase">
-<a href="./" style="color:#fff;text-decoration:none">The Craft</a>
-<a href="#film" style="color:#fff;text-decoration:none">The Film</a>
-<a href="#reviews" style="color:#fff;text-decoration:none">Reviews</a>
+<header style="border-bottom:1px solid rgba(239,228,208,.12)">
+<div class="wrap" style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:96px;gap:24px">
+<nav class="nav" style="display:flex;gap:32px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase">
+<a href="./#process" style="text-decoration:none">The Process</a>
+<a href="#included" style="text-decoration:none">What's Included</a>
 </nav>
-<a href="#" aria-label="Cart" style="display:inline-flex;width:44px;height:44px;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7z"></path><path d="M9 7a3 3 0 0 1 6 0"></path></svg></a>
+<a href="./" style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:4px;border:1px solid #EFE4D0;padding:8px 20px 7px">
+<span class="serif" style="font-size:24px;letter-spacing:.2em;font-weight:600;line-height:1">BISCOFF BOX</span>
+<span style="font-size:8px;letter-spacing:.32em;font-weight:700;color:#CBBFA9">PREMIUM COOKIE GIFT BOX</span>
+</a>
+<div style="display:flex;justify-content:flex-end;align-items:center;gap:14px">
+<a href="#" aria-label="Cart" style="display:inline-flex;width:44px;height:44px;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#EFE4D0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7z"></path><path d="M9 7a3 3 0 0 1 6 0"></path></svg></a>
+</div>
 </div>
 </header>
 
-<section style="padding:40px 0 112px">
-<div class="wrap" style="display:flex;flex-direction:column;gap:28px">
-<p style="margin:0;font-size:13px;color:#5E5242"><a href="./" style="color:#5E5242">Home</a> / The Biscoff Box</p>
+<section style="padding:36px 0 110px">
+<div class="wrap" style="display:flex;flex-direction:column;gap:26px">
+<p style="margin:0;font-size:13px;color:#A99C86"><a href="./" style="color:#A99C86">Home</a> &#160;/&#160; The Biscoff Box</p>
 <div class="pdp">
-
+<div class="galcol" style="display:flex;flex-direction:column;gap:14px;position:sticky;top:24px">
+<div id="stage" style="position:relative;aspect-ratio:5/4;border-radius:28px;overflow:hidden;background:#17110C;display:flex;align-items:center;justify-content:center;box-shadow:0 40px 80px rgba(0,0,0,.45)">
+<div id="vidwrap" style="position:absolute;inset:0;display:none;align-items:center;justify-content:center">
+<img src="img/film-poster.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(24px) brightness(.4);transform:scale(1.15)">
+<video id="vid" src="img/film.mp4" poster="img/film-poster.jpg" controls playsinline preload="none" style="position:relative;height:100%;aspect-ratio:9/16;object-fit:cover;display:block;background:#000"></video>
+</div>
+<img id="mainimg" src="img/product-hero.webp" alt="The Biscoff Box with its etched slate board, Lotus Biscoff cookies and cookie butter" style="width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block">
+</div>
+<div class="thumbs" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px"><button type="button" class="thumb" data-i="0" aria-label="Show The Biscoff Box" aria-pressed="true" style="aspect-ratio:1/1;border-radius:12px;border:2px solid #D69A3C;background:#17110C;cursor:pointer;padding:0;overflow:hidden;position:relative"><img src="img/product-hero.webp" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block"></button><button type="button" class="thumb" data-i="1" aria-label="Show Gift box" aria-pressed="false" style="aspect-ratio:1/1;border-radius:12px;border:2px solid rgba(239,228,208,.15);background:#241A13;cursor:pointer;padding:0;overflow:hidden;position:relative"><img src="img/box-slate.webp" alt="" style="width:100%;height:100%;object-fit:contain;object-position:50% 50%;display:block"></button><button type="button" class="thumb" data-i="2" aria-label="Show At home" aria-pressed="false" style="aspect-ratio:1/1;border-radius:12px;border:2px solid rgba(239,228,208,.15);background:#17110C;cursor:pointer;padding:0;overflow:hidden;position:relative"><img src="img/home-spread.webp" alt="" style="width:100%;height:100%;object-fit:cover;object-position:60% 60%;display:block"></button><button type="button" class="thumb" data-i="3" aria-label="Show Hand-oiled" aria-pressed="false" style="aspect-ratio:1/1;border-radius:12px;border:2px solid rgba(239,228,208,.15);background:#17110C;cursor:pointer;padding:0;overflow:hidden;position:relative"><img src="img/step-oil.webp" alt="" style="width:100%;height:100%;object-fit:cover;object-position:45% 50%;display:block"></button><button type="button" class="thumb" data-i="4" aria-label="Show Laser-etched" aria-pressed="false" style="aspect-ratio:1/1;border-radius:12px;border:2px solid rgba(239,228,208,.15);background:#17110C;cursor:pointer;padding:0;overflow:hidden;position:relative"><img src="img/step-etch.webp" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 64%;display:block"></button><button type="button" class="thumb" data-i="5" aria-label="Show Watch it made" aria-pressed="false" style="aspect-ratio:1/1;border-radius:12px;border:2px solid rgba(239,228,208,.15);background:#17110C;cursor:pointer;padding:0;overflow:hidden;position:relative"><img src="img/film-poster.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block"><span aria-hidden="true" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.35)"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#fff"></path></svg></span></button></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:22px">
 <div style="display:flex;flex-direction:column;gap:12px">
-<div id="stage" style="position:relative;aspect-ratio:1/1;border-radius:4px;overflow:hidden;background:#1F1712;display:flex;align-items:center;justify-content:center">
-<div id="vidwrap" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
-<img src="img/film-poster.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(24px) brightness(.45);transform:scale(1.15)">
-<video src="img/film-loop.mp4" poster="img/film-poster.jpg" autoplay muted loop playsinline aria-label="The making of a Biscoff Box" style="position:relative;height:100%;aspect-ratio:9/16;object-fit:cover;display:block"></video>
+<span class="eyebrow" style="color:#D69A3C">Premium cookie gift box</span>
+<h1 class="serif h1" style="margin:0;font-size:72px">The Biscoff Box</h1>
+<a href="#reviews" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:14px;text-decoration:none;min-height:32px;color:#CBBFA9"><span style="letter-spacing:3px;color:#D69A3C" aria-hidden="true">★★★★★</span>[Judge.me star rating]</a>
 </div>
-<img id="mainimg" src="" alt="" hidden style="width:84%;height:84%;object-fit:contain;filter:drop-shadow(0 24px 34px rgba(0,0,0,.3))">
+<div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap"><span class="serif" style="font-size:52px;line-height:1">$125</span><span style="font-size:14px;font-weight:600;color:#CBBFA9">Free shipping · Arrives in 3–5 business days</span></div>
+<p class="serif" style="margin:0;font-size:26px;line-height:1.3;font-style:italic;color:#D69A3C">A little box of Biscoff, done right.</p>
+<p style="margin:0;font-size:16px;line-height:1.75;color:#CBBFA9">Every board is cut from raw slate, laser-etched with our mark and oiled by hand — then packed with Lotus Biscoff cookies and cookie butter, ready to give.</p>
+<div id="included" style="display:flex;flex-direction:column;gap:14px;border-top:1px solid rgba(239,228,208,.15);border-bottom:1px solid rgba(239,228,208,.15);padding:22px 0">
+<span class="eyebrow" style="color:#EFE4D0">What's included</span>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px"><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.45;color:#E4D8C2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D69A3C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Hand-cut, laser-etched, hand-oiled slate serving board</span></li><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.45;color:#E4D8C2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D69A3C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Jar of Lotus Biscoff creamy cookie butter</span></li><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.45;color:#E4D8C2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D69A3C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>36 individually wrapped Biscoff cookies</span></li><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.45;color:#E4D8C2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D69A3C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>6 rolls of Biscoff sandwich cookies (vanilla &amp; Biscoff cream)</span></li><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.45;color:#E4D8C2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D69A3C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>2 packs of classic Lotus Biscoff cookies</span></li><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.45;color:#E4D8C2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D69A3C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>2 wooden spreaders</span></li><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.45;color:#E4D8C2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D69A3C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:2px"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Keepsake gift box + your printed gift note</span></li></ul>
 </div>
-<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px"><button type="button" class="thumb" data-i="0" aria-label="Show The film" aria-pressed="true" style="aspect-ratio:1/1;border-radius:4px;border:2px solid #B5121B;background:#1F1712;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="img/film-poster.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></button><button type="button" class="thumb" data-i="1" aria-label="Show Gift box" aria-pressed="false" style="aspect-ratio:1/1;border-radius:4px;border:2px solid #CDBFA5;background:#EFE4D0;cursor:pointer;padding:6px;display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="img/box-slate.webp" alt="" style="width:100%;height:100%;object-fit:contain"></button><button type="button" class="thumb" data-i="2" aria-label="Show The spread" aria-pressed="false" style="aspect-ratio:1/1;border-radius:4px;border:2px solid #CDBFA5;background:#EFE4D0;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="img/spread-real.webp" alt="" style="width:100%;height:100%;object-fit:cover"></button><button type="button" class="thumb" data-i="3" aria-label="Show Box contents" aria-pressed="false" style="aspect-ratio:1/1;border-radius:4px;border:2px solid #CDBFA5;background:#EFE4D0;cursor:pointer;padding:6px;display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="img/open-box.webp" alt="" style="width:100%;height:100%;object-fit:contain"></button></div>
-
-</div>
-
-<div style="display:flex;flex-direction:column;gap:24px">
-<div style="display:flex;flex-direction:column;gap:14px">
-<span class="eyebrow" style="color:#B5121B">Premium cookie gift box</span>
-<h1 class="serif" style="margin:0;font-size:68px">The Biscoff Box</h1>
-<a href="#reviews" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:14px;text-decoration:none;min-height:32px"><span style="letter-spacing:3px" aria-hidden="true">★★★★★</span>[Judge.me star rating]</a>
-</div>
-<div style="display:flex;align-items:baseline;gap:16px"><span class="serif" style="font-size:44px">$125</span><span style="font-size:14px;font-weight:600;color:#5E5242">Free shipping · 3–5 business days</span></div>
-<p class="serif" style="margin:0;font-size:26px;line-height:1.3;font-style:italic;color:#2E241B">A little box of Biscoff, done right.</p>
-<p style="margin:0;font-size:17px;line-height:1.7;color:#3E3428">Lotus Biscoff cookies and creamy cookie butter, presented on a slate serving board we cut from raw stone, laser-etch with our mark, and finish with food-safe oil by hand. Packed in-house and ready to give.</p>
-
-<div style="display:flex;flex-direction:column;gap:10px;background:#EFE4D0;padding:24px">
-<label for="note" style="font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Add a special note</label>
-<textarea id="note" rows="3" maxlength="200" placeholder="Merry Christmas — save me one." style="width:100%;box-sizing:border-box;border:1px solid #B9B6B0;background:#F7F0E2;padding:14px;font-family:inherit;font-size:16px;resize:vertical;border-radius:2px"></textarea>
+<div style="background:#EFE4D0;color:#1C1510;padding:22px 24px;display:flex;flex-direction:column;gap:10px;box-shadow:0 20px 40px rgba(0,0,0,.35)">
+<label for="note" class="eyebrow" style="color:#8A2A1E">Add a special note</label>
+<textarea id="note" rows="3" maxlength="200" placeholder="Merry Christmas — save me one."  style="width:100%;box-sizing:border-box;border:1px dashed #A8987E;background:#F7F0E2;padding:14px;font-family:inherit;font-size:16px;resize:vertical;border-radius:2px;color:#1C1510"></textarea>
 <div style="display:flex;justify-content:space-between;gap:12px;font-size:13px;color:#5E5242"><span>Free · printed on a card in the box, signed with your name</span><span id="notelen">0/200</span></div>
 </div>
-
 <div style="display:flex;gap:12px;flex-wrap:wrap">
-<div style="display:flex;align-items:center;border:1px solid #151617;min-height:58px;border-radius:2px">
-<button type="button" id="dec" aria-label="Decrease quantity" style="width:52px;height:56px;border:none;background:none;font-size:22px;cursor:pointer;font-family:inherit">−</button>
-<span style="min-width:28px;text-align:center;font-weight:700;font-size:17px" aria-live="polite" id="qty">1</span>
-<button type="button" id="inc" aria-label="Increase quantity" style="width:52px;height:56px;border:none;background:none;font-size:22px;cursor:pointer;font-family:inherit">+</button>
+<div style="display:flex;align-items:center;border:1px solid rgba(239,228,208,.5);min-height:60px;border-radius:2px">
+<button type="button" id="dec" aria-label="Decrease quantity" style="width:52px;height:58px;border:none;background:none;color:#EFE4D0;font-size:22px;cursor:pointer;font-family:inherit">−</button>
+<span id="qty" style="min-width:28px;text-align:center;font-weight:700;font-size:17px" aria-live="polite">1</span>
+<button type="button" id="inc" aria-label="Increase quantity" style="width:52px;height:58px;border:none;background:none;color:#EFE4D0;font-size:22px;cursor:pointer;font-family:inherit">+</button>
 </div>
-<button type="button" style="flex:1 1 240px;min-height:58px;border:none;background:#B5121B;color:#fff;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;font-family:inherit;cursor:pointer;border-radius:2px" id="add">Add to cart — <span id="total">$125</span></button>
+<button type="button" class="shine add" style="flex:1 1 240px;min-height:60px;border:none;background:#B5121B;color:#fff;font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;font-family:inherit;cursor:pointer;border-radius:2px"><span class="addlbl">Add to cart — <span class="total">$125</span></span></button>
 </div>
-<div style="min-height:56px;background:#E8E6E2;color:#3E3428;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;border-radius:2px">Shopify checkout button goes here (unchanged)</div>
-
+<div style="min-height:54px;border:1px solid rgba(239,228,208,.3);color:#CBBFA9;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;letter-spacing:.06em;border-radius:2px">[Shopify express checkout — Shop Pay / Apple Pay]</div>
 <div style="display:flex;flex-direction:column">
-<details open=""><summary><span>What's in the box</span><span aria-hidden="true" style="font-size:22px;font-weight:400">+</span></summary>
-<ul style="margin:0 0 20px;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:16px;line-height:1.5;color:#3E3428">
-<li>Hand-finished slate serving board</li><li>Jar of Lotus Biscoff creamy cookie butter</li><li>36 individually wrapped Biscoff cookies</li><li>6 rolls of Biscoff sandwich cookies (vanilla and Biscoff cream)</li><li>2 packs of classic Lotus Biscoff cookies</li><li>2 wooden spreaders</li>
-</ul></details>
-<details><summary><span>The slate board</span><span aria-hidden="true" style="font-size:22px;font-weight:400">+</span></summary><p style="margin:0 0 20px;font-size:16px;line-height:1.6;color:#3E3428">Cut from raw stone, laser-etched with our mark, and finished with food-safe oil by hand. Natural slate, so every board is a little different. Size: [BOARD DIMENSIONS].</p></details>
-<details><summary><span>Shipping</span><span aria-hidden="true" style="font-size:22px;font-weight:400">+</span></summary><p style="margin:0 0 20px;font-size:16px;line-height:1.6;color:#3E3428">Free standard shipping, 3–5 business days. Express, 1–2 business days, $15. Ships UPS with tracking. Order by December 14 for Christmas with standard shipping.</p></details>
-<details><summary><span>Caring for your slate</span><span aria-hidden="true" style="font-size:22px;font-weight:400">+</span></summary><p style="margin:0 0 20px;font-size:16px;line-height:1.6;color:#3E3428">[CARE INSTRUCTIONS — not on the site yet; e.g. hand wash, re-oil occasionally]</p></details>
+<details><summary><span>The slate board</span><span aria-hidden="true" style="font-size:22px;font-weight:400">+</span></summary><p style="margin:0 0 20px;font-size:15px;line-height:1.7;color:#CBBFA9">Cut from raw stone, laser-etched with our mark and finished with food-safe oil by hand. Natural slate, so every board is a little different. Size: [BOARD DIMENSIONS].</p></details>
+<details><summary><span>Shipping</span><span aria-hidden="true" style="font-size:22px;font-weight:400">+</span></summary><p style="margin:0 0 20px;font-size:15px;line-height:1.7;color:#CBBFA9">Free standard shipping, 3–5 business days. Express, 1–2 business days, $15. Ships UPS with tracking. Order by December 14 for Christmas with standard shipping.</p></details>
+<details><summary><span>Caring for your slate</span><span aria-hidden="true" style="font-size:22px;font-weight:400">+</span></summary><p style="margin:0 0 20px;font-size:15px;line-height:1.7;color:#CBBFA9">[CARE INSTRUCTIONS — e.g. hand wash, dry right away, re-oil now and then]</p></details>
 </div>
 </div>
 </div>
 </div>
 </section>
 
-<section id="film" style="background:#17110C;color:#fff;padding:112px 0">
+<section style="padding:90px 0;border-top:1px solid rgba(239,228,208,.1);background:rgba(0,0,0,.22)">
+<div class="wrap" style="display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center"><span class="eyebrow" style="color:#D69A3C">Why it's worth it</span><h2 class="serif" style="margin:0;font-size:56px">Made by hand, start to finish.</h2></div>
+<ol class="g4" style="list-style:none;margin:0;padding:0">
+<li style="display:flex;flex-direction:column;gap:14px"><div class="fround" style="height:340px;border-radius:28px;overflow:hidden"><img src="img/step-cut.webp" alt="Slate cut on a wet saw" style="width:100%;height:100%;object-fit:cover;object-position:40% 62%;display:block"></div><div style="display:flex;gap:10px;align-items:baseline;border-top:1px solid rgba(214,154,60,.55);padding-top:12px"><span class="serif" style="font-size:22px;color:#D69A3C">I.</span><span class="eyebrow">Hand-cut slate</span></div></li>
+<li style="display:flex;flex-direction:column;gap:14px"><div class="fround" style="height:340px;border-radius:28px;overflow:hidden"><img src="img/step-etch.webp" alt="Laser etching the mark" style="width:100%;height:100%;object-fit:cover;object-position:50% 64%;display:block"></div><div style="display:flex;gap:10px;align-items:baseline;border-top:1px solid rgba(214,154,60,.55);padding-top:12px"><span class="serif" style="font-size:22px;color:#D69A3C">II.</span><span class="eyebrow">Laser-etched</span></div></li>
+<li style="display:flex;flex-direction:column;gap:14px"><div class="fround" style="height:340px;border-radius:28px;overflow:hidden"><img src="img/step-oil.webp" alt="Board oiled by hand" style="width:100%;height:100%;object-fit:cover;object-position:30% 50%;display:block"></div><div style="display:flex;gap:10px;align-items:baseline;border-top:1px solid rgba(214,154,60,.55);padding-top:12px"><span class="serif" style="font-size:22px;color:#D69A3C">III.</span><span class="eyebrow">Hand-oiled</span></div></li>
+<li style="display:flex;flex-direction:column;gap:14px"><div class="fround" style="height:340px;border-radius:28px;overflow:hidden"><img src="img/home-spread.webp" alt="Biscoff Box on a holiday table at home" style="width:100%;height:100%;object-fit:cover;object-position:72% 70%;display:block"></div><div style="display:flex;gap:10px;align-items:baseline;border-top:1px solid rgba(214,154,60,.55);padding-top:12px"><span class="serif" style="font-size:22px;color:#D69A3C">IV.</span><span class="eyebrow">Into your home</span></div></li>
+</ol>
+</div>
+</section>
+
+<section id="reviews" style="padding:96px 0">
 <div class="wrap" style="display:flex;flex-direction:column;gap:36px">
-<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
-<div style="display:flex;flex-direction:column;gap:14px"><span class="eyebrow" style="color:#D69A3C">The Film</span><h2 class="serif" style="margin:0;font-size:60px">From raw stone to your table.</h2></div>
-</div>
-<div style="position:relative;aspect-ratio:21/9;border-radius:4px;overflow:hidden;background:#1F1712;display:flex;align-items:center;justify-content:center">
-<img src="img/film-poster.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(28px) brightness(.45);transform:scale(1.15)">
-<video src="img/film.mp4" poster="img/film-poster.jpg" controls playsinline preload="metadata" style="position:relative;height:100%;aspect-ratio:9/16;object-fit:cover;display:block;background:#000"></video>
-</div>
-<div class="g3">
-<div style="display:flex;gap:16px;align-items:baseline;border-top:1px solid #4A3D30;padding-top:20px"><span class="serif" style="font-size:36px;color:#D69A3C">01</span><span style="font-size:17px;font-weight:600">Cut from stone</span></div>
-<div style="display:flex;gap:16px;align-items:baseline;border-top:1px solid #4A3D30;padding-top:20px"><span class="serif" style="font-size:36px;color:#D69A3C">02</span><span style="font-size:17px;font-weight:600">Etched with our mark</span></div>
-<div style="display:flex;gap:16px;align-items:baseline;border-top:1px solid #4A3D30;padding-top:20px"><span class="serif" style="font-size:36px;color:#D69A3C">03</span><span style="font-size:17px;font-weight:600">Oiled by hand</span></div>
-</div>
-</div>
-</section>
-
-<section id="reviews" style="padding:112px 0;background:#EFE4D0">
-<div class="wrap" style="display:flex;flex-direction:column;gap:40px">
 <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
-<h2 class="serif" style="margin:0;font-size:56px">Reviews</h2>
-<button type="button" style="min-height:48px;padding:0 24px;border:1px solid #151617;background:transparent;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-family:inherit;cursor:pointer;border-radius:2px">Write a review</button>
-</div>
-<div style="background:#F7F0E2;padding:36px;display:flex;gap:48px;flex-wrap:wrap;align-items:center">
-<div style="display:flex;flex-direction:column;gap:6px"><span class="serif" style="font-size:64px">[4.9]</span><span style="letter-spacing:3px;font-size:18px" aria-hidden="true">★★★★★</span><span style="font-size:14px;color:#5E5242">[N] verified reviews</span></div>
-<div style="flex:1 1 320px;display:flex;flex-direction:column;gap:10px;font-size:13px;font-weight:600">
-<div style="display:flex;align-items:center;gap:12px"><span style="width:52px">5 stars</span><div style="flex:1;height:6px;background:#E8E6E2"></div></div>
-<div style="display:flex;align-items:center;gap:12px"><span style="width:52px">4 stars</span><div style="flex:1;height:6px;background:#E8E6E2"></div></div>
-<div style="display:flex;align-items:center;gap:12px"><span style="width:52px">3 stars</span><div style="flex:1;height:6px;background:#E8E6E2"></div></div>
-</div>
+<div style="display:flex;flex-direction:column;gap:12px"><span class="eyebrow" style="color:#D69A3C">Reviews</span><h2 class="serif" style="margin:0;font-size:52px">From people who've opened one.</h2></div>
+<button type="button" style="min-height:48px;padding:0 24px;border:1px solid #EFE4D0;background:transparent;color:#EFE4D0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-family:inherit;cursor:pointer;border-radius:2px">Write a review</button>
 </div>
 <div class="g3">
-<figure style="margin:0;background:#F7F0E2;padding:32px;display:flex;flex-direction:column;gap:16px;border-top:2px solid #B5121B"><span style="letter-spacing:3px" aria-hidden="true">★★★★★</span><blockquote class="serif" style="margin:0;font-size:22px;line-height:1.3">[Live Judge.me review + photo]</blockquote><figcaption style="font-size:13px;font-weight:600;color:#5E5242">[Name] · Verified</figcaption></figure>
-<figure style="margin:0;background:#F7F0E2;padding:32px;display:flex;flex-direction:column;gap:16px;border-top:2px solid #B5121B"><span style="letter-spacing:3px" aria-hidden="true">★★★★★</span><blockquote class="serif" style="margin:0;font-size:22px;line-height:1.3">[Live Judge.me review]</blockquote><figcaption style="font-size:13px;font-weight:600;color:#5E5242">[Name] · Verified</figcaption></figure>
-<figure style="margin:0;background:#F7F0E2;padding:32px;display:flex;flex-direction:column;gap:16px;border-top:2px solid #B5121B"><span style="letter-spacing:3px" aria-hidden="true">★★★★★</span><blockquote class="serif" style="margin:0;font-size:22px;line-height:1.3">[Live Judge.me review]</blockquote><figcaption style="font-size:13px;font-weight:600;color:#5E5242">[Name] · Verified</figcaption></figure>
+<figure style="margin:0;background:rgba(239,228,208,.05);border:1px solid rgba(239,228,208,.12);padding:30px;display:flex;flex-direction:column;gap:14px;border-radius:4px"><span style="letter-spacing:3px;color:#D69A3C" aria-hidden="true">★★★★★</span><blockquote class="serif" style="margin:0;font-size:23px;line-height:1.3">[Live Judge.me review]</blockquote><figcaption style="font-size:13px;font-weight:600;color:#A99C86">[Name] · Verified buyer</figcaption></figure>
+<figure style="margin:0;background:rgba(239,228,208,.05);border:1px solid rgba(239,228,208,.12);padding:30px;display:flex;flex-direction:column;gap:14px;border-radius:4px"><span style="letter-spacing:3px;color:#D69A3C" aria-hidden="true">★★★★★</span><blockquote class="serif" style="margin:0;font-size:23px;line-height:1.3">[Live Judge.me review]</blockquote><figcaption style="font-size:13px;font-weight:600;color:#A99C86">[Name] · Verified buyer</figcaption></figure>
+<figure style="margin:0;background:rgba(239,228,208,.05);border:1px solid rgba(239,228,208,.12);padding:30px;display:flex;flex-direction:column;gap:14px;border-radius:4px"><span style="letter-spacing:3px;color:#D69A3C" aria-hidden="true">★★★★★</span><blockquote class="serif" style="margin:0;font-size:23px;line-height:1.3">[Live Judge.me review]</blockquote><figcaption style="font-size:13px;font-weight:600;color:#A99C86">[Name] · Verified buyer</figcaption></figure>
 </div>
-<p style="margin:0;font-size:13px;color:#5E5242">Full Judge.me widget, restyled with the theme's fonts and colors — reviews stay live.</p>
+<p style="margin:0;font-size:13px;color:#8E8170">Judge.me reviews stay live and verified — restyled to match.</p>
 </div>
 </section>
 
-<footer style="background:#17110C;color:#8E9093;padding:40px 0;font-size:13px">
-<div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center"><span class="serif" style="font-size:22px;letter-spacing:.14em;color:#fff;font-weight:600">BISCOFF BOX</span><span>hello@biscoffbox.com · Shipping · Refunds · Privacy · Terms</span></div>
+<footer style="border-top:1px solid rgba(239,228,208,.12);padding:40px 0 110px">
+<div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;font-size:13px;color:#9C8F7A"><span class="serif" style="font-size:22px;letter-spacing:.2em;font-weight:600;color:#EFE4D0">BISCOFF BOX</span><span>hello@biscoffbox.com · Shipping · Refunds · Privacy · Terms</span></div>
 </footer>
+
+<div class="mbar"><div style="display:flex;flex-direction:column;line-height:1.1"><span class="serif" style="font-size:26px">$125</span><span style="font-size:11px;color:#A99C86">Free shipping</span></div><button type="button" class="shine add" style="flex:1;min-height:52px;border:none;background:#B5121B;color:#fff;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-family:inherit;border-radius:2px"><span class="addlbl">Add to cart — <span class="total">$125</span></span></button></div>
 </div>
 <script>
 (function(){
-var imgs=[null,['img/box-slate.webp','Biscoff Box gift box with lid off','#EFE4D0'],['img/spread-real.webp','Cookies and cookie butter on the etched slate board','#EFE4D0'],['img/open-box.webp','Open box showing cookie rolls, cookie butter and wrapped cookies','#EFE4D0']];
-var stage=document.getElementById('stage'),vw=document.getElementById('vidwrap'),mi=document.getElementById('mainimg');
-document.querySelectorAll('.thumb').forEach(function(t){t.addEventListener('click',function(){var i=+t.dataset.i;
-document.querySelectorAll('.thumb').forEach(function(o){var on=o===t;o.setAttribute('aria-pressed',on);o.style.borderColor=on?'#B5121B':'#CDBFA5'});
-if(i===0){vw.hidden=false;mi.hidden=true;stage.style.background='#1F1712'}else{vw.hidden=true;mi.hidden=false;mi.src=imgs[i][0];mi.alt=imgs[i][1];mi.style.objectFit=i===2?'cover':'contain';mi.style.width=i===2?'100%':'84%';mi.style.height=i===2?'100%':'84%';stage.style.background=imgs[i][2]}})});
-var q=1,qe=document.getElementById('qty'),te=document.getElementById('total');function u(){qe.textContent=q;te.textContent='$'+(125*q)}
+var G=[{"key": "hero", "fit": "cover", "pos": "50% 50%", "bg": "#17110C", "alt": "The Biscoff Box with its etched slate board, Lotus Biscoff cookies and cookie butter", "src": "img/product-hero.webp"}, {"key": "box", "fit": "contain", "pos": "50% 50%", "bg": "#241A13", "alt": "The slate-finish gift box, lid off, packed with Lotus Biscoff cookies", "src": "img/box-slate.webp"}, {"key": "home", "fit": "cover", "pos": "60% 60%", "bg": "#17110C", "alt": "The Biscoff Box served on a holiday table at home", "src": "img/home-spread.webp"}, {"key": "oil", "fit": "cover", "pos": "45% 50%", "bg": "#17110C", "alt": "A board being oiled by hand in the workshop", "src": "img/step-oil.webp"}, {"key": "etch", "fit": "cover", "pos": "50% 64%", "bg": "#17110C", "alt": "The Biscoff Box mark being laser-etched into slate", "src": "img/step-etch.webp"}, {"key": "video", "fit": "cover", "pos": "50% 50%", "bg": "#17110C", "alt": "The making-of film", "src": null}];
+var st=document.getElementById('stage'),vw=document.getElementById('vidwrap'),mi=document.getElementById('mainimg'),vid=document.getElementById('vid');
+document.querySelectorAll('.thumb').forEach(function(t){t.addEventListener('click',function(){var i=+t.dataset.i,g=G[i];
+document.querySelectorAll('.thumb').forEach(function(o){var on=o===t;o.setAttribute('aria-pressed',on);o.style.borderColor=on?'#D69A3C':'rgba(239,228,208,.15)'});
+if(g.key==='video'){vw.style.display='flex';mi.style.display='none';st.style.background='#17110C';vid.play().catch(function(){})}else{vid.pause();vw.style.display='none';mi.style.display='block';mi.src=g.src;mi.alt=g.alt;mi.style.objectFit=g.fit;mi.style.objectPosition=g.pos;var b=g.key==='box';mi.style.width=mi.style.height=b?'88%':'100%';mi.style.filter=b?'drop-shadow(0 30px 40px rgba(0,0,0,.6))':'none';st.style.background=b?'#241A13':'#17110C'}})});
+var q=1,qe=document.getElementById('qty');function u(){qe.textContent=q;document.querySelectorAll('.total').forEach(function(e){e.textContent='$'+(125*q)})}
 document.getElementById('inc').onclick=function(){q=Math.min(q+1,20);u()};document.getElementById('dec').onclick=function(){q=Math.max(q-1,1);u()};
 var n=document.getElementById('note'),nl=document.getElementById('notelen');n.addEventListener('input',function(){nl.textContent=n.value.length+'/200'});
-var add=document.getElementById('add');add.onclick=function(){add.firstChild.textContent='Concept demo — checkout runs on their Shopify store ';setTimeout(function(){add.firstChild.textContent='Add to cart — '},2600)};
+document.querySelectorAll('.add').forEach(function(b){b.addEventListener('click',function(){var l=b.querySelector('.addlbl'),h=l.innerHTML;l.textContent='Concept demo — checkout runs on Shopify';setTimeout(function(){l.innerHTML=h},2400)})});
 })();
 </script>
 </body>
