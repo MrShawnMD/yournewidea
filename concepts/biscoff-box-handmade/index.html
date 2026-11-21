@@ -104,6 +104,17 @@ section[aria-label="How a Biscoff Box is made"]{order:1;padding:28px 0 8px !impo
 section[style*="padding:150px 0"]{order:5}
 .wood>footer{order:6}
 }
+.mintro{display:none}
+@media (max-width:900px){
+.mintro{display:flex;flex-direction:column;gap:12px;align-items:center;margin:0 -24px 6px}
+.mintro img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;-webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent 100%);mask-image:linear-gradient(to bottom,#000 78%,transparent 100%)}
+.mintro .what{padding:0 24px;font-size:15px;line-height:1.55;color:#EFE4D0;font-weight:600}
+.mintro .price{font-family:'Cormorant Garamond',Georgia,serif;font-size:34px;line-height:1;color:#EFE4D0}
+.mintro .price small{font-family:Manrope,system-ui,sans-serif;font-size:12px;color:#CBBFA9;font-weight:600;letter-spacing:.04em;margin-left:8px}
+.herotext h1{font-size:40px !important}
+.herotext>p{display:none}
+section[aria-label="How a Biscoff Box is made"]{padding-top:0 !important}
+}
 </style>
 </head>
 <body>
@@ -151,6 +162,12 @@ section[style*="padding:150px 0"]{order:5}
 </li>
 </ol>
 <div class="herotext" style="display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center;margin-top:64px">
+<div class="mintro">
+<img src="img/product-hero.webp" alt="The Biscoff Box: an etched slate serving board with Lotus Biscoff cookies and cookie butter">
+<span class="eyebrow" style="color:#D69A3C">The Biscoff Box</span>
+<p class="what" style="margin:0">A hand-cut slate serving board, packed with Lotus Biscoff cookies and cookie butter.</p>
+<div class="price">$125<small>Free shipping</small></div>
+</div>
 <h1 class="serif h1" style="margin:0;font-size:96px">Cut. Etched. Oiled.<br><em style="color:#D69A3C">One by one.</em></h1>
 <p style="margin:0;font-size:19px;line-height:1.6;max-width:640px;color:#E4D8C2">Every Biscoff Box starts as a raw slab of slate and ends as a hand-finished serving board — packed with Lotus Biscoff cookies and cookie butter.</p>
 <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
