@@ -37,11 +37,25 @@ header .wrap{display:flex !important;justify-content:space-between;height:76px !
 .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(23,17,12,.96);border-top:1px solid rgba(239,228,208,.15);padding:10px 14px 14px;gap:10px;align-items:center;backdrop-filter:blur(6px)}
 .thumbs{grid-template-columns:repeat(6,68px) !important;overflow-x:auto;padding-bottom:4px}}
 @media (prefers-reduced-motion:reduce){.shine::after{animation:none;display:none}}
+@media (max-width:900px){.concept .cl{display:none}
+section:first-of-type{padding-top:16px !important;padding-bottom:56px !important}
+.pdp{gap:26px !important}
+.galcol{margin:0 -18px}
+.galcol>div:first-child{aspect-ratio:1/1 !important;border-radius:0 !important;box-shadow:none !important}
+.thumbs{padding:0 18px 4px !important}
+.buyrow{flex-wrap:nowrap !important}
+.buyrow .add{flex:1 1 auto !important;min-width:0;font-size:13px !important;letter-spacing:.08em !important}
+h2.serif{font-size:40px !important;line-height:1.05 !important}
+section[style*="padding:90px 0"],#reviews{padding:56px 0 !important}
+.g4 .fround{height:240px !important;border-radius:20px !important}
+.g4{gap:22px 12px !important}
+.mbar{transform:translateY(110%);transition:transform .35s ease}
+.mbar.show{transform:none}}
 .concept{background:#D69A3C;color:#1C1510;font-size:13px;text-align:center;padding:8px 16px;line-height:1.4;font-family:Manrope,system-ui,sans-serif}.concept a{color:#1C1510}
 </style>
 </head>
 <body>
-<div class="concept"><b>Website concept</b> prepared by Shawn D. for Biscoff Box. Not the live store — ordering is turned off. <a href="https://biscoffbox.com" rel="noopener">Visit the real Biscoff Box</a></div>
+<div class="concept"><b>Website concept</b> by Shawn D.<span class="cl"> for Biscoff Box</span> — not the live store.<span class="cl"> Ordering is turned off.</span> <a href="https://biscoffbox.com" rel="noopener">Real site</a></div>
 <div class="wood" style="width:100%;min-width:0">
 <div style="background:#B5121B;color:#fff;text-align:center;font-size:13px;font-weight:600;letter-spacing:.06em;padding:10px 16px">Free shipping on every box · Order by December 14 for Christmas delivery</div>
 <header style="border-bottom:1px solid rgba(239,228,208,.12)">
@@ -92,7 +106,7 @@ header .wrap{display:flex !important;justify-content:space-between;height:76px !
 <textarea id="note" rows="3" maxlength="200" placeholder="Merry Christmas — save me one."  style="width:100%;box-sizing:border-box;border:1px dashed #A8987E;background:#F7F0E2;padding:14px;font-family:inherit;font-size:16px;resize:vertical;border-radius:2px;color:#1C1510"></textarea>
 <div style="display:flex;justify-content:space-between;gap:12px;font-size:13px;color:#5E5242"><span>Free · printed on a card in the box, signed with your name</span><span id="notelen">0/200</span></div>
 </div>
-<div style="display:flex;gap:12px;flex-wrap:wrap">
+<div class="buyrow" style="display:flex;gap:12px;flex-wrap:wrap">
 <div style="display:flex;align-items:center;border:1px solid rgba(239,228,208,.5);min-height:60px;border-radius:2px">
 <button type="button" id="dec" aria-label="Decrease quantity" style="width:52px;height:58px;border:none;background:none;color:#EFE4D0;font-size:22px;cursor:pointer;font-family:inherit">−</button>
 <span id="qty" style="min-width:28px;text-align:center;font-weight:700;font-size:17px" aria-live="polite">1</span>
@@ -100,7 +114,7 @@ header .wrap{display:flex !important;justify-content:space-between;height:76px !
 </div>
 <button type="button" class="shine add" style="flex:1 1 240px;min-height:60px;border:none;background:#B5121B;color:#fff;font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;font-family:inherit;cursor:pointer;border-radius:2px"><span class="addlbl">Add to cart — <span class="total">$125</span></span></button>
 </div>
-<div style="min-height:54px;border:1px solid rgba(239,228,208,.3);color:#CBBFA9;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;letter-spacing:.06em;border-radius:2px">[Shopify express checkout — Shop Pay / Apple Pay]</div>
+<div style="min-height:54px;border:1px solid rgba(239,228,208,.3);color:#CBBFA9;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;letter-spacing:.06em;border-radius:2px">[Shop Pay / Apple Pay buttons]</div>
 <div style="display:flex;flex-direction:column">
 <details><summary><span>The slate board</span><span aria-hidden="true" style="font-size:22px;font-weight:400">+</span></summary><p style="margin:0 0 20px;font-size:15px;line-height:1.7;color:#CBBFA9">Cut from raw stone, laser-etched with our mark and finished with food-safe oil by hand. Natural slate, so every board is a little different. Size: [BOARD DIMENSIONS].</p></details>
 <details><summary><span>Shipping</span><span aria-hidden="true" style="font-size:22px;font-weight:400">+</span></summary><p style="margin:0 0 20px;font-size:15px;line-height:1.7;color:#CBBFA9">Free standard shipping, 3–5 business days. Express, 1–2 business days, $15. Ships UPS with tracking. Order by December 14 for Christmas with standard shipping.</p></details>
@@ -154,6 +168,7 @@ if(g.key==='video'){vw.style.display='flex';mi.style.display='none';st.style.bac
 var q=1,qe=document.getElementById('qty');function u(){qe.textContent=q;document.querySelectorAll('.total').forEach(function(e){e.textContent='$'+(125*q)})}
 document.getElementById('inc').onclick=function(){q=Math.min(q+1,20);u()};document.getElementById('dec').onclick=function(){q=Math.max(q-1,1);u()};
 var n=document.getElementById('note'),nl=document.getElementById('notelen');n.addEventListener('input',function(){nl.textContent=n.value.length+'/200'});
+var mb=document.querySelector('.mbar'),ma=document.querySelector('.buyrow');if(mb&&ma&&'IntersectionObserver' in window){new IntersectionObserver(function(e){var r=e[0];mb.classList.toggle('show',!r.isIntersecting&&r.boundingClientRect.top<0)}).observe(ma)}else if(mb){mb.classList.add('show')}
 var qs=new URLSearchParams(location.search),pre=qs.get('note');if(pre){n.value=pre.slice(0,200);nl.textContent=n.value.length+'/200';var lb=document.querySelector('label[for=note]');if(lb)lb.textContent='Your gift note — edit it if you like'}
 document.querySelectorAll('.add').forEach(function(b){b.addEventListener('click',function(){var l=b.querySelector('.addlbl'),h=l.innerHTML;l.textContent='Concept demo — checkout runs on Shopify';setTimeout(function(){l.innerHTML=h},2400)})});
 })();
