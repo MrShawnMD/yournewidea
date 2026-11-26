@@ -80,6 +80,8 @@ const LEGS={
   gibbsTD:  {game:'401873081',player:'Jahmyr Gibbs',     stat:'td',     target:1, pre:.71,label:'Jahmyr Gibbs: 1+ touchdowns'},
   burden50: {game:'401873081',player:'Luther Burden III',stat:'recYds', target:50,pre:.63,sd:25,label:'Luther Burden III: 50+ receiving yards'},
   loveland50:{game:'401873081',player:'Colston Loveland',stat:'recYds', target:50,pre:.55,sd:25,label:'Colston Loveland: 50+ receiving yards'},
+  lamb70:   {game:'401873080',player:'CeeDee Lamb',      stat:'recYds', target:70,pre:.68,sd:28,label:'CeeDee Lamb: 70+ receiving yards'},
+  javonteTD:{game:'401873080',player:'Javonte Williams', stat:'td',     target:1, pre:.61,label:'Javonte Williams: 1+ touchdowns'},
   pickens60:{game:'401873080',player:'George Pickens',   stat:'recYds', target:60,pre:.60,sd:28,label:'George Pickens: 60+ receiving yards'},
   cook16:   {game:'401873082',player:'James Cook III',   stat:'rushAtt',target:16,pre:.75,sd:4, label:'James Cook III: 16+ rushing attempts'},
   allenTD:  {game:'401873082',player:'Josh Allen',       stat:'td',     target:1, pre:.52,label:'Josh Allen: 1+ touchdowns'},
@@ -89,11 +91,15 @@ const LEGS={
 const SINGLES=[
   {leg:'gibbs90',cost:100,pays:179.40},
   {leg:'burden50',cost:200,pays:309.44},
-  {leg:'gibbsTD',cost:100,pays:138.04}
+  {leg:'gibbsTD',cost:100,pays:138.04},
+  {leg:'javonteTD',cost:100,pays:159.57},
+  {leg:'lamb70',cost:100,pays:143.83},
+  {leg:'pickens60',cost:100,pays:162.12}
 ];
 const COMBOS=[
   {name:'4-pick combo',cost:74.98,pays:439.88,legs:['loveland50','burden50','gibbs90','gibbsTD']},
   {name:'3-pick combo',cost:74.98,pays:218.97,legs:['burden50','gibbs80','gibbsTD']},
+  {name:'3-pick combo (Eagles vs Cowboys)',cost:99.99,pays:390.77,legs:['lamb70','pickens60','javonteTD']},
   {name:'5-pick combo',cost:49.98,pays:572.73,legs:['pickens60','cook16','allenTD','cookTD','hidden5']}
 ];
 const UNIT={rushYds:'rush yds',recYds:'rec yds',rushAtt:'carries',td:'TD'};
