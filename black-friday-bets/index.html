@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Black Friday Bets — Live</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F1F3F2;--card:#fff;--ink:#10261C;--ink2:#34433c;--mute:#6b7a72;--line:#dfe4e1;--track:#e6ebe8;
+  --fill:#1f8a4c;--fillLive:#3fae6b;--hit:#13804a;--lost:#c0392b;--warn:#b7791f;--accent:#16A34A}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;padding-bottom:40px}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+header{background:var(--ink);color:#fff;padding:22px 0 18px}
+header h1{font-family:'Bricolage Grotesque',sans-serif;font-size:30px;letter-spacing:-.02em}
+header .sub{color:#b7c9bf;font-size:13px;margin-top:4px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.dot{width:8px;height:8px;border-radius:50%;background:#e5283a;display:inline-block;animation:p 1.6s infinite}
+@keyframes p{0%{box-shadow:0 0 0 0 rgba(229,40,58,.6)}70%{box-shadow:0 0 0 8px rgba(229,40,58,0)}100%{box-shadow:0 0 0 0 rgba(229,40,58,0)}}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.tile .k{font-size:12px;color:var(--mute);font-weight:600}
+.tile .v{font-family:'Bricolage Grotesque',sans-serif;font-size:24px;margin-top:2px}
+.games{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:18px}
+.game{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:13px}
+.game .sc{display:flex;justify-content:space-between;font-weight:700;font-size:15px;margin:2px 0}
+.game .st{color:var(--mute);font-size:12px}
+.game.live .st{color:#c0392b;font-weight:700}
+h2{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;margin:22px 0 10px}
+.bet{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px}
+.bet .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.bet .title{font-weight:700;font-size:15px}
+.bet .money{font-size:13px;color:var(--mute);white-space:nowrap}
+.bet .money b{color:var(--ink)}
+.chance{font-family:'Bricolage Grotesque',sans-serif;font-size:26px;line-height:1}
+.leg{margin-top:12px}
+.leg .row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;gap:8px}
+.leg .row .nm{font-weight:600}
+.leg .row .val{color:var(--ink2);white-space:nowrap}
+.bar{position:relative;height:16px;background:var(--track);border-radius:4px;overflow:visible;cursor:default}
+.bar .f{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0;background:var(--fill);transition:width .6s}
+.bar .t{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink)}
+.bar .tl{position:absolute;top:-18px;font-size:10px;color:var(--mute);transform:translateX(-50%);white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:1px}
+.pill.hit{background:#dcf5e5;color:var(--hit)}.pill.lost{background:#fbe3e0;color:var(--lost)}.pill.live{background:#fff1d6;color:var(--warn)}.pill.pre{background:#eef1ef;color:var(--mute)}
+.tds{display:flex;gap:6px;align-items:center}
+.tds span{width:16px;height:16px;border-radius:50%;border:2px solid var(--line);display:inline-block}
+.tds span.on{background:var(--fill);border-color:var(--fill)}
+.legpct{font-size:12px;color:var(--mute);margin-top:4px}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;padding:6px 9px;border-radius:8px;opacity:0;transition:opacity .1s;z-index:9;max-width:240px}
+.note{font-size:12px;color:var(--mute);margin-top:18px;line-height:1.5}
+.err{background:#fbe3e0;color:#8a2a20;border-radius:10px;padding:10px 12px;font-size:13px;margin-top:12px;display:none}
+@media (max-width:640px){.summary{grid-template-columns:1fr 1fr}.games{grid-template-columns:1fr}header h1{font-size:26px}.chance{font-size:22px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>🛍️ Black Friday Bets</h1>
+  <div class="sub"><span class="dot"></span><span id="upd">Loading live stats from ESPN…</span><span>· updates every 30 seconds</span></div>
+</div></header>
+<div class="wrap">
+  <div class="summary" id="summary"></div>
+  <div class="games" id="games"></div>
+  <div class="err" id="err"></div>
+  <h2>Straight Bets</h2><div id="singles"></div>
+  <h2>Combos</h2><div id="combos"></div>
+  <p class="note">Live stats come from ESPN box scores. "Chance" starts at the price you saw before kickoff and updates from where each player is now and how much game is left. It's our own estimate, not the sportsbook's live price. Combo chances multiply the legs together.</p>
+</div>
+<div class="tip" id="tip"></div>
+<script>
+const GAMES={
+  '401873083':{label:'DEN @ PIT'}
+};
+// pre = pregame chance from the app; sd = typical full-game spread for that stat
+const LEGS={
+  muth2rec: {game:'401873083',player:'Pat Freiermuth',stat:'rec',   target:2, pre:.68,sd:1.6,label:'Pat Freiermuth: 2+ receptions'},
+  warren20: {game:'401873083',player:'Jaylen Warren', stat:'recYds',target:20,pre:.49,sd:16, label:'Jaylen Warren: 20+ receiving yards'},
+  muth20:   {game:'401873083',player:'Pat Freiermuth',stat:'recYds',target:20,pre:.54,sd:16, label:'Pat Freiermuth: 20+ receiving yards'}
+};
+const SINGLES=[
+  {leg:'muth2rec',cost:100,pays:143.83},
+  {leg:'warren20',cost:100,pays:201.01},
+  {leg:'muth20',cost:100,pays:179.40}
+];
+const COMBOS=[
+  {name:'3-pick combo',cost:99.97,pays:384.46,legs:['muth2rec','warren20','muth20']}
+];
+const UNIT={rec:'catches',rushYds:'rush yds',recYds:'rec yds',rushAtt:'carries',td:'TD'};
+
+const norm=s=>s.toLowerCase().replace(/[.'’]/g,'').replace(/\b(jr|sr|ii|iii|iv|v)\b/g,'').replace(/\s+/g,' ').trim();
+function erf(x){const t=1/(1+.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-.284496736)*t+.254829592)*t*Math.exp(-x*x);return x>=0?y:-y}
+const Phi=z=>.5*(1+erf(z/Math.SQRT2));
+function invPhi(p){ // Acklam
+  const a=[-39.69683028665376,220.9460984245205,-275.9285104469687,138.357751867269,-30.66479806614716,2.506628277459239],
+  b=[-54.47609879822406,161.5858368580409,-155.6989798598866,66.80131188771972,-13.28068155288572],
+  c=[-.007784894002430293,-.3223964580411365,-2.400758277161838,-2.549732539343734,4.374664141464968,2.938163982698783],
+  d=[.007784695709041462,.3224671290700398,2.445134137142996,3.754408661907416];
+  if(p<.02425){const q=Math.sqrt(-2*Math.log(p));return(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)}
+  if(p>1-.02425){const q=Math.sqrt(-2*Math.log(1-p));return-(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1)}
+  const q=p-.5,r=q*q;return(((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1)}
+
+let STATE={games:{},players:{}};
+
+function remaining(g){
+  if(!g||g.state==='pre')return 1;
+  if(g.state==='post')return 0;
+  const [m,s]=(g.clock||'0:00').split(':').map(Number);const sec=(m||0)*60+(s||0);
+  if(g.period<=4)return Math.max(0,((4-g.period)*900+sec)/3600);
+  return Math.max(.01,.04*sec/600);
+}
+function legStatus(id){
+  const L=LEGS[id];
+  if(L.unknown)return{cur:null,p:L.pre,state:'pre',unknown:true};
+  const g=STATE.games[L.game];const pl=STATE.players[L.game+'|'+norm(L.player)]||{};
+  const cur=L.stat==='td'?(pl.td||0):(pl[L.stat]||0);
+  const f=remaining(g);const st=g?g.state:'pre';
+  if(cur>=L.target)return{cur,p:1,state:'hit'};
+  if(st==='post'||f===0)return{cur,p:0,state:'lost'};
+  let p;
+  if(L.stat==='td'){const lam=-Math.log(1-L.pre);p=1-Math.exp(-lam*f)}
+  else{const mean=L.target+L.sd*invPhi(L.pre);const need=L.target-cur;p=1-Phi((need-mean*f)/(L.sd*Math.sqrt(f)))}
+  return{cur,p:Math.min(.999,Math.max(.001,p)),state:st==='in'?'live':'pre'};
+}
+const pct=p=>p>=.995&&p<1?'99%':p<=.005&&p>0?'<1%':Math.round(p*100)+'%';
+const money=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+function pill(s){return s==='hit'?'<span class="pill hit">✓ Hit</span>':s==='lost'?'<span class="pill lost">✕ Missed</span>':s==='live'?'<span class="pill live">● Live</span>':'<span class="pill pre">Not started</span>'}
+
+function legHTML(id,small){
+  const L=LEGS[id],S=legStatus(id);
+  if(L.unknown)return `<div class="leg"><div class="row"><span class="nm">${L.label}</span><span class="val">tap “View 1 more” in the app and tell me</span></div><div class="legpct">Estimated from the combo price: ~${pct(L.pre)}</div></div>`;
+  let viz;
+  if(L.stat==='td'){viz=`<div class="tds" data-tip="${L.player}: ${S.cur} touchdown${S.cur==1?'':'s'}"><span class="${S.cur>=1?'on':''}"></span><span style="border:0;width:auto;height:auto;font-size:13px;color:var(--ink2)">${S.cur} TD</span></div>`}
+  else{const max=Math.max(L.target*1.35,S.cur*1.05);const w=Math.min(100,S.cur/max*100),tp=L.target/max*100;
+    viz=`<div class="bar" data-tip="${L.player}: ${S.cur} ${UNIT[L.stat]} of ${L.target} needed"><div class="f" style="width:${w}%;background:${S.state==='hit'?'var(--hit)':S.state==='lost'?'#b9c2bd':'var(--fill)'}"></div><div class="t" style="left:${tp}%"></div><div class="tl" style="left:${tp}%">${L.target}</div></div>`}
+  return `<div class="leg"><div class="row"><span class="nm">${L.label}${pill(S.state)}</span><span class="val">${L.stat==='td'?'':S.cur+' / '+L.target+' '+UNIT[L.stat]}</span></div>${viz}${small?`<div class="legpct">Chance: ${pct(S.p)}</div>`:''}</div>`;
+}
+
+function render(){
+  let staked=0,maxPay=0,ev=0,locked=0;
+  const sHTML=SINGLES.map(b=>{const S=legStatus(b.leg);staked+=b.cost;maxPay+=b.pays;ev+=b.pays*S.p;if(S.state==='hit')locked+=b.pays;
+    return `<div class="bet"><div class="top"><div><div class="title">${LEGS[b.leg].label}</div><div class="money">Cost <b>${money(b.cost)}</b> · Pays <b>${money(b.pays)}</b></div></div><div class="chance" style="color:${S.state==='hit'?'var(--hit)':S.state==='lost'?'var(--lost)':'var(--ink)'}">${pct(S.p)}</div></div>${legHTML(b.leg,false)}</div>`}).join('');
+  const cHTML=COMBOS.map(c=>{let p=1,dead=false,all=true;c.legs.forEach(l=>{const S=legStatus(l);p*=S.p;if(S.state==='lost')dead=true;if(S.state!=='hit')all=false});if(dead)p=0;
+    staked+=c.cost;maxPay+=c.pays;ev+=c.pays*p;if(all)locked+=c.pays;
+    return `<div class="bet"><div class="top"><div><div class="title">${c.name} ${dead?'<span class="pill lost">✕ Dead</span>':all?'<span class="pill hit">✓ Cashed</span>':''}</div><div class="money">Cost <b>${money(c.cost)}</b> · Pays <b>${money(c.pays)}</b></div></div><div class="chance" style="color:${dead?'var(--lost)':all?'var(--hit)':'var(--ink)'}">${pct(p)}</div></div>${c.legs.map(l=>legHTML(l,true)).join('')}</div>`}).join('');
+  document.getElementById('singles').innerHTML=sHTML;
+  document.getElementById('combos').innerHTML=cHTML;
+  document.getElementById('summary').innerHTML=[['Total bet',money(staked)],['If everything hits',money(maxPay)],['Already won',money(locked)],['Live expected value',money(ev)]].map(([k,v])=>`<div class="tile"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
+  document.getElementById('games').innerHTML=Object.entries(GAMES).map(([id,G])=>{const g=STATE.games[id];
+    if(!g)return `<div class="game"><div>${G.label}</div><div class="st">Loading…</div></div>`;
+    return `<a class="game ${g.state==='in'?'live':''}" href="https://www.espn.com/nfl/game/_/gameId/${id}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="sc"><span>${g.away} ${g.awayScore}</span><span>${g.home} ${g.homeScore}</span></div><div class="st">${g.detail}</div></a>`}).join('');
+}
+
+async function loadGame(id){
+  const r=await fetch('https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event='+id+'&_='+Date.now());
+  const d=await r.json();
+  const comp=d.header.competitions[0],st=comp.status;
+  const home=comp.competitors.find(c=>c.homeAway==='home'),away=comp.competitors.find(c=>c.homeAway==='away');
+  STATE.games[id]={state:st.type.state,period:st.period,clock:st.displayClock,detail:st.type.shortDetail||st.type.detail,
+    home:home.team.abbreviation,away:away.team.abbreviation,homeScore:home.score||'0',awayScore:away.score||'0'};
+  (d.boxscore.players||[]).forEach(team=>team.statistics.forEach(cat=>{
+    const k=cat.keys||[];
+    cat.athletes.forEach(a=>{const key=id+'|'+norm(a.athlete.displayName);const p=STATE.players[key]=STATE.players[key]||{td:0,_td:{}};
+      const v=n=>{const i=k.indexOf(n);return i<0?0:parseFloat(a.stats[i])||0};
+      if(cat.name==='rushing'){p.rushYds=v('rushingYards');p.rushAtt=v('rushingAttempts');p._td.rush=v('rushingTouchdowns')}
+      if(cat.name==='receiving'){p.recYds=v('receivingYards');p.rec=v('receptions');p._td.rec=v('receivingTouchdowns')}
+      p.td=(p._td.rush||0)+(p._td.rec||0);
+    })}));
+}
+async function refresh(){
+  const err=document.getElementById('err');
+  try{await Promise.all(Object.keys(GAMES).map(loadGame));err.style.display='none';
+    document.getElementById('upd').textContent='Updated '+new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit',second:'2-digit'});}
+  catch(e){err.style.display='block';err.textContent='Could not reach ESPN just now. Trying again in 30 seconds.'}
+  render();
+}
+render();refresh();setInterval(refresh,30000);
+
+const tip=document.getElementById('tip');
+document.addEventListener('mousemove',e=>{const t=e.target.closest('[data-tip]');if(!t){tip.style.opacity=0;return}
+  tip.textContent=t.dataset.tip;tip.style.opacity=1;tip.style.left=Math.min(e.clientX+12,innerWidth-250)+'px';tip.style.top=(e.clientY+14)+'px'});
+</script>
+</body>
+</html>
