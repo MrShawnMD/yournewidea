@@ -86,6 +86,7 @@ const LEGS={
   cook16:   {game:'401873082',player:'James Cook III',   stat:'rushAtt',target:16,pre:.75,sd:4, label:'James Cook III: 16+ rushing attempts'},
   allenTD:  {game:'401873082',player:'Josh Allen',       stat:'td',     target:1, pre:.52,label:'Josh Allen: 1+ touchdowns'},
   cookTD:   {game:'401873082',player:'James Cook III',   stat:'td',     target:1, pre:.50,label:'James Cook III: 1+ touchdowns'},
+  cook70:   {game:'401873082',player:'James Cook III',   stat:'rushYds',target:70,pre:.68,sd:28,label:'James Cook III: 70+ rushing yards'},
   hidden5:  {game:null,unknown:true,pre:.75,label:'5th leg (not shown in the screenshot)'}
 };
 const SINGLES=[
@@ -94,7 +95,10 @@ const SINGLES=[
   {leg:'gibbsTD',cost:100,pays:138.04},
   {leg:'javonteTD',cost:100,pays:159.57},
   {leg:'lamb70',cost:100,pays:143.83},
-  {leg:'pickens60',cost:100,pays:162.12}
+  {leg:'pickens60',cost:100,pays:162.12},
+  {leg:'allenTD',cost:100,pays:179.40},
+  {leg:'cookTD',cost:100,pays:193.23},
+  {leg:'cook70',cost:100,pays:143.83}
 ];
 const COMBOS=[
   {name:'4-pick combo',cost:74.98,pays:439.88,legs:['loveland50','burden50','gibbs90','gibbsTD']},
